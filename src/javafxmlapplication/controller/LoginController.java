@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,6 +37,7 @@ public class LoginController implements Initializable {
     private TextField login_nickname;
     @FXML
     private TextField login_passwd;
+    public Member current_user = null;
 
     /**
      * Initializes the controller class.
@@ -58,11 +60,14 @@ public class LoginController implements Initializable {
             try {
                 
                 Member user = club.getMemberByCredentials(nickname, passwd);
+                current_user = user;
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+            
             System.out.println(club.existsLogin(""));
             System.out.println(club.existsLogin(nickname));
+            ((Button)event.getSource()).getScene().getWindow().hide();
             
             /*FXMLLoader loader= new FXMLLoader(getClass().getResource("../view/Register.fxml"));
             Parent root = loader.load();
@@ -83,7 +88,8 @@ public class LoginController implements Initializable {
     
     public boolean isLogged() throws ClubDAOException, IOException {
         Club club = Club.getInstance();
-        return club.existsLogin("");
+        boolean res = club.existsLogin(current_user.getNickName());
+        return res;
         
     }
     

@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/controller/InicioController.java</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/view/Inicio.fxml</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/view/Register.fxml</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/controller/LoginController.java</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/JavaFXMLApplication.java</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/controller/MainViewController.java</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/view/Login.fxml</file>
-            <file>file:/C:/Users/joeli/OneDrive/Escritorio/JavaFX11_TrabajoTenis/src/javafxmlapplication/controller/RegisterController.java</file>
+            <file>file:/C:/Users/joeli/OneDrive/Escritorio/tenis/IPCTenis/src/javafxmlapplication/controller/MainViewController.java</file>
+            <file>file:/C:/Users/joeli/OneDrive/Escritorio/tenis/IPCTenis/src/javafxmlapplication/controller/InicioController.java</file>
+            <file>file:/C:/Users/joeli/OneDrive/Escritorio/tenis/IPCTenis/src/javafxmlapplication/controller/LoginController.java</file>
+            <file>file:/C:/Users/joeli/OneDrive/Escritorio/tenis/IPCTenis/src/javafxmlapplication/JavaFXMLApplication.java</file>
         </group>
     </open-files>
 </project-private>

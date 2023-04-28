@@ -19,6 +19,7 @@ import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.controller.RegisterController;
+import model.ClubDAOException;
 
 /**
  * FXML Controller class
@@ -41,17 +42,27 @@ public class InicioController implements Initializable {
     }    
 
     @FXML
-    private void loadLogin(ActionEvent event) throws IOException {
-        FXMLLoader loader= new FXMLLoader(getClass().getResource("../view/Login.fxml"));
+    private void loadLogin(ActionEvent event) throws IOException, ClubDAOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/Login.fxml"));
         Parent root = loader.load();
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
+       LoginController controladorLogin = loader.getController();
        
         stage.setScene(scene);
         stage.setTitle("Demo vista de lista de personas");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
+        
+        
+        
+        if (controladorLogin.isLogged()) {
+            System.out.println("ENTRA EN IS LOGGEDD");
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            Parent root2 = loader2.load();
+            javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+        }
     }
 
     @FXML
