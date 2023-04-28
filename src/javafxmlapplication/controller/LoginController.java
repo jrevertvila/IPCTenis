@@ -67,6 +67,19 @@ public class LoginController implements Initializable {
             
             System.out.println(club.existsLogin(""));
             System.out.println(club.existsLogin(nickname));
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+           MessageModalController controladorMessageModal = loader.getController();
+           controladorMessageModal.setTextMessage("Se ha iniciado sesión correctamente.");
+            stage.setScene(scene);
+            stage.setTitle("Inicio de sesión correcto");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+        
             ((Button)event.getSource()).getScene().getWindow().hide();
             
             /*FXMLLoader loader= new FXMLLoader(getClass().getResource("../view/Register.fxml"));
