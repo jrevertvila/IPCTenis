@@ -49,7 +49,7 @@ public class LoginController implements Initializable {
     private void loginUser(ActionEvent event) throws IOException, ClubDAOException{
         String nickname = login_nickname.getText();
         String passwd = login_passwd.getText();
-
+        System.out.println("hola");
         if (nickname.isBlank()|| passwd.isBlank()) {
             
         } else { //try to login
