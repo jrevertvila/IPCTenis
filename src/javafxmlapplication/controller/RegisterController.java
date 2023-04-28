@@ -9,9 +9,14 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -103,6 +108,21 @@ public class RegisterController implements Initializable {
             Club club = Club.getInstance();
             Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd, tarjeta, 0,
             null);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            MessageModalController controladorMessageModal = loader.getController();
+            controladorMessageModal.setTextMessage("Se ha registrado correctamente. \n Inicie sesión por favor.");
+            stage.setScene(scene);
+            stage.setTitle("Registro correcto");
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.showAndWait();
+            
+            ((Button)event.getSource()).getScene().getWindow().hide();
+            
         }
         
     }

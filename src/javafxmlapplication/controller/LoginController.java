@@ -73,8 +73,8 @@ public class LoginController implements Initializable {
 
             Scene scene = new Scene(root);
             Stage stage = new Stage();
-           MessageModalController controladorMessageModal = loader.getController();
-           controladorMessageModal.setTextMessage("Se ha iniciado sesión correctamente.");
+            MessageModalController controladorMessageModal = loader.getController();
+            controladorMessageModal.setTextMessage("Se ha iniciado sesión correctamente.");
             stage.setScene(scene);
             stage.setTitle("Inicio de sesión correcto");
             stage.initModality(Modality.APPLICATION_MODAL);

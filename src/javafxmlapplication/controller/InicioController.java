@@ -51,7 +51,7 @@ public class InicioController implements Initializable {
        LoginController controladorLogin = loader.getController();
        
         stage.setScene(scene);
-        stage.setTitle("Demo vista de lista de personas");
+        stage.setTitle("Iniciar Sesión");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         
@@ -72,9 +72,9 @@ public class InicioController implements Initializable {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-        LoginController controladorLogin = loader.getController();
+        RegisterController controladorRegister = loader.getController();
         stage.setScene(scene);
-        stage.setTitle("Demo vista de lista de personas");
+        stage.setTitle("Registrarse");
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.showAndWait();
         
