@@ -24,7 +24,7 @@ public class JavaFXMLApplication extends Application {
     public void start(Stage stage) throws Exception {
         //======================================================================
         // 1- creación del grafo de escena a partir del fichero FXML
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/Inicio.fxml"));
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/Dashboard.fxml"));
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
@@ -33,8 +33,9 @@ public class JavaFXMLApplication extends Application {
         // 3- asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage
         //     - se muestra el stage de manera no modal mediante el metodo show()
+        scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
         stage.setScene(scene);
-        stage.setTitle("Menu-ToolBar-Dialogs");
+        stage.setTitle("GreenBall");
         stage.show();
     }
 

@@ -1,0 +1,23 @@
+BorderPane{
+    -fx-background-image: url("../icons/cover.jpg");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    
+}
+.BorderPane-plot-background {
+   -fx-background-color: transparent;
+}
+
+.button {
+    -fx-background-color: none;
+}
+
+.tabBar_loginBtn {
+    -fx-text-fill: white;
+    -fx-background-color: chartreuse;
+    -fx-background-radius: 200px;
+}
+.hboxFlow {
+    -fx-spacing: 300px
+}
