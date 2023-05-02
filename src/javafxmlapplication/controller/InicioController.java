@@ -20,6 +20,7 @@ public class InicioController implements Initializable {
 
     @FXML
     private Button login;
+    // comentari de prova mi pana
     @FXML
     private Button register;
 
