@@ -1,0 +1,10 @@
+BorderPane{
+    -fx-background-image: url("../icons/backgrounds/BackgroundProfile.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+    
+}
+.BorderPane-plot-background {
+   -fx-background-color: transparent;
+}
