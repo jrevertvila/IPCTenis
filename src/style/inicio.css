@@ -1,5 +1,5 @@
 BorderPane{
-    -fx-background-image: url("../icons/cover.jpg");
+    -fx-background-image: url("../icons/BackgroundApp.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
@@ -13,11 +13,19 @@ BorderPane{
     -fx-background-color: none;
 }
 
-.tabBar_loginBtn {
-    -fx-text-fill: white;
-    -fx-background-color: chartreuse;
+.navBar_loginBtn {
+    -fx-text-fill: #3a4a3a;
+    -fx-background-color: #a7ffa7;
     -fx-background-radius: 200px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 3;
+    -fx-border-radius: 200px;
 }
 .hboxFlow {
     -fx-spacing: 300px
+}
+
+.navBar_btn {
+    -fx-text-fill: #000000;
+    -fx-font-size: 30px;
 }

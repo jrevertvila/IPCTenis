@@ -48,7 +48,7 @@ public class InicioController implements Initializable {
 
         Scene scene = new Scene(root);
         Stage stage = new Stage();
-       LoginController controladorLogin = loader.getController();
+        LoginController controladorLogin = loader.getController();
        
         stage.setScene(scene);
         stage.setTitle("Iniciar Sesión");
@@ -59,7 +59,7 @@ public class InicioController implements Initializable {
         
         if (controladorLogin.isLogged()) {
             System.out.println("ENTRA EN IS LOGGEDD");
-            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Home.fxml"));
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Dashboard.fxml"));
             Parent root2 = loader2.load();
             javafxmlapplication.JavaFXMLApplication.setRoot(root2);
         }
@@ -79,6 +79,8 @@ public class InicioController implements Initializable {
         stage.showAndWait();
         
     }
+    
+    
 
 
     

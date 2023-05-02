@@ -20,11 +20,16 @@ public class JavaFXMLApplication extends Application {
         scene.setRoot(root);
     }
     
+    public static Stage currentStage = null;
+    
     @Override
     public void start(Stage stage) throws Exception {
+        currentStage = stage;
+        
+        
         //======================================================================
         // 1- creación del grafo de escena a partir del fichero FXML
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/Dashboard.fxml"));
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/Inicio2.fxml"));
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
@@ -35,6 +40,7 @@ public class JavaFXMLApplication extends Application {
         //     - se muestra el stage de manera no modal mediante el metodo show()
         scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
         stage.setScene(scene);
+        stage.setMaximized(true);
         stage.setTitle("GreenBall");
         stage.show();
     }

@@ -21,6 +21,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
+import javafxmlapplication.JavaFXMLApplication;
 
 /**
  * FXML Controller class
@@ -45,8 +47,22 @@ public class DashboardController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Stage stage = JavaFXMLApplication.currentStage;
         final Circle clip = new Circle(300, 200, 200);
         imgSidebar.setClip(clip);
+        
+        stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            System.out.println(stage.getTitle());
+            //if (stage.getTitle())
+     // Do whatever you want
+            System.out.println("DASHBOARD RESIZE: " + newVal);
+            if ((double) newVal <= 615.0) {
+                System.out.println("LOWER");
+            }
+        });
+        
+        //tSage stage = (Stage) imgSidebar.getScene().getWindow();
+        
         //File file = new File("amazon.png");
         //Image im = new Image(file.toURI().toString());
         //Image im = new Image("../../icons/cover.jpg",false);
@@ -64,7 +80,7 @@ public class DashboardController implements Initializable {
         String view = (String) ((Node)e.getSource()).getUserData();
         loadFXML(getClass().getResource(view));
     }
-
+    
     private void loadFXML(URL url) {
         try {
             FXMLLoader loader = new FXMLLoader(url);
@@ -73,6 +89,10 @@ public class DashboardController implements Initializable {
         catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    
+    private void handleBorderPaneWidth(ActionEvent e) {
+        
     }
     
 }
