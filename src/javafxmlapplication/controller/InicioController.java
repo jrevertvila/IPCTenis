@@ -4,12 +4,16 @@
  */
 package javafxmlapplication.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 
 /**
  * FXML Controller class
@@ -19,10 +23,19 @@ import javafx.scene.control.Button;
 public class InicioController implements Initializable {
 
     @FXML
-    private Button login;
-    // comentari de prova mi pana
+    private BorderPane mainBorderPane;
     @FXML
-    private Button register;
+    private Button navPistas;
+    @FXML
+    private Button navAboutUs;
+    @FXML
+    private Button navContactUs;
+    @FXML
+    private Button navLogin;
+    @FXML
+    private Button inicioBtnLogin;
+    @FXML
+    private Button inicioBtnRegister;
 
     /**
      * Initializes the controller class.
@@ -33,11 +46,19 @@ public class InicioController implements Initializable {
     }    
 
     @FXML
-    private void loadLogin(ActionEvent event) {
+    private void handleShowView(ActionEvent e) {
+        String view = (String) ((Node)e.getSource()).getUserData();
+        loadFXML(getClass().getResource(view));
     }
-
-    @FXML
-    private void loadRegister(ActionEvent event) {
+    
+    private void loadFXML(URL url) {
+        try {
+            FXMLLoader loader = new FXMLLoader(url);
+            mainBorderPane.setCenter(loader.load());
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
 }

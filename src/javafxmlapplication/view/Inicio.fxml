@@ -4,17 +4,19 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="784.0" stylesheets="@../../style/inicio.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.InicioController">
+<BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1255.0" styleClass="BorderPaneInicio" stylesheets="@../../style/inicio.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.InicioController">
    <padding>
-      <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+      <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
    </padding>
    <top>
       <GridPane BorderPane.alignment="CENTER">
@@ -28,7 +30,7 @@
          <children>
             <FlowPane prefHeight="74.0" prefWidth="357.0">
                <children>
-                  <ImageView fitHeight="37.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../icons/pelota_tenis.png" />
                      </image>
@@ -36,29 +38,56 @@
                         <Insets right="25.0" />
                      </FlowPane.margin>
                   </ImageView>
-                  <Button mnemonicParsing="false" prefHeight="35.0" styleClass="navBar_btn" text="Pistas">
+                  <Button fx:id="navPistas" mnemonicParsing="false" onAction="#handleShowView" prefHeight="35.0" style="-fx-font-family: &quot;Caros&quot;;" styleClass="navBar_btn" text="Pistas" userData="Login.fxml">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Caros" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="35.0" styleClass="navBar_btn" text="Sobre nosotros">
+                  <Button fx:id="navAboutUs" mnemonicParsing="false" onAction="#handleShowView" prefHeight="35.0" styleClass="navBar_btn" text="Sobre nosotros" userData="Register.fxml">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Caros" size="12.0" />
                      </font>
                   </Button>
-                <Button mnemonicParsing="false" prefHeight="35.0" styleClass="navBar_btn" text="Contactanos">
+                <Button fx:id="navContactUs" mnemonicParsing="false" onAction="#handleShowView" prefHeight="35.0" styleClass="navBar_btn" text="Contactanos" userData="Login.fxml">
                      <font>
-                        <Font name="Arial" size="12.0" />
+                        <Font name="Caros" size="12.0" />
                      </font>
                   </Button>
                </children>
             </FlowPane>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" minWidth="80.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" styleClass="navBar_loginBtn" text="Login" />
+                  <Button fx:id="navLogin" alignment="CENTER" contentDisplay="CENTER" minWidth="80.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" styleClass="navBar_loginBtn" text="Login" />
                </children>
             </HBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="30.0" />
+         </BorderPane.margin>
       </GridPane>
    </top>
+   <bottom>
+        
+   </bottom>
+   <right>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </right>
+   <left>
+      <VBox alignment="CENTER" maxHeight="700.0" maxWidth="700.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="59.0" prefWidth="705.0">
+               <children>
+                  <Button fx:id="inicioBtnLogin" maxWidth="1.2312321313213214E20" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" styleClass="inicioBtnLoginRegister" text="Iniciar Sesión">
+                     <font>
+                        <Font name="Arial Bold Italic" size="12.0" />
+                     </font>
+                  </Button>
+                  <HBox prefHeight="100.0" prefWidth="20.0" />
+                  <Button fx:id="inicioBtnRegister" maxWidth="1.2312321313213214E20" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" styleClass="inicioBtnLoginRegister" text="Registrarse" wrapText="true" />
+               </children>
+            </HBox>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </left>
 </BorderPane>
