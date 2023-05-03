@@ -1,10 +1,28 @@
-BorderPane{
+.borderPaneProfile{
     -fx-background-image: url("../icons/backgrounds/BackgroundProfile.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center center;
-    
+
 }
 .BorderPane-plot-background {
-   -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
+
+
+.vBoxProfile {
+    -fx-background-color: #92ea92;
+}
+
+.button {
+    -fx-background-color: none;
+    -fx-border-color: none;
+    -fx-border-width: 3;
+
+}
+
+.button:hover{
+    -fx-background-color: #009933;
+}
+
+
