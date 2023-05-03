@@ -1,4 +1,4 @@
-BorderPane{
+.BorderPaneInicio{
     -fx-background-image: url("../icons/backgrounds/BackgroundApp.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
@@ -9,10 +9,6 @@ BorderPane{
    -fx-background-color: transparent;
 }
 
-.button {
-    -fx-background-color: none;
-}
-
 .navBar_loginBtn {
     -fx-text-fill: #3a4a3a;
     -fx-background-color: #a7ffa7;
@@ -20,12 +16,33 @@ BorderPane{
     -fx-border-color: #FFFFFF;
     -fx-border-width: 3;
     -fx-border-radius: 200px;
+    -fx-font-family: "Impact";
 }
 .hboxFlow {
     -fx-spacing: 300px
 }
 
 .navBar_btn {
-    -fx-text-fill: #000000;
-    -fx-font-size: 30px;
+    -fx-text-fill: white;
+    -fx-font-family: "Impact";
+    -fx-base: #706e6a;
+    -fx-wrap-text: true;
+    -fx-backgroundRadius: 10;
+    -fx-effect: dropshadow( three-pass-box, rgba(0,0,0,0.6), 5, 0.0, 0,1);
+    -fx-font-size: 16px;
+    
+}
+
+.inicioBtnLoginRegister {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-background-color: none;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: #c2eec5;
+    -fx-font-family: "Caros";
+}
+
+.loginRegisterActive{
+    -fx-text-fill: #3a4a3a;
 }
