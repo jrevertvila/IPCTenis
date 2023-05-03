@@ -11,7 +11,7 @@
 
 
 .vBoxProfile {
-    -fx-background-color: #92ea92;
+    -fx-background-color: #333333;
 }
 
 .button {
@@ -21,8 +21,11 @@
 
 }
 
-.button:hover{
-    -fx-background-color: #009933;
+.button:hover {
+    -fx-background-color: grey;
 }
 
-
+.caros {
+    font-family: Caros;
+}
+    

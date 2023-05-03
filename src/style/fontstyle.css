@@ -1,4 +1,8 @@
 @font-face {
     font-family: 'Roboto';
     src: url('../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf');
+    
+    font-family_2: 'Caros';
+    src: url('../fonts/Caro/Fontspring-DEMO-caros-light.otf');
+    
 }

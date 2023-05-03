@@ -2,40 +2,107 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="784.0" styleClass="borderPaneProfile" stylesheets="@../../style/perfil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.ProfileController">
    <left>
-      <VBox prefHeight="470.0" prefWidth="162.0" styleClass="vBoxProfile" BorderPane.alignment="CENTER">
+      <VBox prefHeight="460.0" prefWidth="178.0" styleClass="vBoxProfile" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+            <VBox alignment="TOP_CENTER" prefHeight="266.0" prefWidth="181.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="110.0" prefWidth="162.0" styleClass="active" text="Pistas">
+                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Home" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Caros Light" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/house_im.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="5.0" right="70.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="171.0" text="Mis Datos" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Nova Cond" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="32.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/profile.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <padding>
+                        <Insets bottom="5.0" left="-7.0" right="35.0" top="5.0" />
+                     </padding>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="166.0" prefWidth="171.0" text="Mis Reservas" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Arial Nova Cond" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/calendar_im.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
-                     <font>
-                        <Font name="HP Simplified Hans Regular" size="18.0" />
-                     </font>
+                     <padding>
+                        <Insets bottom="5.0" right="10.0" top="5.0" />
+                     </padding>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="168.0" text="Mis Datos" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" text="Mis Reservas" textAlignment="CENTER">
-                     <font>
-                        <Font size="18.0" />
-                     </font></Button>
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <padding>
-                  <Insets top="90.0" />
+                  <Insets top="110.0" />
                </padding>
             </VBox>
-         </children></VBox>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="167.0" prefWidth="178.0">
+               <children>
+                  <ImageView fitHeight="47.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icons/profile.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="nickName" wrappingWidth="88.1640625">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" />
+               </padding>
+            </HBox>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin></VBox>
    </left>
 </BorderPane>
