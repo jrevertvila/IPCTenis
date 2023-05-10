@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0" prefWidth="783.0" styleClass="BorderPaneInicio" stylesheets="@../../style/inicio2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.InicioRefactorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1222.0" styleClass="BorderPaneInicio" stylesheets="@../../style/inicio2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.InicioRefactorController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -29,24 +29,24 @@
                         <Image url="@../../icons/logoTenis.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="pistasBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Pistas">
+                  <Button fx:id="pistasBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Pistas" userData="PistaSinConexion.fxml">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Sobre Nosotros">
+                  <Button fx:id="aboutUsBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Sobre Nosotros" userData="InicioOld.fxml">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Contáctanos">
+                  <Button fx:id="contactUsBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Contáctanos">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
                </children>
             </FlowPane>
-            <Button mnemonicParsing="false" styleClass="navBar_loginBtn" text="Iniciar Sesión" />
+            <Button fx:id="loginBtnNav" mnemonicParsing="false" onAction="#handleNavBtn" styleClass="navBar_loginBtn" text="Iniciar Sesión" userData="LoginRegister.fxml" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />
@@ -69,17 +69,18 @@
                </rowConstraints>
                <children>
                   <VBox GridPane.columnIndex="1" />
-                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="318.0" prefWidth="594.0">
+                  <VBox fx:id="mainWrapper" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="318.0" prefWidth="594.0">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                      <children>
-                        <VBox fx:id="loginRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="320.0" prefWidth="280.0" styleClass="loginWrapper">
+                         <!--
+                        <VBox fx:id="loginRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="447.0" prefWidth="465.0" styleClass="loginWrapper">
                            <children>
                               <FlowPane alignment="TOP_CENTER" hgap="25.0" styleClass="navLoginRegister" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#handleShowView" text="Iniciar Sesion" userData="Login.fxml" />
-                                    <Button mnemonicParsing="false" onAction="#handleShowView" text="Registrarse" userData="RegisterRefactor.fxml" />
+                                    <Button fx:id="iniSesionBtnNav" mnemonicParsing="false" onAction="#handleShowView" styleClass="activeLR" text="Iniciar Sesion" userData="Login.fxml" />
+                                    <Button fx:id="registerBtnNav" mnemonicParsing="false" onAction="#handleShowView" text="Registrarse" userData="RegisterRefactor.fxml" />
                                  </children>
                               </FlowPane>
                               <VBox alignment="TOP_CENTER" VBox.vgrow="NEVER">
@@ -96,6 +97,8 @@
                               <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                            </padding>
                         </VBox>
+                        -->
+                        <fx:include source="LoginRegister.fxml" />
                      </children>
                   </VBox>
                </children>

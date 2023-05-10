@@ -62,11 +62,21 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
 }
 
+.activeLR{
+    -fx-border-style: hidden hidden solid hidden !important;
+    -fx-border-width: 2 !important;
+    -fx-border-color: #c5a768 !important;
+    -fx-text-fill: #c5a768 !important;
+    
+}
+
 .navLoginRegister .button {
     -fx-text-fill: #3a4a3a;
     -fx-background-color: none;
     -fx-font-family: "Caros Soft Bold";
     -fx-font-size: 16px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
 }
 
 .navLoginRegister .button:hover {
@@ -75,10 +85,3 @@
     -fx-border-color: #c5a768;
 }
 
-
-.activeLR{
-    -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 2;
-    -fx-border-color: #c5a768;
-    
-}
