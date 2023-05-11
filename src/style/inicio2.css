@@ -1,0 +1,87 @@
+.BorderPaneInicio{
+    -fx-background-image: url("../icons/backgrounds/BackgroundAppLoginReservas.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center center;
+        
+}
+
+.navBar .button {
+    -fx-text-fill: #3a4a3a;
+    -fx-background-color: none;
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 22px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: transparent;
+}
+
+.navBar .button:hover {
+    -fx-text-fill: #799c79;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: #c2eec5;
+    -fx-cursor: hand;
+}
+
+.navBar .button:focus {
+    -fx-text-fill: #2f542f;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2;
+    -fx-border-color: #2f542f;
+}
+
+.navBar_loginBtn {
+    -fx-text-fill: #3a4a3a;
+    -fx-background-color: #a7ffa7;
+    -fx-background-radius: 200px;
+    -fx-border-color: #FFFFFF;
+    -fx-border-width: 3;
+    -fx-border-radius: 200px;
+    -fx-font-family: "Caros Soft Bold";
+}
+
+.hboxFlow {
+}
+
+.navBar_btn {
+}
+
+.inicioBtnLoginRegister {
+}
+
+.loginRegisterActive{
+}
+
+.loginWrapper {
+    -fx-background-color: white;
+    -fx-border-color: #c5a768;
+    -fx-border-width: 3;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 19px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}
+
+.activeLR{
+    -fx-border-style: hidden hidden solid hidden !important;
+    -fx-border-width: 2 !important;
+    -fx-border-color: #c5a768 !important;
+    -fx-text-fill: #c5a768 !important;
+    
+}
+
+.navLoginRegister .button {
+    -fx-text-fill: #3a4a3a;
+    -fx-background-color: none;
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 16px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+}
+
+.navLoginRegister .button:hover {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2;
+    -fx-border-color: #c5a768;
+}
+
