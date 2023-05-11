@@ -194,7 +194,7 @@ public class PistaSinConexionController implements Initializable {
         }
 */
         Court pista = club.getCourt("pista 1");
-        String pista1 = pista.getName();
+//        String pista1 = pista.getName();
         
         
         

@@ -37,7 +37,7 @@ public class LoginController implements Initializable {
     private TextField login_nickname;
     @FXML
     private TextField login_passwd;
-    public Member current_user = null;
+    public static Member current_user = null;
 
     /**
      * Initializes the controller class.
@@ -79,8 +79,15 @@ public class LoginController implements Initializable {
             stage.setTitle("Inicio de sesión correcto");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
+            System.out.println("current user: "+current_user);
+//            if (isLogged()) {
+//                System.out.println("ENTRA EN IS LOGGEDD");
+////                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Dashboard.fxml"));
+////                Parent root2 = loader2.load();
+////                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+//            }
         
-            ((Button)event.getSource()).getScene().getWindow().hide();
+//            ((Button)event.getSource()).getScene().getWindow().hide();
             
             /*FXMLLoader loader= new FXMLLoader(getClass().getResource("../view/Register.fxml"));
             Parent root = loader.load();

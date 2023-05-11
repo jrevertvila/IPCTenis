@@ -6,39 +6,64 @@
         
 }
 
+.activeNAV{
+    -fx-text-fill: #799c79 !important;
+    -fx-border-style: hidden hidden solid hidden !important;
+    -fx-border-width: 2 !important;
+    -fx-border-color: #c2eec5 !important;
+}
+
 .navBar .button {
     -fx-text-fill: #3a4a3a;
     -fx-background-color: none;
     -fx-font-family: "Caros Soft Bold";
     -fx-font-size: 22px;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-border-color: transparent;
+    -fx-cursor: hand;
 }
 
 .navBar .button:hover {
     -fx-text-fill: #799c79;
     -fx-border-style: hidden hidden solid hidden;
-    -fx-border-width: 1;
+    -fx-border-width: 2;
     -fx-border-color: #c2eec5;
-    -fx-cursor: hand;
+
 }
 
-.navBar .button:focus {
+/*.navBar .button:focus {
     -fx-text-fill: #2f542f;
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-width: 2;
     -fx-border-color: #2f542f;
-}
+}*/
 
 .navBar_loginBtn {
-    -fx-text-fill: #3a4a3a;
-    -fx-background-color: #a7ffa7;
-    -fx-background-radius: 200px;
     -fx-border-color: #FFFFFF;
     -fx-border-width: 3;
     -fx-border-radius: 200px;
+    
+    -fx-text-fill: #3a4a3a;
+    -fx-font-size: 14px;
+    
+    -fx-background-color: #a7ffa7;
+    -fx-background-radius: 300px;
+    
     -fx-font-family: "Caros Soft Bold";
+    -fx-cursor: hand;
+}
+
+.navBar_loginBtn:hover{
+    -fx-scale-x: 1.05;
+    /*-fx-scale-y: 1.05;*/
+    /*-fx-scale-z: 1.05;*/
+}
+
+.navBar_loginBtn:pressed{
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    /*-fx-scale-z: 1.05;*/
 }
 
 .hboxFlow {
@@ -85,3 +110,33 @@
     -fx-border-color: #c5a768;
 }
 
+/*.mainWrapper {
+    -fx-background-color: rgba(0,0,0,0.6);
+}
+
+.rightSide {
+    -fx-background-color: rgba(250,0,0,0.6);
+
+}*/
+
+/* ------ INPUTS STYLE ------*/
+.inputStyled {
+ 
+    -fx-background-color: none;
+    -fx-border-color: #c5a768;
+    -fx-border-radius: 10px;
+    
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 14px;
+    -fx-text-fill: #c5a768;
+}
+
+.loginBtnStyled {
+    -fx-text-fill: white;
+    -fx-font-family: "Caros Soft Bold";
+    
+    -fx-background-color: #c5a768;
+    -fx-background-radius: 500px;
+    /*-fx-min-heigth: 30px;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
+}

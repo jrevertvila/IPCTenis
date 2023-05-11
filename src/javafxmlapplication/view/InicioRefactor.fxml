@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1222.0" styleClass="BorderPaneInicio" stylesheets="@../../style/inicio2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.InicioRefactorController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="472.0" prefWidth="730.0" styleClass="BorderPaneInicio" stylesheets="@../../style/inicio2.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.InicioRefactorController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
@@ -39,14 +39,14 @@
                         <Insets />
                      </FlowPane.margin>
                   </Button>
-                  <Button fx:id="contactUsBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Contáctanos">
+                  <Button fx:id="contactUsBtn" mnemonicParsing="false" onAction="#handleNavBtn" text="Contáctanos" userData="Profile.fxml">
                      <FlowPane.margin>
                         <Insets />
                      </FlowPane.margin>
                   </Button>
                </children>
             </FlowPane>
-            <Button fx:id="loginBtnNav" mnemonicParsing="false" onAction="#handleNavBtn" styleClass="navBar_loginBtn" text="Iniciar Sesión" userData="LoginRegister.fxml" />
+            <Button fx:id="loginBtnNav" mnemonicParsing="false" onAction="#handleNavBtn" prefHeight="45.0" prefWidth="126.0" styleClass="navBar_loginBtn" text="${loginBtnNavText}" userData="LoginRegister.fxml" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />
@@ -61,18 +61,19 @@
          <children>
             <GridPane maxHeight="6.456453645654655E42" maxWidth="6.456456645645364E24" minHeight="-Infinity" minWidth="-Infinity" prefHeight="305.0" prefWidth="696.0" VBox.vgrow="ALWAYS">
                <columnConstraints>
-                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="80.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" />
+                  <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" percentWidth="68.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="32.0" />
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
                </rowConstraints>
                <children>
-                  <VBox GridPane.columnIndex="1" />
-                  <VBox fx:id="mainWrapper" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="318.0" prefWidth="594.0">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
+                  <VBox styleClass="rightSide" GridPane.columnIndex="1">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#testLogin" text="test" />
+                        <Button mnemonicParsing="false" onAction="#reloadSceneBtn" text="reload scene" />
+                     </children></VBox>
+                  <VBox fx:id="mainWrapper" alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="318.0" prefWidth="594.0" styleClass="mainWrapper">
                      <children>
                          <!--
                         <VBox fx:id="loginRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="447.0" prefWidth="465.0" styleClass="loginWrapper">
@@ -100,6 +101,9 @@
                         -->
                         <fx:include source="LoginRegister.fxml" />
                      </children>
+                     <GridPane.margin>
+                        <Insets bottom="30.0" />
+                     </GridPane.margin>
                   </VBox>
                </children>
             </GridPane>
