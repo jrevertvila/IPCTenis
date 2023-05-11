@@ -18,21 +18,37 @@
     -fx-background-color: none;
     -fx-border-color: none;
     -fx-border-width: 3;
-
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 20 px;
+   
 }
 
 .button:hover {
     -fx-background-color: grey;
-}
-
-.caros {
-    font-family: Caros;
+   
 }
 
 .button_2 {
     -fx-background-color: none;
-    -fx-border-color: grey;
+    -fx-border-color: #cccccc;
     -fx-border-width: 1;
+    -fx-border-radius: 200px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);
+    -fx-font-family: "Caros Soft Bold";
+     -fx-font-size: 14 px;
+   
     
 }
-    
+.button_2:hover {
+    -fx-background-color: #cccccc; 
+    -fx-background-radius: 200px;
+}
+
+.caixes {
+    -fx-background-radius: 200px;
+}
+
+.title {
+   -fx-font-family: "Caros Soft Bold";
+     -fx-font-size: 36 px; 
+}
