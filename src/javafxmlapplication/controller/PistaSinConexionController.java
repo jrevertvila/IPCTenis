@@ -116,7 +116,6 @@ public class PistaSinConexionController implements Initializable {
     private Label labelPista5;
     @FXML
     private Label labelPista6;
-    @FXML
     private Label slotSelected;
     @FXML
     private Label labelDia;
@@ -297,6 +296,8 @@ public class PistaSinConexionController implements Initializable {
         int slotIndex = 1;
         for(List<TimeSlot> list : timeSlots){
             
+            List<TimeSlot> timeSlotsPista = new ArrayList<TimeSlot>();
+            timeSlots.add(timeSlotsPista);
             // per a totes les hores que te la taula
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
@@ -305,7 +306,7 @@ public class PistaSinConexionController implements Initializable {
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
                 TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
-                timeSlots.add(list);
+                timeSlotsPista.add(timeSlot);
                 registerHandlers(timeSlots);
                 //-----------------------------------------------------------
                 // lo anyadimos al grid en la posicion x= 1, y= slotIndex
