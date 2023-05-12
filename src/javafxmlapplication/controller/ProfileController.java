@@ -38,37 +38,39 @@ public class ProfileController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Member user;
+        Member user = LoginController.current_user;
         //INICIAR SESION DE PRUEBA=============== BORRAR
-        Club club;
-        
-        try { 
-            club = Club.getInstance();
-            Member userC = club.getMemberByCredentials("admin", "admin");
-            LoginController.current_user = userC;  
-            user = userC; //ESTA NO BORRAR:  Sustituir per: user = LoginController.current_user;
-            
-        //=======================================
-        
-            userLabel.setText(user.getNickName());
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-        //========================================    BORRAR
-        } catch (ClubDAOException ex) {
-        } catch (IOException ex) {
-        }
+//        Club club;
+//        
+//        try { 
+//            club = Club.getInstance();
+//            Member userC = club.getMemberByCredentials("admin", "admin");
+//            LoginController.current_user = userC;  
+//            user = userC; //ESTA NO BORRAR:  Sustituir per: user = LoginController.current_user;
+//            
+//        //=======================================
+//        
+//            userLabel.setText(user.getNickName());
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//            
+//        //========================================    BORRAR
+//        } catch (ClubDAOException ex) {
+//        } catch (IOException ex) {
+//        }
         //========================================    
+        
+        userLabel.setText(user.getNickName());
     }
 
-    @FXML
+    @FXML   
     private void handleHomeButton(ActionEvent event) throws IOException {
          FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
          Parent root2 = loader2.load();
