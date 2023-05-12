@@ -10,11 +10,11 @@
 }
 
 
-.vBoxProfile {
+.profileSidebar {
     -fx-background-color: #333333;
 }
 
-.button {
+.profileSidebar .button {
     -fx-background-color: none;
     -fx-border-color: none;
     -fx-border-width: 3;
@@ -23,32 +23,66 @@
    
 }
 
-.button:hover {
+.profileSidebar .button:hover {
     -fx-background-color: grey;
    
 }
 
-.button_2 {
+.changePasswdBtn {
     -fx-background-color: none;
-    -fx-border-color: #cccccc;
-    -fx-border-width: 1;
+    -fx-border-color: #f07706;
+    -fx-border-width: 1.5;
     -fx-border-radius: 200px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 2, 0, 0, 0);
     -fx-font-family: "Caros Soft Bold";
-     -fx-font-size: 14 px;
+    -fx-font-size: 12.5 px;
    
     
 }
-.button_2:hover {
-    -fx-background-color: #cccccc; 
+.changePasswdBtn:hover {
+    -fx-background-color: #f07706; 
     -fx-background-radius: 200px;
+    -fx-text-fill: white;
 }
 
-.caixes {
+.dataLabel {
     -fx-background-radius: 200px;
+    -fx-border-radius: 200px;
+    -fx-border-width: 1.5;
+    -fx-border-color: #f07706; 
+    -fx-pref-height: 32px;
 }
 
 .title {
    -fx-font-family: "Caros Soft Bold";
-     -fx-font-size: 36 px; 
+   -fx-font-size: 36 px; 
+}
+
+.inputLabel {
+   -fx-font-family: "Caros Soft Bold";
+   -fx-font-size: 12px;  
+}
+
+.sectionLabel {
+   -fx-font-family: "Caros Soft Bold";
+   -fx-font-size: 20px;  
+    
+}
+
+.applyButton {
+    -fx-text-fill: black;
+    -fx-background-color: white;
+    -fx-background-radius: 100px;
+    -fx-border-color: #f07706;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 100px;
+    -fx-font-family: "Caros Soft Bold";
+    
+}
+
+.applyButton:hover {    
+    -fx-background-color: #f07706; 
+    -fx-background-radius: 200px;
+    -fx-border-radius: 200px;
+    -fx-text-fill: white;
 }
