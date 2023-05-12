@@ -44,10 +44,10 @@
     -fx-border-width: 3;
     -fx-border-radius: 200px;
     
-    -fx-text-fill: #3a4a3a;
+    -fx-text-fill: white;/*#3a4a3a / f07706 */
     -fx-font-size: 14px;
     
-    -fx-background-color: #a7ffa7;
+    -fx-background-color: #f07706; /*#a7ffa7*/
     -fx-background-radius: 300px;
     
     -fx-font-family: "Caros Soft Bold";
@@ -79,8 +79,8 @@
 }
 
 .loginWrapper {
-    -fx-background-color: white;
-    -fx-border-color: #c5a768;
+    -fx-background-color: #fdfdfd;
+    -fx-border-color: #f07706; /*#c5a768*/
     -fx-border-width: 3;
     -fx-border-radius: 16px;
     -fx-background-radius: 19px;
@@ -90,8 +90,8 @@
 .activeLR{
     -fx-border-style: hidden hidden solid hidden !important;
     -fx-border-width: 2 !important;
-    -fx-border-color: #c5a768 !important;
-    -fx-text-fill: #c5a768 !important;
+    -fx-border-color: #f07706!important; /*#c5a768 */
+    -fx-text-fill: #f07706!important; /*#c5a768 */
     
 }
 
@@ -107,7 +107,7 @@
 .navLoginRegister .button:hover {
     -fx-border-style: hidden hidden solid hidden;
     -fx-border-width: 2;
-    -fx-border-color: #c5a768;
+    -fx-border-color: #f07706; /*#c5a768*/
 }
 
 /*.mainWrapper {
@@ -123,19 +123,27 @@
 .inputStyled {
  
     -fx-background-color: none;
-    -fx-border-color: #c5a768;
-    -fx-border-radius: 10px;
+    -fx-border-color: #f07706; /*#c5a768*/
+    -fx-border-radius: 200px;
+    -fx-background-radius: 200px;
+    -fx-border-width: 1.5;
     
     -fx-font-family: "Caros Soft Bold";
-    -fx-font-size: 14px;
-    -fx-text-fill: #c5a768;
+    -fx-font-size: 16px;
+    -fx-text-fill: #f07706;
+    -fx-pref-height: 55px;
+}
+
+.inputStyled:focused {
+    -fx-background-color: rgba(240, 119, 6, 0.1);
+
 }
 
 .loginBtnStyled {
     -fx-text-fill: white;
     -fx-font-family: "Caros Soft Bold";
     
-    -fx-background-color: #c5a768;
+    -fx-background-color: #f07706; /*#c5a768*/
     -fx-background-radius: 500px;
     /*-fx-min-heigth: 30px;*/
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);

@@ -48,6 +48,12 @@ public class InicioRefactorController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         System.out.println("Initialize currentUser: "+LoginController.current_user);
+        loginBtnNav.setText(LoginController.current_user == null ? "Iniciar Sesion" : "Mi Perfil");
+        if (LoginController.current_user != null) {
+            loadFXML_NAV(getClass().getResource("PistaSinConexion.fxml"));
+            loginBtnNav.setUserData("Profile.fxml");
+        }
+//        loginBtnNav.setOnAction((e) -> loginBtnNav.setText("Mi Perfil"));
         // TODO
 //        loginBtnNav.textProperty().bind(loginBtnNavText.);
         //iniSesionBtnNav.setText("Profile");
@@ -97,11 +103,6 @@ public class InicioRefactorController implements Initializable {
                 pistasBtn.getStyleClass().remove("activeNAV");
                 aboutUsBtn.getStyleClass().remove("activeNAV");
                 break;
-            case "loginBtnNav":
-                pistasBtn.getStyleClass().remove("activeNAV");
-                aboutUsBtn.getStyleClass().remove("activeNAV");
-                contactUsBtn.getStyleClass().remove("activeNAV");
-                break;
             default:
                 break;
         }
@@ -119,6 +120,21 @@ public class InicioRefactorController implements Initializable {
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
         Parent root2 = loader2.load();
         javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+    }
+
+    @FXML
+    private void handleLoginProfileBtn(ActionEvent event) throws IOException {
+        if (LoginController.current_user == null) {
+            loadFXML_NAV(getClass().getResource("LoginRegister.fxml"));
+            pistasBtn.getStyleClass().remove("activeNAV");
+            aboutUsBtn.getStyleClass().remove("activeNAV");
+            contactUsBtn.getStyleClass().remove("activeNAV");
+        } else {
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Profile.fxml"));
+            Parent root2 = loader2.load();
+            javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+        }
+        
     }
     
     

@@ -80,6 +80,10 @@ public class LoginController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             System.out.println("current user: "+current_user);
+            
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
+            Parent root2 = loader2.load();
+            javafxmlapplication.JavaFXMLApplication.setRoot(root2);
 //            if (isLogged()) {
 //                System.out.println("ENTRA EN IS LOGGEDD");
 ////                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Dashboard.fxml"));
