@@ -46,7 +46,7 @@
                   </Button>
                </children>
             </FlowPane>
-            <Button fx:id="loginBtnNav" mnemonicParsing="false" onAction="#handleNavBtn" prefHeight="45.0" prefWidth="126.0" styleClass="navBar_loginBtn" text="${loginBtnNavText}" userData="LoginRegister.fxml" />
+            <Button fx:id="loginBtnNav" mnemonicParsing="false" onAction="#handleLoginProfileBtn" prefHeight="45.0" prefWidth="126.0" styleClass="navBar_loginBtn" text="" userData="LoginRegister.fxml" />
          </children>
          <BorderPane.margin>
             <Insets bottom="30.0" />
@@ -99,7 +99,7 @@
                            </padding>
                         </VBox>
                         -->
-                        <fx:include source="LoginRegister.fxml" />
+                        <fx:include id="includeId" source="LoginRegister.fxml" />
                      </children>
                      <GridPane.margin>
                         <Insets bottom="30.0" />

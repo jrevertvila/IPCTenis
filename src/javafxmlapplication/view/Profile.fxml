@@ -14,14 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="784.0" styleClass="borderPaneProfile" stylesheets="@../../style/perfil.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.ProfileController">
    <left>
-      <VBox prefHeight="470.0" prefWidth="163.0" styleClass="vBoxProfile">
+      <VBox prefHeight="470.0" prefWidth="163.0" styleClass="profileSidebar">
          <children>
             <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="354.0" prefWidth="190.0" spacing="40.0">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="37.0" prefWidth="171.0" text="Home" textAlignment="CENTER" textFill="WHITE">
+                  <Button fx:id="homeButton" mnemonicParsing="false" onAction="#handleHomeButton" prefHeight="37.0" prefWidth="171.0" text="Home" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Candara Light" size="20.0" />
                      </font>
@@ -122,7 +121,7 @@
                         <Font size="24.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets top="5.0" />
                      </HBox.margin>
                   </Text>
                </children>
@@ -136,7 +135,7 @@
                      <children>
                         <VBox fillWidth="false">
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario" wrappingWidth="97.9417724609375">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionLabel" text="Usuario" wrappingWidth="97.9417724609375">
                                  <font>
                                     <Font name="Candara Light" size="18.0" />
                                  </font>
@@ -144,7 +143,7 @@
                                     <Insets bottom="-10.0" left="15.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField disable="true" editable="false" prefHeight="26.0" prefWidth="256.0" styleClass="caixes">
+                              <TextField fx:id="userLabel" disable="true" editable="false" prefHeight="26.0" prefWidth="256.0" styleClass="dataLabel">
                                  <VBox.margin>
                                     <Insets left="10.0" top="10.0" />
                                  </VBox.margin>
@@ -156,7 +155,7 @@
                         </VBox>
                         <VBox>
                            <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionLabel" text="Contraseña">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -164,7 +163,7 @@
                                     <Insets bottom="1.0" left="17.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" style="-fx-border-style: blend;" styleClass="button_2" text="Cambiar contraseña">
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="27.0" prefWidth="255.0" style="-fx-border-style: blend;" styleClass="changePasswdBtn" text="Cambiar contraseña">
                                  <VBox.margin>
                                     <Insets left="10.0" />
                                  </VBox.margin>
@@ -176,12 +175,12 @@
                         </VBox>
                      </children>
                   </VBox>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Datos Personales">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="sectionLabel" text="Datos Personales">
                      <font>
                         <Font size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="15.0" top="70.0" />
+                        <Insets left="15.0" top="50.0" />
                      </VBox.margin>
                   </Text>
                   <HBox minHeight="-Infinity" prefHeight="200.0" prefWidth="500.0">
@@ -199,12 +198,12 @@
                            <children>
                               <VBox prefHeight="200.0" prefWidth="100.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Nombre">
                                        <VBox.margin>
                                           <Insets left="15.0" />
                                        </VBox.margin>
                                     </Text>
-                                    <TextField styleClass="caixes">
+                                    <TextField fx:id="nameLabel" styleClass="dataLabel">
                                        <VBox.margin>
                                           <Insets left="10.0" />
                                        </VBox.margin>
@@ -216,8 +215,11 @@
                                     <Insets />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos" />
-                                    <TextField styleClass="caixes">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Apellidos">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin></Text>
+                                    <TextField styleClass="dataLabel">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -229,8 +231,11 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Número de Teléfono" />
-                                    <TextField styleClass="caixes">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Número de Teléfono">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin></Text>
+                                    <TextField styleClass="dataLabel">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -242,8 +247,11 @@
                                     <Insets />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tarjeta de crédito  (opcional)" />
-                                    <TextField styleClass="caixes">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Tarjeta de crédito  (opcional)">
+                                       <VBox.margin>
+                                          <Insets left="5.0" />
+                                       </VBox.margin></Text>
+                                    <TextField styleClass="dataLabel">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
@@ -255,13 +263,28 @@
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Foto (opcional)" />
-                                    <TextField styleClass="caixes">
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Foto (opcional)">
+                                       <VBox.margin>
+                                          <Insets left="5.0" top="-5.0" />
+                                       </VBox.margin></Text>
+                                    <TextField prefWidth="216.0" styleClass="dataLabel">
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
                                     </TextField>
                                  </children>
+                              </VBox>
+                              <VBox alignment="TOP_RIGHT" prefHeight="34.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <children>
+                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" styleClass="applyButton" text="Aplicar Cambios">
+                                       <VBox.margin>
+                                          <Insets right="2.0" top="10.0" />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
                               </VBox>
                            </children>
                         </GridPane>

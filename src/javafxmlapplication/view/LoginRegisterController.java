@@ -30,7 +30,7 @@ public class LoginRegisterController implements Initializable {
     @FXML
     private Button registerBtnNav;
     @FXML
-    private BorderPane PaneContent;
+    private VBox PaneContent;
 
     /**
      * Initializes the controller class.
@@ -55,14 +55,14 @@ public class LoginRegisterController implements Initializable {
             System.out.println("register");
             registerBtnNav.getStyleClass().add("activeLR");
             iniSesionBtnNav.getStyleClass().remove("activeLR");
-            
         }
     }
     
     private void loadFXML_LR(URL url) {
         try {
             FXMLLoader loader = new FXMLLoader(url);
-            PaneContent.setCenter(loader.load());
+            PaneContent.getChildren().clear();
+            PaneContent.getChildren().add(loader.load());
         }
         catch (IOException e) {
             e.printStackTrace();
