@@ -17,7 +17,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Control;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafxmlapplication.JavaFXMLApplication;
 import javafxmlapplication.controller.LoginController;
+import model.Club;
+import model.ClubDAOException;
 
 /**
  * FXML Controller class
@@ -47,10 +50,10 @@ public class InicioRefactorController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println("Initialize currentUser: "+LoginController.current_user);
-        loginBtnNav.setText(LoginController.current_user == null ? "Iniciar Sesion" : "Mi Perfil");
-        if (LoginController.current_user != null) {
-            loadFXML_NAV(getClass().getResource("PistaSinConexion.fxml"));
+        System.out.println("Initialize currentUser: "+JavaFXMLApplication.current_user);
+        loginBtnNav.setText(JavaFXMLApplication.current_user == null ? "Iniciar Sesion" : "Mi Perfil");
+        if (JavaFXMLApplication.current_user != null) {
+            loadFXML_NAV(getClass().getResource("PistaSinConexion.fxml"),"PistaSinConexion.fxml");
             loginBtnNav.setUserData("Profile.fxml");
         }
 //        loginBtnNav.setOnAction((e) -> loginBtnNav.setText("Mi Perfil"));
@@ -66,11 +69,17 @@ public class InicioRefactorController implements Initializable {
         this.loginBtnNavText = s;
     }
 
-    private void loadFXML_NAV(URL url) {
+    private void loadFXML_NAV(URL url, String frameName) {
         try {
-            FXMLLoader loader = new FXMLLoader(url);
+            
+            System.out.println("URL: " + url);
+            Node frame = JavaFXMLApplication.getFrame(frameName);
+            System.out.println("frame antes: "+frame);
+            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            System.out.println("frame despues: "+frame);
+            //FXMLLoader loader = new FXMLLoader(url);
             mainWrapper.getChildren().clear();
-            mainWrapper.getChildren().add(loader.load());
+            mainWrapper.getChildren().add(frame);
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -82,9 +91,9 @@ public class InicioRefactorController implements Initializable {
     @FXML
     private void handleNavBtn(ActionEvent event) {
         
-        System.out.println("yeayea");
         String view = (String) ((Node)event.getSource()).getUserData();
-        loadFXML_NAV(getClass().getResource(view));
+        System.out.println("view: " + view);
+        loadFXML_NAV(getClass().getResource(view), view);
         Object o = event.getSource();
         Button b = (Button) o;
         switch (b.getId()) {
@@ -112,7 +121,7 @@ public class InicioRefactorController implements Initializable {
 
     @FXML
     private void testLogin(ActionEvent event) {
-        System.out.println("AA:" + LoginController.current_user);
+        System.out.println("AA:" + JavaFXMLApplication.current_user);
     }
 
     @FXML
@@ -124,8 +133,8 @@ public class InicioRefactorController implements Initializable {
 
     @FXML
     private void handleLoginProfileBtn(ActionEvent event) throws IOException {
-        if (LoginController.current_user == null) {
-            loadFXML_NAV(getClass().getResource("LoginRegister.fxml"));
+        if (JavaFXMLApplication.current_user == null) {
+            loadFXML_NAV(getClass().getResource("LoginRegister.fxml"), "LoginRegister.fxml");
             pistasBtn.getStyleClass().remove("activeNAV");
             aboutUsBtn.getStyleClass().remove("activeNAV");
             contactUsBtn.getStyleClass().remove("activeNAV");
