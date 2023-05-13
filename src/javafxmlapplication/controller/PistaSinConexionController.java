@@ -81,7 +81,7 @@ public class PistaSinConexionController implements Initializable {
     
     private final LocalTime firstSlotStart = LocalTime.of(9, 0);
     private final Duration slotLength = Duration.ofMinutes(60);
-    private final LocalTime lastSlotStart = LocalTime.of(22, 0);
+    private final LocalTime lastSlotStart = LocalTime.of(21, 0);
     
     private Club club;
     
@@ -290,14 +290,15 @@ public class PistaSinConexionController implements Initializable {
         }
 
         timeSlots = new ArrayList<>();
-
+       
         //----------------------------------------------------------------------------------
         // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
-        int slotIndex = 1;
-        for(List<TimeSlot> list : timeSlots){
-            
+        
+        for(int i=1; i<7;i++){
+            int slotIndex = 1;
             List<TimeSlot> timeSlotsPista = new ArrayList<TimeSlot>();
             timeSlots.add(timeSlotsPista);
+            
             // per a totes les hores que te la taula
             for (LocalDateTime startTime = date.atTime(firstSlotStart);
                     !startTime.isAfter(date.atTime(lastSlotStart));
@@ -305,20 +306,21 @@ public class PistaSinConexionController implements Initializable {
 
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
+                // buscar el booking i afegirlo en el propi constructor del timeSlot
                 TimeSlot timeSlot = new TimeSlot(startTime, slotLength);
                 timeSlotsPista.add(timeSlot);
-                registerHandlers(timeSlots);
+                registerHandlers(timeSlot);
                 //-----------------------------------------------------------
                 // lo anyadimos al grid en la posicion x= 1, y= slotIndex
-                grid.add(timeSlot.getView(), 1, slotIndex);
+                grid.add(timeSlot.getView(), i, slotIndex);
                 slotIndex++;
             }
         }
     }
 
-   private void registerHandlers(List<List<TimeSlot>> timeSlots) {
-    for (List<TimeSlot> slotList : timeSlots) {
-        for (TimeSlot timeSlot : slotList) {
+   private void registerHandlers(TimeSlot timeSlot) {
+    
+        
             timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
                 //---------------------------------------------slot----------------------------
                 //solamente puede estar seleccionado un slot dentro de la lista de slot
@@ -350,8 +352,8 @@ public class PistaSinConexionController implements Initializable {
                     }
                 }
             });
-        }
-    }
+        
+    
 }
 public class TimeSlot {
 
