@@ -54,7 +54,7 @@ public class ProfileController implements Initializable {
         try { 
             club = Club.getInstance();
             Member userC = club.getMemberByCredentials("admin", "admin");
-            LoginController.current_user = userC;  
+            JavaFXMLApplication.current_user = userC;  
             user = userC; //ESTA NO BORRAR:  Sustituir per: user = LoginController.current_user;
 //            
 //        //=======================================
