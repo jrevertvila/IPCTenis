@@ -20,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafxmlapplication.JavaFXMLApplication;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -37,7 +38,6 @@ public class LoginController implements Initializable {
     private TextField login_nickname;
     @FXML
     private TextField login_passwd;
-    public static Member current_user = null;
 
     /**
      * Initializes the controller class.
@@ -60,7 +60,7 @@ public class LoginController implements Initializable {
             try {
                 
                 Member user = club.getMemberByCredentials(nickname, passwd);
-                current_user = user;
+                JavaFXMLApplication.current_user = user;
             } catch (Exception ex) {
                 System.out.println(ex);
             }
@@ -79,9 +79,11 @@ public class LoginController implements Initializable {
             stage.setTitle("Inicio de sesión correcto");
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
-            System.out.println("current user: "+current_user);
+            System.out.println("current user: "+JavaFXMLApplication.current_user);
             
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
+//            String[] framesList = ["",""];
+            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","Login.fxml","Register.fxml"});
             Parent root2 = loader2.load();
             javafxmlapplication.JavaFXMLApplication.setRoot(root2);
 //            if (isLogged()) {
@@ -108,13 +110,5 @@ public class LoginController implements Initializable {
             //if (user)
             //System.out.println(user);
         }
-    }
-    
-    public boolean isLogged() throws ClubDAOException, IOException {
-        Club club = Club.getInstance();
-        boolean res = club.existsLogin(current_user.getNickName());
-        return res;
-        
-    }
-    
+    }    
 }
