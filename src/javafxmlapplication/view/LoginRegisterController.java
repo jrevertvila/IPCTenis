@@ -15,6 +15,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafxmlapplication.JavaFXMLApplication;
 
 /**
  * FXML Controller class
@@ -42,27 +43,26 @@ public class LoginRegisterController implements Initializable {
     
     @FXML
     public void handleShowView(ActionEvent e) {
-        System.out.println("yeayea");
         String view = (String) ((Node)e.getSource()).getUserData();
-        loadFXML_LR(getClass().getResource(view));
+        loadFXML_LR(getClass().getResource(view),view);
         Object o = e.getSource();
         Button b = (Button) o;
         if (b.getId().equals("iniSesionBtnNav")){
-            System.out.println("login");
             iniSesionBtnNav.getStyleClass().add("activeLR");
             registerBtnNav.getStyleClass().remove("activeLR");
         } else {
-            System.out.println("register");
             registerBtnNav.getStyleClass().add("activeLR");
             iniSesionBtnNav.getStyleClass().remove("activeLR");
         }
     }
     
-    private void loadFXML_LR(URL url) {
+    private void loadFXML_LR(URL url, String frameName) {
         try {
-            FXMLLoader loader = new FXMLLoader(url);
+            Node frame = JavaFXMLApplication.getFrame(frameName);
+            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            System.out.println(frame);
             PaneContent.getChildren().clear();
-            PaneContent.getChildren().add(loader.load());
+            PaneContent.getChildren().add(frame);
         }
         catch (IOException e) {
             e.printStackTrace();

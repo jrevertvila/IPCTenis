@@ -17,6 +17,7 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafxmlapplication.JavaFXMLApplication;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -46,7 +47,7 @@ public class ProfileController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Member user = LoginController.current_user;
+        Member user = JavaFXMLApplication.current_user;
         //INICIAR SESION DE PRUEBA=============== BORRAR
         Club club;
         
@@ -74,8 +75,8 @@ public class ProfileController implements Initializable {
     private void handleHomeButton(ActionEvent event) throws IOException {
          FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
          Parent root2 = loader2.load();
-         javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-    }  
+         JavaFXMLApplication.setRoot(root2);
+    }
 }
 
 
