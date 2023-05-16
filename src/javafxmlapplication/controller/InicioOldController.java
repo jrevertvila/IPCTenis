@@ -18,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafxmlapplication.JavaFXMLApplication;
 import javafxmlapplication.controller.RegisterController;
 import model.ClubDAOException;
 
@@ -57,7 +58,7 @@ public class InicioOldController implements Initializable {
         
         
         
-        if (controladorLogin.isLogged()) {
+        if (JavaFXMLApplication.isLogged()) {
             System.out.println("ENTRA EN IS LOGGEDD");
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Dashboard.fxml"));
             Parent root2 = loader2.load();
