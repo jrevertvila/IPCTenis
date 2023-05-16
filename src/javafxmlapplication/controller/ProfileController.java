@@ -31,7 +31,15 @@ public class ProfileController implements Initializable {
     @FXML
     private TextField userLabel;
     @FXML
-    private Button homeButton;
+    private TextField nameField;
+    @FXML
+    private TextField surnameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField creditCardField;
+    @FXML
+    private TextField photoField;
 
     /**
      * Initializes the controller class.
@@ -40,34 +48,26 @@ public class ProfileController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         Member user = LoginController.current_user;
         //INICIAR SESION DE PRUEBA=============== BORRAR
-//        Club club;
-//        
-//        try { 
-//            club = Club.getInstance();
-//            Member userC = club.getMemberByCredentials("admin", "admin");
-//            LoginController.current_user = userC;  
-//            user = userC; //ESTA NO BORRAR:  Sustituir per: user = LoginController.current_user;
+        Club club;
+        
+        try { 
+            club = Club.getInstance();
+            Member userC = club.getMemberByCredentials("admin", "admin");
+            LoginController.current_user = userC;  
+            user = userC; //ESTA NO BORRAR:  Sustituir per: user = LoginController.current_user;
 //            
 //        //=======================================
 //        
-//            userLabel.setText(user.getNickName());
-//            
-//            
-//            
-//            
-//            
-//            
-//            
-//            
-//            
-//            
+            userLabel.setText(user.getNickName());
+            nameField.setText(user.getName());
+            surnameField.setText(user.getSurname());
+            phoneField.setText(user.getTelephone());
+            creditCardField.setText(user.getCreditCard());   
 //        //========================================    BORRAR
-//        } catch (ClubDAOException ex) {
-//        } catch (IOException ex) {
-//        }
-        //========================================    
-        
-        userLabel.setText(user.getNickName());
+        } catch (ClubDAOException ex) {
+        } catch (IOException ex) {
+        }
+        //==========================================   
     }
 
     @FXML   
@@ -75,7 +75,8 @@ public class ProfileController implements Initializable {
          FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
          Parent root2 = loader2.load();
          javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-    }
-    
-    
+    }  
 }
+
+
+ 
