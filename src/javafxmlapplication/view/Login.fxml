@@ -5,8 +5,10 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.LoginController">
    <children>
@@ -20,9 +22,21 @@
             <RowConstraints minHeight="10.0" percentHeight="33.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox alignment="CENTER" GridPane.rowIndex="1">
+            <VBox alignment="CENTER">
                <children>
-                  <TextField fx:id="login_nickname" maxWidth="350.0" prefWidth="300.0" promptText="Nombre de usuario" styleClass="inputStyled" />
+                  <HBox maxWidth="350.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel" text="Nombre de usuario">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="login_nickname" maxWidth="350.0" prefWidth="300.0" promptText="Nombre de usuario" styleClass="inputStyled" text="admin" />
                </children>
             </VBox>
             <VBox alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
@@ -30,12 +44,25 @@
                   <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" minHeight="32.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="32.0" prefWidth="200.0" styleClass="loginBtnStyled" text="Iniciar Sesión" textAlignment="CENTER" />
                </children>
             </VBox>
-            <VBox alignment="CENTER">
+            <VBox alignment="CENTER" GridPane.rowIndex="1">
                <children>
-                  <TextField fx:id="login_passwd" maxWidth="350.0" promptText="Contraseña" styleClass="inputStyled">
+                  <HBox maxWidth="350.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel" text="Contraseña">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TextField fx:id="login_passwd" maxWidth="350.0" promptText="Contraseña" styleClass="inputStyled" text="admin">
                      <VBox.margin>
                         <Insets />
-                     </VBox.margin></TextField>
+                     </VBox.margin>
+                  </TextField>
                </children>
             </VBox>
          </children>

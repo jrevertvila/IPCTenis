@@ -1,0 +1,191 @@
+.main_right {
+    
+}
+
+.BorderPaneInicio {
+    -fx-background-color: #f1f2f6;
+}
+
+.sidebar {
+    -fx-background-color: white;
+    -fx-border-radius: 0 30 30 0;
+    -fx-background-radius: 0 30 30 0;
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 5, 0, 0, 0);
+
+    /*-fx-effect: dropshadow(three-pass-box, purple, 0.0, 25.0, -5.0,  0);*/
+}
+
+.topBar {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 1;
+    -fx-border-color: #e3e5ea;
+}
+
+.mainWrapper {
+    -fx-background-color: white;
+    -fx-background-radius: 19px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 0);
+}
+
+.mainWrapper_parent_login {
+    -fx-fill-width: false;
+}
+
+.mainWrapper {
+    -fx-vgrow-policy: never;
+}
+
+.buttonSidebar {
+    -fx-background-color: white;
+    -fx-border-color: #e3e5ea; /*#c5a768*/
+    -fx-border-width: 1;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 19px;
+    -fx-cursor: hand;
+    
+}
+
+.buttonSidebar:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+.buttonSidebar:hover {
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 1, 0, 0, 0);*/
+    -fx-background-color: #d4fff6;
+}
+
+.buttonSidebarActive {
+    -fx-background-color: #d4fff6;
+}
+
+.topBar_Login {
+    -fx-background-color: #07d3b0;
+    -fx-text-fill: white;
+    -fx-background-radius: 200px;
+    -fx-cursor: hand;
+}
+
+.topBar_Login:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0) !important;
+}
+
+.topBar_Login:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+.topBar_userImg {
+    /*-fx-padding: 10;*/
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
+}
+
+.topBar_userImg_container {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+    
+    /*-fx-fill: transparent;*/
+}
+
+.topBar_notification {
+    -fx-background-color: white;
+    -fx-border-radius: 100px;
+    -fx-background-radius: 100px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 2, 0, 0, 0);
+    
+    -fx-text-fill: red;
+}
+
+.topBar_notification:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0) !important;
+}
+
+.topBar_notification:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}
+
+.topBar_searchBar {
+    -fx-background-color: white;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px; 
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 2, 0, 0, 0);
+
+    -fx-background-image:url("../icons/buscar.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px center;
+    -fx-background-size: 20px;
+    
+}
+
+
+/* LOGIN REGISTER STYLE */
+
+.navLoginRegister .button {
+    -fx-text-fill: #3a4a3a;
+    -fx-background-color: none;
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 16px;
+    -fx-border-width: 2;
+    -fx-border-color: transparent;
+}
+
+.navLoginRegister .button:hover {
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-width: 2;
+    -fx-border-color: #07d3b0; /*#c5a768*/
+}
+
+.inputStyled {
+ 
+    -fx-background-color: #f9fafc;
+    -fx-border-color: #eff0f1;
+    -fx-border-radius: 200px;
+    -fx-background-radius: 200px;
+    -fx-border-width: 1.5;
+    
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-size: 16px;
+    -fx-text-fill: #47484a;
+    -fx-pref-height: 55px;
+}
+
+.inputStyled:focused {
+    -fx-background-color: rgba(240, 119, 6, 0.1);
+
+}
+
+.loginBtnStyled {
+    -fx-text-fill: white;
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-weight: bold;
+    
+    -fx-background-color: #07d3b0; /*#c5a768*/
+    -fx-background-radius: 500px;
+    /*-fx-min-heigth: 30px;*/
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
+}
+
+/*.loginWrapper {
+    -fx-background-color: #fdfdfd;
+    -fx-border-color: #f07706; #c5a768
+    -fx-border-width: 3;
+    -fx-border-radius: 16px;
+    -fx-background-radius: 19px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 10, 0, 0, 0);
+}*/
+
+.activeLR{
+    -fx-border-style: hidden hidden solid hidden !important;
+    -fx-border-width: 2 !important;
+    -fx-border-color: #07d3b0 !important; /*#c5a768 */
+    -fx-text-fill: #07d3b0 !important; /*#c5a768 */
+    
+}
+
+.formLabel {
+    -fx-font-family: "Caros Soft Bold";
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: grey;
+}

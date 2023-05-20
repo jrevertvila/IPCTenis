@@ -92,8 +92,9 @@ public class InicioRefactorController implements Initializable {
     private void handleNavBtn(ActionEvent event) {
         
         String view = (String) ((Node)event.getSource()).getUserData();
+        System.out.println("URL: " + getClass().getResource(view));
         System.out.println("view: " + view);
-        loadFXML_NAV(getClass().getResource(view), view);
+//        loadFXML_NAV(getClass().getResource(view), view);
         Object o = event.getSource();
         Button b = (Button) o;
         switch (b.getId()) {
