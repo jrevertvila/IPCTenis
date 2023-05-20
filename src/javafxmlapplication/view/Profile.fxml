@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -98,52 +99,79 @@
                               <RowConstraints maxHeight="90.60001220703126" minHeight="10.0" prefHeight="85.20002441406251" />
                            </rowConstraints>
                            <children>
-                              <VBox prefHeight="200.0" prefWidth="100.0">
+                              <HBox alignment="CENTER">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Nombre">
-                                       <VBox.margin>
-                                          <Insets left="15.0" />
-                                       </VBox.margin>
-                                    </Text>
-                                    <TextField fx:id="nameField" styleClass="dataLabel">
-                                       <VBox.margin>
+                                    <VBox prefHeight="56.0" prefWidth="159.0">
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Nombre">
+                                             <VBox.margin>
+                                                <Insets left="15.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <TextField fx:id="nameField" styleClass="dataLabel">
+                                             <VBox.margin>
+                                                <Insets left="10.0" />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <Label prefHeight="18.0" prefWidth="163.0" visible="false">
+                                       <HBox.margin>
                                           <Insets left="10.0" />
-                                       </VBox.margin>
-                                    </TextField>
+                                       </HBox.margin>
+                                    </Label>
                                  </children>
-                              </VBox>
-                              <VBox GridPane.columnIndex="1">
+                                 <GridPane.margin>
+                                    <Insets />
+                                 </GridPane.margin>
+                              </HBox>
+                              <HBox GridPane.columnIndex="1">
                                  <GridPane.margin>
                                     <Insets />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Apellidos">
-                                       <VBox.margin>
-                                          <Insets left="5.0" />
-                                       </VBox.margin></Text>
-                                    <TextField fx:id="surnameField" styleClass="dataLabel">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextField>
+                                    <VBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Apellidos">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <TextField fx:id="surnameField" styleClass="dataLabel">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
                                  </children>
-                              </VBox>
-                              <VBox GridPane.rowIndex="1">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets left="10.0" />
                                  </GridPane.margin>
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Número de Teléfono">
-                                       <VBox.margin>
-                                          <Insets left="5.0" />
-                                       </VBox.margin></Text>
-                                    <TextField fx:id="phoneField" styleClass="dataLabel">
-                                       <VBox.margin>
-                                          <Insets />
-                                       </VBox.margin>
-                                    </TextField>
+                                    <VBox>
+                                       <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="inputLabel" text="Número de Teléfono">
+                                             <VBox.margin>
+                                                <Insets left="5.0" />
+                                             </VBox.margin>
+                                          </Text>
+                                          <TextField fx:id="phoneField" styleClass="dataLabel">
+                                             <VBox.margin>
+                                                <Insets />
+                                             </VBox.margin>
+                                          </TextField>
+                                       </children>
+                                    </VBox>
+                                    <Label fx:id="errorPhoneLabel" alignment="CENTER" textFill="RED" HBox.hgrow="SOMETIMES">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Label>
                                  </children>
-                              </VBox>
+                              </HBox>
                               <VBox GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <GridPane.margin>
                                     <Insets />
@@ -178,7 +206,7 @@
                               </VBox>
                               <VBox alignment="TOP_RIGHT" prefHeight="34.0" prefWidth="227.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
-                                    <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="32.0" prefWidth="116.0" styleClass="applyButton" text="Aplicar Cambios">
+                                    <Button fx:id="applyButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#applyChangesButton" prefHeight="32.0" prefWidth="116.0" styleClass="applyButton" text="Aplicar Cambios">
                                        <VBox.margin>
                                           <Insets right="2.0" top="10.0" />
                                        </VBox.margin>
