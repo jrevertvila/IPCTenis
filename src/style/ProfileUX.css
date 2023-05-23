@@ -1,0 +1,77 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 23 may 2023, 14:13:16
+    Author     : joeli
+*/
+
+.mainProfileWrapper {
+    -fx-background-color: #f1f2f6;
+}
+
+.boxShadow {
+    -fx-background-color: white;
+    -fx-background-color: white;
+    -fx-background-radius: 19px;
+    -fx-border-radius: 16px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 3, 0, 0, 0);
+}
+
+
+/* LEFT BOX */
+
+/*.inputContainer .inputField {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+}
+.inputContainer .inputField:focused {
+    -fx-prompt-text-fill: transparent;
+}*/
+
+/*.inputContainer {
+    
+}
+
+*/.inputContainer Label {
+    -fx-padding: 0 0 0 12px;
+    /*-fx-translate-y: 29;*/
+}/*
+
+.inputContainer + Label {
+  -fx-translate-y: 55;
+}*/
+/*
+Label {
+    -fx-translate-y: 55;
+}*/
+
+.inputContainer .inputField {
+    -fx-pref-height: 40px;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+}
+
+.inputDisabledProfile {
+    -fx-pref-height: 40px;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+}
+
+.buttonLeftSideProfile {
+    -fx-background-color: #07d3b0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 200px;
+    -fx-border-color: #07d3b0;
+    -fx-border-radius: 200px;
+    -fx-cursor: hand;
+}
+
+.buttonLeftSideProfile:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5, 0, 0, 0) !important;
+}
+
+.buttonLeftSideProfile:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
+}

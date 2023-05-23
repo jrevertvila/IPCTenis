@@ -19,7 +19,7 @@ import javafxmlapplication.JavaFXMLApplication;
 
 /**
  * FXML Controller class
- *
+ *  
  * @author joeli
  */
 public class LoginRegisterController implements Initializable {
@@ -29,7 +29,7 @@ public class LoginRegisterController implements Initializable {
     @FXML
     private Button iniSesionBtnNav;
     @FXML
-    private Button registerBtnNav;
+    public Button registerBtnNav;
     @FXML
     private VBox PaneContent;
 
@@ -48,10 +48,10 @@ public class LoginRegisterController implements Initializable {
         Object o = e.getSource();
         Button b = (Button) o;
         if (b.getId().equals("iniSesionBtnNav")){
-            iniSesionBtnNav.getStyleClass().add("activeLR");
+            if (!iniSesionBtnNav.getStyleClass().contains("buttonSidebarActive")) iniSesionBtnNav.getStyleClass().add("activeLR");
             registerBtnNav.getStyleClass().remove("activeLR");
         } else {
-            registerBtnNav.getStyleClass().add("activeLR");
+            if (!registerBtnNav.getStyleClass().contains("buttonSidebarActive")) registerBtnNav.getStyleClass().add("activeLR");
             iniSesionBtnNav.getStyleClass().remove("activeLR");
         }
     }
@@ -68,6 +68,10 @@ public class LoginRegisterController implements Initializable {
             e.printStackTrace();
         }
     }
+    
+//    public static void handleLoginBtnClick() {
+//        registerBtnNav.fire();
+//    }
     
 }
 

@@ -17,6 +17,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafxmlapplication.JavaFXMLApplication;
+import javafxmlapplication.view.LoginRegisterController;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -121,8 +123,13 @@ public class RegisterController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             
-            ((Button)event.getSource()).getScene().getWindow().hide();
-            
+            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
+//            String[] framesList = ["",""];
+//            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","Login.fxml","Register.fxml"});
+//            Parent root2 = loader2.load();
+//            javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+
+//            LoginRegisterController.registerBtnNav.fire();            
         }
         
     }

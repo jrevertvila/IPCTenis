@@ -43,6 +43,7 @@
     -fx-background-color: #f07706; 
     -fx-background-radius: 200px;
     -fx-text-fill: white;
+    -fx-pref-height: 30px;
 }
 
 .dataLabel {
@@ -50,7 +51,11 @@
     -fx-border-radius: 200px;
     -fx-border-width: 1.5;
     -fx-border-color: #f07706; 
-    -fx-pref-height: 32px;
+    -fx-pref-height: 20px;
+}
+.dataLabel:focused {
+    -fx-background-color: rgba(240, 119, 6, 0.1);
+
 }
 
 .title {
@@ -85,4 +90,5 @@
     -fx-background-radius: 200px;
     -fx-border-radius: 200px;
     -fx-text-fill: white;
+
 }
