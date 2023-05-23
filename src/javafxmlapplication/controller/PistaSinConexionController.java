@@ -220,7 +220,7 @@ public class PistaSinConexionController implements Initializable {
         for (int i = 0; i < llistaPerPistes.length; i++) {
             llistaPerPistes[i] = new ArrayList<>();
         }
-
+//        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa Pista 1: " + club.getCourt("Pista 1"));
         for (int i = 1; i < LabelDayBooking.size(); i++) {
 
             String pista = LabelDayBooking.get(i).getCourt().getName();
@@ -295,23 +295,30 @@ public class PistaSinConexionController implements Initializable {
                 // primer agafe la reserva , la comprove i si es, la pose en el constructor
                 // buscar el booking i afegirlo en el propi constructor del timeSlot
 
-                LocalTime reserva = llistaPerPistes[i].get(cont).getFromTime();
+                if (llistaPerPistes[i].size() != 0) {
+                    LocalTime reserva = llistaPerPistes[i].get(cont).getFromTime();
+                    
+                    if (startTime2 == reserva) {
+                        // cree el TimeSlot en el nom de usuari
+                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), club.getCourt("Pista "+ i));
 
-                if (startTime2 == reserva) {
-                    // cree el TimeSlot en el nom de usuari
-                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), llistaPerPistes[i].get(cont).getCourt());
+                        if (cont < llistaPerPistes[i].size() - 1) {
+                            cont++;
+                        }
 
-                    if (cont < llistaPerPistes[i].size() - 1) {
-                        cont++;
+                        timeSlotsPista.add(timeSlot);
+                        registerHandlers(timeSlot);
+                        grid.add(timeSlot.getView(), i, slotIndex);
+                    } else {
+                        // cree el timeSlot sense el nom de usuari
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista "+ i));
+
+                        timeSlotsPista.add(timeSlot);
+                        registerHandlers(timeSlot);
+                        grid.add(timeSlot.getView(), i, slotIndex);
                     }
-
-                    timeSlotsPista.add(timeSlot);
-                    registerHandlers(timeSlot);
-                    grid.add(timeSlot.getView(), i, slotIndex);
                 } else {
-                    // cree el timeSlot sense el nom de usuari
-                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", llistaPerPistes[i].get(cont).getCourt());
-
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista "+ i));
                     timeSlotsPista.add(timeSlot);
                     registerHandlers(timeSlot);
                     grid.add(timeSlot.getView(), i, slotIndex);
@@ -350,6 +357,9 @@ public class PistaSinConexionController implements Initializable {
                         ObservableList<String> styles = timeSlot.getView().getStyleClass();
                         // si ja està marcada 
                         if (styles.contains("time-slot")) {
+                            
+                            
+                            
                             //                            try {
 //                                club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(),true, timeSlot.getCourt() , actualUser);
 //                            } catch (ClubDAOException ex) {
