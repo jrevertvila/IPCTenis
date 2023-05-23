@@ -41,7 +41,7 @@
                         <String fx:value="buttonSidebarActive" />
                      </styleClass>
                   </Button>
-                  <Button fx:id="perfilButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleNavBtn" prefHeight="108.0" prefWidth="94.0" styleClass="buttonSidebar" text="Mi Perfil" userData="Profile.fxml">
+                  <Button fx:id="perfilButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleNavBtn" prefHeight="108.0" prefWidth="94.0" styleClass="buttonSidebar" text="Mi Perfil" userData="ProfileUX.fxml">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                            <image>

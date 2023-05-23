@@ -116,6 +116,11 @@ public class InicioUXController implements Initializable {
         String view = (String) ((Node)event.getSource()).getUserData();
 //        System.out.println("view: " + view);
 //        System.out.println("URL: " + getClass().getResource("../view/"+view));
+        if (view.equals("ProfileUX.fxml")) {
+            mainWrapper.getStyleClass().clear();
+        } else {
+            if (!mainWrapper.getStyleClass().contains("mainWrapper_parent")) mainWrapper.getStyleClass().add("mainWrapper_parent");
+        }
         loadFXML_NAV(getClass().getResource("../view/" + view), view);
         Object o = event.getSource();
         Button b = (Button) o;
