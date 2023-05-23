@@ -47,6 +47,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -126,13 +127,13 @@ public class PistaSinConexionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
         //---------------------------------------------------------------------
         // Instanciació de la base de dades 
         try {
             // TODO
             club = Club.getInstance();
-
+            System.out.println("RESERVAS TOTALES BBDD: " + club.getForDayBookings( LocalDate.now() ).size());
             //club.addSimpleData();
         } catch (ClubDAOException ex) {
             Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -221,7 +222,7 @@ public class PistaSinConexionController implements Initializable {
             llistaPerPistes[i] = new ArrayList<>();
         }
 //        System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa Pista 1: " + club.getCourt("Pista 1"));
-        for (int i = 1; i < LabelDayBooking.size(); i++) {
+        for (int i = 0; i < LabelDayBooking.size(); i++) {
 
             String pista = LabelDayBooking.get(i).getCourt().getName();
 
@@ -296,15 +297,16 @@ public class PistaSinConexionController implements Initializable {
                 // buscar el booking i afegirlo en el propi constructor del timeSlot
 
                 if (llistaPerPistes[i].size() != 0) {
-                    LocalTime reserva = llistaPerPistes[i].get(cont).getFromTime();
+                    
+                    LocalTime reserva = cont >= llistaPerPistes[i].size() ? null : llistaPerPistes[i].get(cont).getFromTime();
                     
                     if (startTime2 == reserva) {
                         // cree el TimeSlot en el nom de usuari
                         TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), club.getCourt("Pista "+ i));
-
-                        if (cont <=llistaPerPistes[i].size() - 1) {
-                            cont++;
-                        }
+                        cont++;
+//                        if (cont < llistaPerPistes[i].size()) {
+//                            
+//                        }
 
                         timeSlotsPista.add(timeSlot);
                         registerHandlers(timeSlot);

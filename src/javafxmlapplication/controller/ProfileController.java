@@ -14,14 +14,19 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.ImageView;
 import javafxmlapplication.JavaFXMLApplication;
+import javafxmlapplication.Utils;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
+
 
 /**
  * FXML Controller class
@@ -46,6 +51,8 @@ public class ProfileController implements Initializable {
     private Button applyButton;
     @FXML
     private Label errorPhoneLabel;
+    @FXML
+    private Button changePasswordButton;
 
     /**
      * Initializes the controller class.
@@ -85,33 +92,36 @@ public class ProfileController implements Initializable {
     @FXML
     private void applyChangesButton(ActionEvent event) {
         boolean error = false;
-        try 
-		{ 
-			Integer.parseInt(phoneField.getText()); 
-			JavaFXMLApplication.current_user.setName(phoneField.getText());
-		}  
-	catch (NumberFormatException e)  
-		{ 
-                    error = true;
-                    errorPhoneLabel.setText("Solo números");
-                   // phoneField.setText(user.getTelephone());
-                    
-		} 
-        
+        if(!Utils.isOnlyLetters(nameField.getText())) {
+            error = true;
+            //nameErrorMessage.setText("Introduce unicamente letras")
+        }
+        if(!Utils.isOnlyLetters(surnameField.getText())) {
+           error = true;
+           //surnameErrorMessage.setText("Introduce únicamente letras")   
+        }
+        if(!Utils.isPhoneNumber(phoneField.getText())) {
+            error = true;
+            //phoneErrorMessage.setText("Introduce únicamente 9 números")
+        }
+        if(!Utils.isCreditCard(creditCardField.getText())) {
+            error=true;
+            //crediCardErrorMessage.setText("Introduce únicamente 16 números")
+        }
         if (!error) {
-            JavaFXMLApplication.current_user.setName(phoneField.getText());
- 
             JavaFXMLApplication.current_user.setName(nameField.getText());
             JavaFXMLApplication.current_user.setSurname(surnameField.getText());
-            if (phoneField.getText().length() == 9  ) {
-                JavaFXMLApplication.current_user.setTelephone(phoneField.getText());
-            }
             JavaFXMLApplication.current_user.setTelephone(phoneField.getText());
             JavaFXMLApplication.current_user.setCreditCard(creditCardField.getText());
         } 
-        
-     
     }
+
+    @FXML
+    private void changePassword(ActionEvent event) {
+       
+    }
+
+
 }
 
 

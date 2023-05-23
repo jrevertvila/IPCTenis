@@ -66,7 +66,7 @@
                                     <Insets bottom="1.0" left="17.0" />
                                  </VBox.margin>
                               </Text>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="50.0" prefWidth="255.0" styleClass="changePasswdBtn" text="Cambiar contraseña">
+                              <Button fx:id="changePasswordButton" alignment="CENTER" mnemonicParsing="false" onAction="#changePassword" prefHeight="50.0" prefWidth="255.0" styleClass="changePasswdBtn" text="Cambiar contraseña">
                                  <VBox.margin>
                                     <Insets left="10.0" />
                                  </VBox.margin>
