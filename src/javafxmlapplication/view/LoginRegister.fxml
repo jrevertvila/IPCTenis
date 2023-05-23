@@ -5,12 +5,12 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="loginRegisterPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="485.0" prefWidth="646.0" spacing="50.0" styleClass="loginWrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.LoginRegisterController">
+<VBox fx:id="loginRegisterPane" maxHeight="4.3432423432432435E17" maxWidth="2.34242343243244E14" prefHeight="531.0" prefWidth="665.0" spacing="50.0" styleClass="loginWrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.LoginRegisterController">
    <children>
       <FlowPane alignment="TOP_CENTER" hgap="25.0" styleClass="navLoginRegister" VBox.vgrow="NEVER">
          <children>
             <Button fx:id="iniSesionBtnNav" mnemonicParsing="false" onAction="#handleShowView" styleClass="activeLR" text="Iniciar Sesion" userData="Login.fxml" />
-            <Button fx:id="registerBtnNav" mnemonicParsing="false" onAction="#handleShowView" text="Registrarse" userData="RegisterRefactor.fxml" />
+            <Button fx:id="registerBtnNav" mnemonicParsing="false" onAction="#handleShowView" text="Registrarse" userData="Register.fxml" />
          </children>
       </FlowPane>
       <VBox fx:id="PaneContent" alignment="CENTER" VBox.vgrow="ALWAYS">

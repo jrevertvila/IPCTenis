@@ -42,7 +42,7 @@ public class JavaFXMLApplication extends Application {
         scene = new Scene(root);
         stage.close();
         stage.setScene(scene);
-        stage.setMaximized(true);
+//        stage.setMaximized(true);
         stage.setTitle("GreenBall");
         stage.show();
     }
@@ -53,8 +53,8 @@ public class JavaFXMLApplication extends Application {
     public void start(Stage s) throws Exception {
         stage = s;
         currentStage = stage;
-        Club c = Club.getInstance();
-        System.out.println(c.getBookings());
+       // Club c = Club.getInstance();
+        //System.out.println(c.getBookings());
         
         //======================================================================
         // 1- creación del grafo de escena a partir del fichero FXML
@@ -69,7 +69,7 @@ public class JavaFXMLApplication extends Application {
         //     - se muestra el stage de manera no modal mediante el metodo show()
         scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
         stage.setScene(scene);
-        stage.setMaximized(true);
+//        stage.setMaximized(true);
         stage.setTitle("GreenBall");
         stage.show();
     }

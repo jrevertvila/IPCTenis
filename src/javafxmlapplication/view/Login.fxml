@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.LoginController">
+<VBox alignment="CENTER" prefHeight="393.0" prefWidth="471.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.LoginController">
    <children>
       <GridPane alignment="CENTER" prefHeight="177.0" prefWidth="349.0" style="-fx-background-color: bla;" VBox.vgrow="ALWAYS">
         <columnConstraints>
@@ -39,9 +40,12 @@
                   <TextField fx:id="login_nickname" maxWidth="350.0" prefWidth="300.0" promptText="Nombre de usuario" styleClass="inputStyled" text="admin" />
                </children>
             </VBox>
-            <VBox alignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+            <VBox alignment="CENTER" prefWidth="432.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
                <children>
-                  <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" minHeight="32.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="32.0" prefWidth="200.0" styleClass="loginBtnStyled" text="Iniciar Sesión" textAlignment="CENTER" />
+                  <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" minHeight="32.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="45.0" prefWidth="200.0" styleClass="loginBtnStyled" text="Iniciar Sesión" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </VBox>
             <VBox alignment="CENTER" GridPane.rowIndex="1">
