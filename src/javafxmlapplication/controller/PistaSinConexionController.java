@@ -47,6 +47,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
@@ -70,6 +71,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafxmlapplication.JavaFXMLApplication;
 
 /**
  * FXML Controller class
@@ -95,6 +97,11 @@ public class PistaSinConexionController implements Initializable {
     private ObjectProperty<TimeSlot> timeSlotSelected;
     private LocalDate daySelected;
     
+    String contenidoTimeSlot;
+    
+     //Member actualUser = JavaFXMLApplication.current_user;
+     
+     String actualUser = "joan25";
     
     
     
@@ -148,55 +155,7 @@ public class PistaSinConexionController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         
-//        String pista1 = pista.getName();
-        
-        System.out.println(" el nom del club es:"+club.getName());
-         
-//         List<Member> miembros1 = club.getMembers();
-//         int numMember = miembros1.size();
-//         for(int i = 0 ; i < numMember; i++){
-//             miembros1.get(i).setName("usuari" +i );
-//             miembros1.get(i).setNickName("usuariNick" +i );
-//             System.out.println(miembros1.get(i).getName());
-//             System.out.println(miembros1.get(i).getNickName());
-//         }
-         
-        // Court pista = club.getCourt("pista 1");
-        
-        //System.out.println(club.getBookings());
-        
-        // obtenim i imprimim certes dades de les reserves
-        ArrayList<Booking> reserva = club.getBookings();
-        int arraySize = reserva.size();
-        ArrayList<Booking> b1 ;
-        
-        
-        
-        
-        for(int i=0; i<arraySize; i++){
-            Court pista2 = reserva.get(i).getCourt();
-            String pista2Name = pista2.getName();
-           // System.out.println(pista2Name);
-            
-            
-            if (pista2Name.equals("Pista 2") ) {
-            
-                
-                System.out.println("Reserva: " + i +" \n En pista: "+ pista2Name );
-
-                Member miembros = reserva.get(i).getMember();
-                System.out.println("Reserva:" + miembros.getName() );
-                LocalTime horaReserva = reserva.get(i).getFromTime();
-                System.out.println(horaReserva);
-            }
-        
-        }
-        System.out.println("numero de reserves = " + arraySize);
-        
-     
-     
+    
     
     timeSlotSelected = new SimpleObjectProperty<>();
     
@@ -227,62 +186,7 @@ public class PistaSinConexionController implements Initializable {
                         + c.getStart().format(timeFormatter));
             }
         });
-
-        
-        //ArrayList<Member> membres = club.getMembers();
-        
-        /*
-        List<Member> m = club.getMembers();
-        int listSize = m.size();
-       //String ma = club.getCourt(pista1);
-        
-        miembros = FXCollections.observableArrayList(m);
-       System.out.println(ma);
       
-         
-        for(int i = 0; i< listSize; i++){
-            System.out.println("membre: "+m.get(i).getName() + " ");
-             System.out.println(""+m.get(i).getSurname() + " \n");
-             System.out.println(""+m.get(i).getPassword() + " \n");
-        }
-*/
-      
-        // obtenim e imprimim imprimim les pistes que hi han
-         /*
-         List<Court> m = club.getCourts();
-         int listSize = m.size();
-        
-        for(int i = 0; i< listSize; i++){
-           
-            System.out.println("pista: "+m.get(i).getName() + " \n");
-             //System.out.println(""+m.get(i).getSurname() + " \n");
-            // System.out.println(""+m.get(i).getPassword() + " \n");
-        }
-    */
-       // pistas = FXCollections.observableArrayList(m);
-        
-       // Column1 = new TableColumn<>("Nombre primero");
-        
-        //Column1.setText(m.get(3).getName());
-        
-        //TableView.getColumns().addAll(Column1,Column2);
-            // TableView.setItems(miembros);
-             //Column1.setCellValueFactory(new PropertyValueFactory<Member, String>("name"));
-            // Column2.setCellValueFactory(new PropertyValueFactory<Member, String>("surname"));
-
-        
-        
-        //Column1.setCellFactory((Callback<TableColumn<Member, String>, TableCell<Member, String>>) miembros);
-        
-       // TableView.getColumns().addAll(Column1,Column2);
-        //ListView.setItems(miembros);
-        
-      
-        
-        
-        
-        
-               
     }  
 
     private void test(ActionEvent event) {
@@ -324,13 +228,81 @@ public class PistaSinConexionController implements Initializable {
             // tinc una llista en les reserves per al dia indicat en el datepicker
             List<Booking> LabelDayBooking = club.getForDayBookings(day.getValue());
             
-            
-                //LabelDayBooking.
+            // ArrayList<Booking> reserva = club.getBookings();
+             int arraySize = LabelDayBooking.size();
+             ArrayList<Booking> b1 ;
+        
+        
+         System.out.println("reserves per al dia " + day.getValue());
+        
        
+        System.out.println("numero de reserves = " + arraySize);
+            
+         List<Booking>[] llistaPerPistes = new List[7];
+         
+          for (int i = 0; i < llistaPerPistes.length; i++) {
+            llistaPerPistes[i] = new ArrayList<>();
+        }
+         
+         for(int i = 1; i < LabelDayBooking.size(); i++){
+             
+             String pista = LabelDayBooking.get(i).getCourt().getName();
+             
+             if (pista.compareTo( "Pista 1") == 0 ){
+                 
+                 llistaPerPistes[1].add(LabelDayBooking.get(i)) ;
+             }
+              if (pista.compareTo( "Pista 2") == 0 ){
+                 
+                 llistaPerPistes[2].add(LabelDayBooking.get(i)) ;
+             }
+              if (pista.compareTo( "Pista 3") == 0 ){
+                 
+                 llistaPerPistes[3].add(LabelDayBooking.get(i)) ;
+             }
+               if (pista.compareTo( "Pista 4") == 0 ){
+                 
+                 llistaPerPistes[4].add(LabelDayBooking.get(i)) ;
+             }
+               if (pista.compareTo( "Pista 5") == 0 ){
+                 
+                 llistaPerPistes[5].add(LabelDayBooking.get(i)) ;
+             }
+               if (pista.compareTo( "Pista 6") == 0 ){
+                 
+                 llistaPerPistes[6].add(LabelDayBooking.get(i)) ;
+             }
+             
+             
+         }
+         System.out.println("abans del for");
+         
+          for(int i=0; i<llistaPerPistes[1].size(); i++){
+           // Court pista2 = LabelDayBooking.get(i).getCourt();
+            //String pista2Name = pista2.getName();
+           // System.out.println(pista2Name);
+            Member miembros = llistaPerPistes[1].get(i).getMember();
+                System.out.println("Reserva:" + miembros.getNickName() );
+                LocalTime horaReserva = llistaPerPistes[1].get(i).getFromTime();
+                String pista = llistaPerPistes[1].get(i).getCourt().getName();
+                System.out.println(pista);
+                System.out.println(horaReserva);
+                System.out.println(LabelDayBooking.size());
+                //System.out.println(llistaPerPistes[0].size());            
+                System.out.println(llistaPerPistes[1].size());
+                System.out.println(llistaPerPistes[2].size());
+                System.out.println(llistaPerPistes[3].size());
+                System.out.println(llistaPerPistes[4].size());
+                System.out.println(llistaPerPistes[5].size());
+                System.out.println(llistaPerPistes[6].size());
+         
+        }
+        
         //----------------------------------------------------------------------------------
         // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
         
-        for(int i=1; i<7;i++){
+        for(int i=1; i<=6;i++){
+            int cont = 0;
             int slotIndex = 1;
             List<TimeSlot> timeSlotsPista = new ArrayList<TimeSlot>();
             timeSlots.add(timeSlotsPista);
@@ -342,14 +314,35 @@ public class PistaSinConexionController implements Initializable {
 
                 //---------------------------------------------------------------------------------------
                 // creamos el SlotTime, lo anyadimos a la lista de la columna y asignamos sus manejadores
-                
+                // faig un cast per a que siga soles la hora 
+                LocalTime startTime2 = startTime.toLocalTime();
+               // LabelDayBooking.get(cont)
+                // primer agafe la reserva , la comprove i si es, la pose en el constructor
                 // buscar el booking i afegirlo en el propi constructor del timeSlot
-                TimeSlot timeSlot = new TimeSlot(startTime, slotLength, "prova" +i);
+                
+                LocalTime reserva = llistaPerPistes[i].get(cont).getFromTime();
+                
+                if (startTime2 == reserva){
+                // cree el TimeSlot en el nom de usuari
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength,llistaPerPistes[i].get(cont).getMember().getNickName() , llistaPerPistes[i].get(cont).getCourt() );
+                    
+                    if (cont < llistaPerPistes[i].size()-1){
+                        cont ++;
+                    }
+                    
                 timeSlotsPista.add(timeSlot);
                 registerHandlers(timeSlot);
-                //-----------------------------------------------------------
-                // lo anyadimos al grid en la posicion x= 1, y= slotIndex
                 grid.add(timeSlot.getView(), i, slotIndex);
+                }else{
+                // cree el timeSlot sense el nom de usuari
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/" - ",llistaPerPistes[i].get(cont).getCourt());
+                
+                    timeSlotsPista.add(timeSlot);
+                registerHandlers(timeSlot);
+                grid.add(timeSlot.getView(), i, slotIndex);
+                }
+                
+               
                 slotIndex++;
             }
         }
@@ -371,21 +364,37 @@ public class PistaSinConexionController implements Initializable {
                 // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
                 if (event.getClickCount() > 1) {
                     Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                    alerta.setTitle("SlotTime");
-                    alerta.setHeaderText("Confirma la selecció");
+                    alerta.setTitle("Confirmació de la reserva");
+                    alerta.setHeaderText("Revisa els datos de la reserva ");
                     alerta.setContentText("Has seleccionat: "
                             + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                             + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
+                    
+                    
                     Optional<ButtonType> result = alerta.showAndWait();
                     if (result.isPresent() && result.get() == ButtonType.OK) {
+                        if(actualUser != null){
+                            
                         ObservableList<String> styles = timeSlot.getView().getStyleClass();
+                        // si ja està marcada 
                         if (styles.contains("time-slot")) {
+                            //                            try {
+//                                club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(),true, timeSlot.getCourt() , actualUser);
+//                            } catch (ClubDAOException ex) {
+//                                Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
                             styles.remove("time-slot");
                             styles.add("time-slot-libre");
                         } else {
+
+                            timeSlot.setContenido(actualUser);
+//                            timeSlot.setContenido(actualUser.getNickName());
                             styles.remove("time-slot-libre");
                             styles.add("time-slot");
                         }
+                        
+                        }
+                        
                     }
                 }
             });
@@ -398,6 +407,9 @@ public class TimeSlot {
         private final Duration duration;
         protected final Pane view;
         protected String contenido;
+        protected Court court;
+        
+       // contenidoTimeSlot = contenido;
         
 
         private final BooleanProperty selected = new SimpleBooleanProperty();
@@ -424,14 +436,31 @@ public class TimeSlot {
         public final void setSelected(boolean selected) {
             selectedProperty().set(selected);
         }
-
-        public TimeSlot(LocalDateTime start, Duration duration,String cont) {
+        
+         public TimeSlot(LocalDateTime start, Duration duration,String cont) {
             this.start = start;
             this.duration = duration;
             view = new Pane();
             view.getStyleClass().add("time-slot");
             this.contenido = cont;
             this.setContenido(contenido);
+            //this.court = pista;
+            
+            // ---------------------------------------------------------------
+            // de esta manera cambiamos la apariencia del TimeSlot cuando los seleccionamos
+            selectedProperty().addListener((obs, wasSelected, isSelected)
+                    -> view.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, isSelected));
+
+        }
+
+        public TimeSlot(LocalDateTime start, Duration duration,String cont, Court pista) {
+            this.start = start;
+            this.duration = duration;
+            view = new Pane();
+            view.getStyleClass().add("time-slot");
+            this.contenido = cont;
+            this.setContenido(contenido);
+            this.court = pista;
             
             // ---------------------------------------------------------------
             // de esta manera cambiamos la apariencia del TimeSlot cuando los seleccionamos
@@ -440,6 +469,7 @@ public class TimeSlot {
 
         }
         
+        public Court getCourt(){ return court;}
 
         public LocalDateTime getStart() {
             return start;

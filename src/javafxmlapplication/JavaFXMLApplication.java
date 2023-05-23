@@ -53,12 +53,13 @@ public class JavaFXMLApplication extends Application {
     public void start(Stage s) throws Exception {
         stage = s;
         currentStage = stage;
-        Club c = Club.getInstance();
-        System.out.println(c.getBookings());
+       // Club c = Club.getInstance();
+        //System.out.println(c.getBookings());
         
         //======================================================================
         // 1- creación del grafo de escena a partir del fichero FXML
-        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/InicioRefactor.fxml"));
+        FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/PistaSinConexion.fxml"));
+        //FXMLLoader loader= new  FXMLLoader(getClass().getResource("view/InicioRefactor.fxml"));
         Parent root = loader.load();
         //======================================================================
         // 2- creación de la escena con el nodo raiz del grafo de escena
