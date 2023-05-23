@@ -302,7 +302,7 @@ public class PistaSinConexionController implements Initializable {
                         // cree el TimeSlot en el nom de usuari
                         TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), club.getCourt("Pista "+ i));
 
-                        if (cont < llistaPerPistes[i].size() - 1) {
+                        if (cont <=llistaPerPistes[i].size() - 1) {
                             cont++;
                         }
 
