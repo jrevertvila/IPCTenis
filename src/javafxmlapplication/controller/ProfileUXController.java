@@ -8,27 +8,26 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
  *
- * @author joeli
+ * @author Usuario
  */
 public class ProfileUXController implements Initializable {
 
     @FXML
-    private TextField userLabel;
+    private Text nameLabel;
     @FXML
-    private TextField nameField;
+    private Button changePasswordButton;
     @FXML
-    private TextField surnameField;
+    private TextField userField;
     @FXML
-    private TextField phoneField;
-    @FXML
-    private TextField creditCardField;
-    @FXML
-    private TextField photoField;
+    private PasswordField passwordField;
 
     /**
      * Initializes the controller class.
