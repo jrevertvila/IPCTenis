@@ -83,7 +83,7 @@ public class LoginController implements Initializable {
             
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX_Logged.fxml"));
 //            String[] framesList = ["",""];
-            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","InicioUX6.fxml","Login.fxml","Register.fxml"});
+            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","InicioUX.fxml","Login.fxml","Register.fxml"});
             Parent root2 = loader2.load();
             javafxmlapplication.JavaFXMLApplication.setRoot(root2);
 //            if (isLogged()) {
