@@ -38,6 +38,15 @@
                      </VBox.margin>
                   </HBox>
                   <TextField fx:id="login_nickname" maxWidth="350.0" prefWidth="300.0" promptText="Nombre de usuario" styleClass="inputStyled" text="admin" />
+                  <HBox maxWidth="350.0">
+                     <children>
+                        <Text fx:id="errorNicknameLabel" fill="#e33434" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
             <VBox alignment="CENTER" prefWidth="432.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
@@ -67,6 +76,15 @@
                         <Insets />
                      </VBox.margin>
                   </TextField>
+                  <HBox maxWidth="350.0">
+                     <children>
+                        <Text fx:id="errorPasswdLabel" fill="#e33434" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel">
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

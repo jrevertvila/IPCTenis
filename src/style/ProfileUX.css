@@ -75,3 +75,14 @@ Label {
 .buttonLeftSideProfile:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
 }
+/*Naranja: #F66E23*/
+.statNumber {
+    -fx-font-size: 32px;
+/*    -fx-text-fill: red !important;*/
+    -fx-font-family: "Caros Soft Bold";
+}
+
+.statLabel {
+    -fx-font-size: 14px;
+    -fx-font-family: "Caros Soft Bold";
+}

@@ -65,8 +65,48 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="boxShadow" />
-                        <VBox prefHeight="200.0" prefWidth="100.0" styleClass="boxShadow" GridPane.columnIndex="1" />
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="boxShadow">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="169.0" prefWidth="233.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="#07d3b0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="2" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statLabel" text="Reservas pendientes" wrappingWidth="82.7880859375" />
+                                       </children>
+                                    </VBox>
+                                    <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icons/barrasAzul.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                                 </padding>
+                              </HBox>
+                           </children></VBox>
+                        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="boxShadow" GridPane.columnIndex="1">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <VBox prefHeight="90.0" prefWidth="129.0" spacing="25.0" HBox.hgrow="ALWAYS">
+                                       <children>
+                                          <Text fill="#f66e23" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="6" />
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statLabel" text="Reservas Totales" wrappingWidth="72.486328125" />
+                                       </children>
+                                    </VBox>
+                                    <ImageView fitHeight="65.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icons/barrasNaranja.png" />
+                                       </image>
+                                    </ImageView>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="35.0" left="35.0" right="35.0" top="35.0" />
+                                 </padding>
+                              </HBox>
+                           </children></VBox>
                      </children>
                   </GridPane>
                </children>

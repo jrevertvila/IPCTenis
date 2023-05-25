@@ -27,10 +27,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import javafxmlapplication.JavaFXMLApplication;
 import javafxmlapplication.controller.LoginController;
 import model.Club;
 import model.ClubDAOException;
+import tray.animations.AnimationType;
+import tray.notification.NotificationType;
+import tray.notification.TrayNotification;
 
 /**
  * FXML Controller class
@@ -59,9 +63,11 @@ public class InicioUXController implements Initializable {
     @FXML
     private TextField topBar_searchBar;
     @FXML
+    private Button topBar_notification;
+    @FXML
     private ImageView topBar_notificationButton;
     @FXML
-    private Button topBar_notification;
+    private Button buttonLogout;
 
     /**
      * Initializes the controller class.
@@ -182,6 +188,22 @@ public class InicioUXController implements Initializable {
         alert.setHeaderText("Tienes 3 notificaciones:");
         alert.setContentText("Partido hoy a las 16:00\nPartido hoy a las 20:00\nPartido mañana a las 18:00");
         alert.showAndWait();
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        TrayNotification notif = new TrayNotification();
+        notif.setAnimationType(AnimationType.POPUP);
+        notif.setTitle("HASTA PRONTO!");
+        notif.setMessage("Usted ha cerrado la sesión");
+        notif.setNotificationType(NotificationType.SUCCESS);
+        notif.showAndDismiss(Duration.millis(3000));
+        
+        JavaFXMLApplication.current_user = null;
+        FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX.fxml"));
+        JavaFXMLApplication.removeFrames(new String[]{"Profile.fxml", "InicioUX_Logged.fxml"});
+        Parent root2 = loader2.load();
+        javafxmlapplication.JavaFXMLApplication.setRoot(root2);
     }
     
 }
