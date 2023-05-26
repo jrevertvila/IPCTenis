@@ -6,6 +6,8 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -71,7 +73,7 @@
                                  <children>
                                     <VBox prefHeight="200.0" prefWidth="100.0" spacing="25.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text fill="#07d3b0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="2" />
+                                          <Text fx:id="reservasPendientesLabel" fill="#07d3b0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="0" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statLabel" text="Reservas pendientes" wrappingWidth="82.7880859375" />
                                        </children>
                                     </VBox>
@@ -92,7 +94,7 @@
                                  <children>
                                     <VBox prefHeight="90.0" prefWidth="129.0" spacing="25.0" HBox.hgrow="ALWAYS">
                                        <children>
-                                          <Text fill="#f66e23" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="6" />
+                                          <Text fx:id="reservasTotalesLabel" fill="#f66e23" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statNumber" text="0" />
                                           <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="statLabel" text="Reservas Totales" wrappingWidth="72.486328125" />
                                        </children>
                                     </VBox>
@@ -115,7 +117,21 @@
                <children>
                   <TabPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
                     <tabs>
-                      <Tab text="Mis Reservas" />
+                      <Tab text="Mis Reservas">
+                           <content>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <TableView fx:id="tableViewReservas" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+                                      <columns>
+                                        <TableColumn fx:id="dateBookingCOL" prefWidth="201.0" text="Fecha" />
+                                          <TableColumn fx:id="courtBookingCOL" minWidth="0.0" prefWidth="106.0" text="Pista" />
+                                          <TableColumn fx:id="estadoBookingCOL" prefWidth="89.0" text="Estado" />
+                                          <TableColumn fx:id="actionBookingCOL" prefWidth="89.0" text="Acción" />
+                                      </columns>
+                                    </TableView>
+                                 </children>
+                              </HBox>
+                           </content></Tab>
                       <Tab text="Datos Personales">
                            <content>
                               <VBox fillWidth="false" spacing="20.0">
@@ -123,25 +139,25 @@
                                     <VBox prefHeight="0.0" prefWidth="558.0">
                                        <children>
                                           <Label text="Nombre" />
-                                          <TextField prefHeight="26.0" prefWidth="246.0" />
+                                          <TextField prefHeight="26.0" prefWidth="246.0" styleClass="inputField" />
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="0.0" prefWidth="554.0">
                                        <children>
                                           <Label text="Apellidos" />
-                                          <TextField prefHeight="26.0" prefWidth="620.0" />
+                                          <TextField prefHeight="26.0" prefWidth="620.0" styleClass="inputField" />
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
                                           <Label text="Número de teléfono" />
-                                          <TextField prefHeight="10.0" prefWidth="205.0" />
+                                          <TextField prefHeight="10.0" prefWidth="205.0" styleClass="inputField" />
                                        </children>
                                     </VBox>
                                     <VBox>
                                        <children>
                                           <Label text="Tarjeta de crédito" />
-                                          <TextField prefHeight="10.0" prefWidth="205.0" />
+                                          <TextField prefHeight="10.0" prefWidth="205.0" styleClass="inputField" />
                                        </children>
                                     </VBox>
                                     <VBox />

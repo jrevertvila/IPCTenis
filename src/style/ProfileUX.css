@@ -50,6 +50,7 @@ Label {
     -fx-pref-height: 40px;
     -fx-background-radius: 100px;
     -fx-border-radius: 100px;
+    -fx-font-family:"Caros Soft Bold";
 }
 
 .inputDisabledProfile {
@@ -62,6 +63,8 @@ Label {
     -fx-background-color: #07d3b0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
+    -fx-font-family:"Caros Soft Bold";
+    -fx-font-size: 14px;
     -fx-background-radius: 200px;
     -fx-border-color: #07d3b0;
     -fx-border-radius: 200px;
@@ -75,6 +78,16 @@ Label {
 .buttonLeftSideProfile:hover {
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 2, 0, 0, 0);
 }
+Text {
+    -fx-font-family:"Caros Soft Bold";
+    -fx-font-size: 14px;
+}
+
+Label {
+    -fx-font-family:"Caros Soft Bold";
+    -fx-font-size: 14px;
+}
+
 /*Naranja: #F66E23*/
 .statNumber {
     -fx-font-size: 32px;

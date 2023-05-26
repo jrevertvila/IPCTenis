@@ -127,26 +127,26 @@ public class LoginController implements Initializable {
 //}
 
 
-//            if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
-//                TrayNotification notif = new TrayNotification();
-//                notif.setAnimationType(AnimationType.POPUP);
-//                notif.setTitle("INICIO DE SESIÓN CORRECTO");
-//                notif.setMessage("Bienvenido " + JavaFXMLApplication.current_user.getName());
-//                notif.setNotificationType(NotificationType.SUCCESS);
-//                notif.showAndDismiss(Duration.millis(3000));
-//
-//                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX_Logged.fxml"));
-//                JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml", "InicioUX.fxml", "Login.fxml", "Register.fxml"});
-//                Parent root2 = loader2.load();
-//                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-//            } else {
-//                TrayNotification notif = new TrayNotification();
-//                notif.setAnimationType(AnimationType.POPUP);
-//                notif.setTitle("ERROR EN EL INICIO DE SESIÓN");
-//                notif.setMessage("Nombre de usuario o contraseña incorrectos");
-//                notif.setNotificationType(NotificationType.ERROR);
-//                notif.showAndDismiss(Duration.millis(3000));
-//            }
+            if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
+                TrayNotification notif = new TrayNotification();
+                notif.setAnimationType(AnimationType.POPUP);
+                notif.setTitle("INICIO DE SESIÓN CORRECTO");
+                notif.setMessage("Bienvenido " + JavaFXMLApplication.current_user.getName());
+                notif.setNotificationType(NotificationType.SUCCESS);
+                notif.showAndDismiss(Duration.millis(3000));
+
+                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX_Logged.fxml"));
+                JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml", "InicioUX.fxml", "Login.fxml", "Register.fxml"});
+                Parent root2 = loader2.load();
+                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+            } else {
+                TrayNotification notif = new TrayNotification();
+                notif.setAnimationType(AnimationType.POPUP);
+                notif.setTitle("ERROR EN EL INICIO DE SESIÓN");
+                notif.setMessage("Nombre de usuario o contraseña incorrectos");
+                notif.setNotificationType(NotificationType.ERROR);
+                notif.showAndDismiss(Duration.millis(3000));
+            }
 
 //            if (isLogged()) {
 //                System.out.println("ENTRA EN IS LOGGEDD");

@@ -107,7 +107,7 @@ public class InicioUXController implements Initializable {
 //            System.out.println("frameName: "+frameName);
 //            System.out.println("frame: "+frame);
             if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
-
+            frame.setVisible(true);
             mainWrapper.getChildren().clear();
             mainWrapper.getChildren().add(frame);
         }
