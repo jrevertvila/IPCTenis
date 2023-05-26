@@ -8,6 +8,14 @@ and open the template in the editor.
     Author     : DSIC_jsoler
 */
 
+/*.time-slot:hover{
+    -fx-background-color: yellow;
+    
+}*/
+.time-slot-reserva:hover{
+    -fx-background-color: yellow;
+    
+}
 .time-slot {
     -fx-background-color: red ,white;
     -fx-background-insets: 0, 1 1 0 0 ;
@@ -20,6 +28,12 @@ and open the template in the editor.
     -fx-cursor: hand;
 
 }
+/*.time-slot-libre:hover{
+    -fx-background-color: yellow, #ccccff
+    
+}*/
+    
+    
 
 .time-slot:selected {
     -fx-background-color: indianred;

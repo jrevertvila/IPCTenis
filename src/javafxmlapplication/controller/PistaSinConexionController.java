@@ -97,9 +97,12 @@ public class PistaSinConexionController implements Initializable {
     private LocalDate daySelected;
 
     String contenidoTimeSlot;
+    
+    boolean reservaHablilitada = true;
 
-    //Member actualUser = JavaFXMLApplication.current_user;
-    String actualUser = "joan25";
+    //Member actualUser = JavaFXMLApplication.current_user.getNickName();
+    Member actualUser = JavaFXMLApplication.current_user == null ? null : JavaFXMLApplication.current_user;
+    // String actualUser = "joan25";
 
     //pistaColArr = [labelPista1];
     private ObservableList<Court> pistas = null;
@@ -127,13 +130,13 @@ public class PistaSinConexionController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         //---------------------------------------------------------------------
         // Instanciació de la base de dades 
         try {
             // TODO
             club = Club.getInstance();
-            System.out.println("RESERVAS TOTALES BBDD: " + club.getForDayBookings( LocalDate.now() ).size());
+            System.out.println("RESERVAS TOTALES BBDD: " + club.getForDayBookings(LocalDate.now()).size());
             //club.addSimpleData();
         } catch (ClubDAOException ex) {
             Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
@@ -183,6 +186,7 @@ public class PistaSinConexionController implements Initializable {
 
     private void setTimeSlotsGrid(LocalDate date) {
         //actualizamos la seleccion
+        
         timeSlotSelected.setValue(null);
 
         //--------------------------------------------        
@@ -274,6 +278,8 @@ public class PistaSinConexionController implements Initializable {
             System.out.println(llistaPerPistes[6].size());
 
         }
+        
+        System.out.println(reservaHablilitada);
 
         //----------------------------------------------------------------------------------
         // desde la hora de inicio y hasta la hora de fin creamos slotTime segun la duracion
@@ -297,12 +303,12 @@ public class PistaSinConexionController implements Initializable {
                 // buscar el booking i afegirlo en el propi constructor del timeSlot
 
                 if (llistaPerPistes[i].size() != 0) {
-                    
+
                     LocalTime reserva = cont >= llistaPerPistes[i].size() ? null : llistaPerPistes[i].get(cont).getFromTime();
-                    
+
                     if (startTime2 == reserva) {
                         // cree el TimeSlot en el nom de usuari
-                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), club.getCourt("Pista "+ i));
+                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, llistaPerPistes[i].get(cont).getMember().getNickName(), club.getCourt("Pista " + i));
                         cont++;
 //                        if (cont < llistaPerPistes[i].size()) {
 //                            
@@ -313,14 +319,14 @@ public class PistaSinConexionController implements Initializable {
                         grid.add(timeSlot.getView(), i, slotIndex);
                     } else {
                         // cree el timeSlot sense el nom de usuari
-                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista "+ i));
+                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista " + i));
 
                         timeSlotsPista.add(timeSlot);
                         registerHandlers(timeSlot);
                         grid.add(timeSlot.getView(), i, slotIndex);
                     }
                 } else {
-                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista "+ i));
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista " + i));
                     timeSlotsPista.add(timeSlot);
                     registerHandlers(timeSlot);
                     grid.add(timeSlot.getView(), i, slotIndex);
@@ -332,6 +338,10 @@ public class PistaSinConexionController implements Initializable {
     }
 
     private void registerHandlers(TimeSlot timeSlot) {
+        // if(reservaHablilitada == true){
+         
+                        
+                    
 
         timeSlot.getView().setOnMousePressed((MouseEvent event) -> {
             //---------------------------------------------slot----------------------------
@@ -345,44 +355,63 @@ public class PistaSinConexionController implements Initializable {
             //----------------------------------------------------------------
             // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
             if (event.getClickCount() > 1) {
-                Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                alerta.setTitle("Confirmació de la reserva");
-                alerta.setHeaderText("Revisa els datos de la reserva ");
-                alerta.setContentText("Has seleccionat: "
-                        + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
-                        + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
 
-                Optional<ButtonType> result = alerta.showAndWait();
-                if (result.isPresent() && result.get() == ButtonType.OK) {
-                    if (actualUser != null) {
+                if (actualUser != null) {
+                   
 
-                        ObservableList<String> styles = timeSlot.getView().getStyleClass();
-                        // si ja està marcada 
-                        if (styles.contains("time-slot")) {
-                            
-                            
-                            
-                            //                            try {
-//                                club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(),true, timeSlot.getCourt() , actualUser);
-//                            } catch (ClubDAOException ex) {
-//                                Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
-//                            }
-                            styles.remove("time-slot");
-                            styles.add("time-slot-libre");
-                        } else {
+                    Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta.setTitle("Confirmació de la reserva");
+                    alerta.setHeaderText("Revisa els datos de la reserva ");
+                    alerta.setContentText("Has seleccionat: "
+                            + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                            + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
 
-                            timeSlot.setContenido(actualUser);
+                    Optional<ButtonType> result = alerta.showAndWait();
+                    if (result.isPresent() && result.get() == ButtonType.OK) {
+                        if (actualUser != null) {
+
+                            ObservableList<String> styles = timeSlot.getView().getStyleClass();
+                            // si ja està marcada 
+                            if (styles.contains("time-slot")) {
+                                styles.add("time-slot-reserva");
+                                timeSlot.setContenido(actualUser.getNickName());
+
+                                try {
+                                    club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), true, timeSlot.getCourt(), actualUser);
+                                } catch (ClubDAOException ex) {
+                                    Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                styles.remove("time-slot");
+                                styles.add("time-slot-libre");
+                            } else {
+
 //                            timeSlot.setContenido(actualUser.getNickName());
-                            styles.remove("time-slot-libre");
-                            styles.add("time-slot");
+                                styles.remove("time-slot-libre");
+                                styles.add("time-slot");
+                            }
+
                         }
 
                     }
 
                 }
+
             }
         });
+   // }else{}
+    }
 
+    private void testCurrentUser(ActionEvent event) {
+
+        System.out.println("Actual user: " + actualUser);
+    }
+
+    @FXML
+    private void habilitarReserva(ActionEvent event) {
+        reservaHablilitada = true;
+        
+        System.out.println(reservaHablilitada);
+        //registerHandlers(timeSlot);
     }
 
     public class TimeSlot {
@@ -423,6 +452,8 @@ public class PistaSinConexionController implements Initializable {
             this.duration = duration;
             view = new Pane();
             view.getStyleClass().add("time-slot");
+            view.getStyleClass().add("time-slot-reserva");
+            
             this.contenido = cont;
             this.setContenido(contenido);
             //this.court = pista;
