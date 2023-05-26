@@ -19,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.scene.web.WebView;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -29,6 +30,10 @@ import model.Member;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
+import javafx.scene.control.Control;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import org.controlsfx.control.NotificationPane;
 
 /**
  * FXML Controller class
@@ -94,26 +99,54 @@ public class LoginController implements Initializable {
 //            ToastController.showToast(ToastController.TOAST_ERROR, loginBtn, "ERROR EN INICIO DE SESION");
 
 //              CustomToastController
-            if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
-                TrayNotification notif = new TrayNotification();
-                notif.setAnimationType(AnimationType.POPUP);
-                notif.setTitle("INICIO DE SESIÓN CORRECTO");
-                notif.setMessage("Bienvenido " + JavaFXMLApplication.current_user.getName());
-                notif.setNotificationType(NotificationType.SUCCESS);
-                notif.showAndDismiss(Duration.millis(3000));
 
-                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX_Logged.fxml"));
-                JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml", "InicioUX.fxml", "Login.fxml", "Register.fxml"});
-                Parent root2 = loader2.load();
-                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-            } else {
-                TrayNotification notif = new TrayNotification();
-                notif.setAnimationType(AnimationType.POPUP);
-                notif.setTitle("ERROR EN EL INICIO DE SESIÓN");
-                notif.setMessage("Nombre de usuario o contraseña incorrectos");
-                notif.setNotificationType(NotificationType.ERROR);
-                notif.showAndDismiss(Duration.millis(3000));
-            }
+               // Create a WebView
+//WebView webView = new WebView();
+//
+//// Wrap it inside a NotificationPane
+//NotificationPane notificationPane = new NotificationPane(webView);
+//
+//// and put the NotificationPane inside a Tab
+//Tab tab1 = new Tab("Tab 1");
+//tab1.setContent(notificationPane);
+//
+//// and the Tab inside a TabPane. We just have one tab here, but of course 
+//// you can have more!
+//TabPane tabPane = new TabPane();
+//tabPane.getTabs().addAll(tab1);
+//
+//
+//notificationPane.setText("Do you want to save your password?");
+//notificationPane.getActions().add(new AbstractAction("Save Password") {
+//    public void execute(ActionEvent ae) {
+//        // do save...
+//
+//        // then hide...
+//        notificationPane.hide();
+//    }
+//}
+
+
+//            if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
+//                TrayNotification notif = new TrayNotification();
+//                notif.setAnimationType(AnimationType.POPUP);
+//                notif.setTitle("INICIO DE SESIÓN CORRECTO");
+//                notif.setMessage("Bienvenido " + JavaFXMLApplication.current_user.getName());
+//                notif.setNotificationType(NotificationType.SUCCESS);
+//                notif.showAndDismiss(Duration.millis(3000));
+//
+//                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX_Logged.fxml"));
+//                JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml", "InicioUX.fxml", "Login.fxml", "Register.fxml"});
+//                Parent root2 = loader2.load();
+//                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
+//            } else {
+//                TrayNotification notif = new TrayNotification();
+//                notif.setAnimationType(AnimationType.POPUP);
+//                notif.setTitle("ERROR EN EL INICIO DE SESIÓN");
+//                notif.setMessage("Nombre de usuario o contraseña incorrectos");
+//                notif.setNotificationType(NotificationType.ERROR);
+//                notif.showAndDismiss(Duration.millis(3000));
+//            }
 
 //            if (isLogged()) {
 //                System.out.println("ENTRA EN IS LOGGEDD");
