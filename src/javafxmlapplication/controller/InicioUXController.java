@@ -6,6 +6,8 @@ package javafxmlapplication.controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,6 +32,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import javafxmlapplication.JavaFXMLApplication;
 import javafxmlapplication.controller.LoginController;
+import model.Booking;
 import model.Club;
 import model.ClubDAOException;
 import tray.animations.AnimationType;
@@ -99,7 +102,7 @@ public class InicioUXController implements Initializable {
     }
 
     
-    private void loadFXML_NAV(URL url, String frameName) {
+    private void loadFXML_NAV(URL url, String frameName) throws ClubDAOException {
         try {
             
             Node frame = JavaFXMLApplication.getFrame(frameName);
@@ -107,9 +110,13 @@ public class InicioUXController implements Initializable {
 //            System.out.println("frameName: "+frameName);
 //            System.out.println("frame: "+frame);
             if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            if (frameName.equals("ProfileUX.fxml")) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
             frame.setVisible(true);
+//            frame.
             mainWrapper.getChildren().clear();
             mainWrapper.getChildren().add(frame);
+            
+//            if (frameName.equals("ProfileUX.fxml")) ProfileUXController.refresh();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -117,7 +124,7 @@ public class InicioUXController implements Initializable {
     }
     
     @FXML
-    private void handleNavBtn(ActionEvent event) {
+    private void handleNavBtn(ActionEvent event) throws ClubDAOException {
         
         String view = (String) ((Node)event.getSource()).getUserData();
 //        System.out.println("view: " + view);
@@ -180,13 +187,30 @@ public class InicioUXController implements Initializable {
 
     @FXML
     private void showNotifications(ActionEvent event) throws ClubDAOException, IOException {
+        int notifCont = 0;
+        Club club = Club.getInstance();
+        List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
+        String res = "";
         
-        Club c = Club.getInstance();
-        System.out.println("User bookings: "+c.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
+        for (int i = 0; i < userBookings.size(); i++) {
+            Booking booking = userBookings.get(i);
+//            System.out.println("GetBookingDate: " + booking.getBookingDate());
+//            System.out.println("CurrentDate.now: " + LocalDateTime.now());
+//            System.out.println("IS AFTER: " + booking.getBookingDate().isAfter(LocalDateTime.now()));
+            
+            if (booking.getBookingDate().compareTo(LocalDateTime.now()) > 0 && booking.getBookingDate().compareTo(LocalDateTime.now().plusDays(1)) < 0) {
+                notifCont++;
+                res += "Partido " + (booking.getBookingDate().getDayOfYear() == LocalDateTime.now().getDayOfYear()? "hoy " : "mañana ") + 
+                        "a las " + booking.getBookingDate().getHour() + ":" + booking.getBookingDate().getMinute() + "" + (booking.getBookingDate().getMinute() < 10 ? "0" : "") + "\n";
+            }
+//            System.out.println("Booking " + i + ": " + booking.getBookingDate());
+
+        }
+//        System.out.println("User bookings: "+club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Tus notificaciones");
-        alert.setHeaderText("Tienes 3 notificaciones:");
-        alert.setContentText("Partido hoy a las 16:00\nPartido hoy a las 20:00\nPartido mañana a las 18:00");
+        alert.setHeaderText("Tienes "+ notifCont +" notificaciones:");
+        alert.setContentText(res);
         alert.showAndWait();
     }
 

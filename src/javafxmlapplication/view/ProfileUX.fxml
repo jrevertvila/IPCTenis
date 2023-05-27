@@ -31,7 +31,7 @@
                      </image>
                   </ImageView>
                   <Text fx:id="nameLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameLabelProfile" text="Joel Revert" />
-                  <Button fx:id="changePasswordButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="183.0" styleClass="buttonLeftSideProfile" text="Cambiar Contraseña">
+                  <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="39.0" prefWidth="183.0" styleClass="buttonLeftSideProfile" text="Cambiar Contraseña">
                      <font>
                         <Font size="13.0" />
                      </font>

@@ -99,3 +99,24 @@ Label {
     -fx-font-size: 14px;
     -fx-font-family: "Caros Soft Bold";
 }
+
+.logoutBtn {
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-background-color: #e33434;
+    /*-fx-background-radius: 0 0 30 0;*/
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 3, 0, 0, 0);
+    -fx-font-family: "Caros Soft Bold";
+}
+
+.logoutBtn:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 6, 0, 0, 0);
+    -fx-cursor: hand;
+    
+}
+
+.inputStyledError {
+    -fx-border-color: #e33434 !important;
+    -fx-border-width: 2 !important;
+}

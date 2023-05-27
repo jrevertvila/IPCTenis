@@ -16,8 +16,12 @@ import java.util.logging.Logger;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableCell;
@@ -26,6 +30,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import javafxmlapplication.JavaFXMLApplication;
@@ -56,8 +62,8 @@ public class ProfileUXController implements Initializable {
     @FXML
     private Text reservasTotalesLabel;
 
-    private int reservasPendientes;
-    private int reservasTotales;
+    private static int reservasPendientes;
+    private static int reservasTotales;
     @FXML
     private TableView<Booking> tableViewReservas;
     @FXML
@@ -69,15 +75,21 @@ public class ProfileUXController implements Initializable {
     @FXML
     private TableColumn<Booking, String> dateBookingCOL;
 
-    private ObservableList<Booking> misReservas;
-
+    private static ObservableList<Booking> misReservas;
+    private static SimpleStringProperty pendientesP = new SimpleStringProperty("0");
+    private static SimpleStringProperty totalesP = new SimpleStringProperty("0");
+    
+    public ProfileUXController() {
+        
+    }
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
+        
+//        reservasPendientesLabel.textProperty().bind(pendientesP);
+//        reservasTotalesLabel.textProperty().bind(totalesP);
 //        numBookingCOL.setCellValueFactory(new PropertyValueFactory<Booking, String>("nombre"));
 //        private ObservableList<Persona> misPersonas;
 //        personaTableV.setItems(misPersonas);
@@ -85,7 +97,7 @@ public class ProfileUXController implements Initializable {
         try {
             club = Club.getInstance();
             List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
-
+            System.out.println("RESERVAS TOTALESSSSSSSSSSS: " + userBookings.size());
             misReservas = FXCollections.observableArrayList(club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
 
             dateBookingCOL.setCellValueFactory((booking) -> {
@@ -100,7 +112,7 @@ public class ProfileUXController implements Initializable {
                 return new SimpleStringProperty(booking.getValue().getBookingDate().isAfter(LocalDateTime.now()) ? "PENDIENTE" : "COMPLETADA");
             });
 
-            actionBookingCOL.setCellValueFactory(new PropertyValueFactory<>("DUMMY"));
+            actionBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
 
             Callback<TableColumn<Booking, String>, TableCell<Booking, String>> cellFactory
                     = //
@@ -120,9 +132,10 @@ public class ProfileUXController implements Initializable {
                             btn.setDisable(getTableView().getItems().get(getIndex()).getBookingDate().isAfter(LocalDateTime.now()) ? false : true);
                             btn.setOnAction(event -> {
                                 try {
-
                                     club.removeBooking(getTableView().getItems().get(getIndex()));
-
+                                    reservasPendientes--;reservasTotales--;
+                                    reservasPendientesLabel.setText(""+reservasPendientes--);
+                                    reservasTotalesLabel.setText(""+reservasTotales);
                                     TrayNotification notif = new TrayNotification();
                                     notif.setAnimationType(AnimationType.POPUP);
                                     notif.setTitle("RESERVA ANULADA");
@@ -152,7 +165,9 @@ public class ProfileUXController implements Initializable {
             tableViewReservas.setItems(misReservas);
 
             reservasTotales = userBookings.size();
-            reservasTotalesLabel.setText(reservasTotales + "");
+//            totalesP.setValue(reservasTotales + "");
+            reservasTotalesLabel.setText(reservasTotales+"");
+            reservasPendientes = 0;
             for (int i = 0; i < userBookings.size(); i++) {
                 Booking booking = userBookings.get(i);
                 System.out.println("GetBookingDate: " + booking.getBookingDate());
@@ -164,7 +179,8 @@ public class ProfileUXController implements Initializable {
                 System.out.println("Booking " + i + ": " + booking.getBookingDate());
 
             }
-            reservasPendientesLabel.setText(reservasPendientes + "");
+            reservasPendientesLabel.setText(reservasPendientes+"");
+//            pendientesP.setValue(reservasPendientes + "");
             System.out.println("USER BOOKINGS: " + club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
 
         } catch (ClubDAOException ex) {
@@ -173,6 +189,54 @@ public class ProfileUXController implements Initializable {
             Logger.getLogger(ProfileUXController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+    
+    private void setLabels(String totales, String pendientes){
+        reservasPendientesLabel.setText(pendientes);
+        reservasTotalesLabel.setText(totales);
+    }
+    
+    public static void refresh() throws ClubDAOException, IOException {
+        
+        Club club = Club.getInstance();
+        List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
+        
+        if (misReservas.size() !=  userBookings.size()) {
+            userBookings.clear();
+            userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
+            int reservasTotales = userBookings.size();
+            
+            for (int i = 0; i < userBookings.size(); i++) {
+                Booking booking = userBookings.get(i);
+                System.out.println("GetBookingDate: " + booking.getBookingDate());
+                System.out.println("CurrentDate.now: " + LocalDateTime.now());
+                System.out.println("IS AFTER: " + booking.getBookingDate().isAfter(LocalDateTime.now()));
+                if (booking.getBookingDate().compareTo(LocalDateTime.now()) > 0) {
+                    reservasPendientes++;
+                }
+                System.out.println("Booking " + i + ": " + booking.getBookingDate());
+
+            }
+            pendientesP.setValue(reservasPendientes + "");
+            totalesP.setValue(reservasTotales + "");
+//            reservasTotalesLabel.setText(reservasTotales + "");
+//            reservasPendientesLabel.setText(reservasPendientes + "");
+        }
+    }
+
+    @FXML
+    private void changePassword(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/ChangePassword.fxml"));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        ChangePasswordController controladorChangePassword = loader.getController();
+       
+        stage.setScene(scene);
+        stage.setTitle("Cambiar Contraseña");
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
     }
 
 }
