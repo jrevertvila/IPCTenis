@@ -64,13 +64,7 @@ public class InicioUXController implements Initializable {
     @FXML
     private Text pageTitle;
     @FXML
-    private TextField topBar_searchBar;
-    @FXML
-    private Button topBar_notification;
-    @FXML
-    private ImageView topBar_notificationButton;
-    @FXML
-    private Button buttonLogout;
+    private Button loginTopBarButton;
 
     /**
      * Initializes the controller class.
@@ -138,21 +132,25 @@ public class InicioUXController implements Initializable {
         Object o = event.getSource();
         Button b = (Button) o;
         if (b.getId().equals("loginTopBarButton")) {
+            loginTopBarButton.setVisible(false);
             VBox.setVgrow(mainWrapper, Priority.NEVER);
             mainWrapper_parent.setFillWidth(false);
         } else {
+            if (JavaFXMLApplication.current_user == null) loginTopBarButton.setVisible(true);
             VBox.setVgrow(mainWrapper, Priority.ALWAYS);
             mainWrapper_parent.setFillWidth(true);
         }
         switch (b.getId()) {
             case "pistasButton":
-                pageTitle.setText("Pistas");
+//                loginTopBarButton.setVisible(false);
+                pageTitle.setText("Disponibilidad de pistas");
                 if (!pistasButton.getStyleClass().contains("buttonSidebarActive")) pistasButton.getStyleClass().add("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
                 
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 break;
             case "aboutButton":
+//                loginTopBarButton.setVisible(false);
                 pageTitle.setText("Sobre Nosotros");
                 if (!aboutButton.getStyleClass().contains("buttonSidebarActive")) aboutButton.getStyleClass().add("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
@@ -177,6 +175,7 @@ public class InicioUXController implements Initializable {
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
+//                loginTopBarButton.setVisible(false);
                 break;
             default:
                 break;

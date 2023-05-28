@@ -61,7 +61,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="65.0" prefWidth="876.0" styleClass="topBar">
                <children>
-                  <Text fx:id="pageTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Pistas">
+                  <Text fx:id="pageTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Disponibilidad de pistas">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
