@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane prefHeight="435.0" prefWidth="964.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.AboutUsController">
+   <children>
+      <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="419.0" prefWidth="759.0">
+         <padding>
+            <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+         </padding>
+         <left>
+            <HBox spacing="35.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Text fx:id="text" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="JUSTIFY" wrappingWidth="603.13671875" />
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ImageView fitHeight="181.0" fitWidth="237.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../icons/4FBA82D400000578-6134379-image-a-1_1536150057026.jpg" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </left>
+         <right>
+            <VBox alignment="CENTER_RIGHT" prefHeight="319.0" prefWidth="293.0" BorderPane.alignment="CENTER" />
+         </right>
+      </BorderPane>
+   </children>
+</Pane>
