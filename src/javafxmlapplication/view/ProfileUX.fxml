@@ -123,10 +123,12 @@
                                  <children>
                                     <TableView fx:id="tableViewReservas" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                       <columns>
-                                        <TableColumn fx:id="dateBookingCOL" prefWidth="201.0" text="Fecha" />
-                                          <TableColumn fx:id="courtBookingCOL" minWidth="0.0" prefWidth="106.0" text="Pista" />
+                                        <TableColumn fx:id="dateBookingCOL" prefWidth="140.0" text="Fecha" />
+                                          <TableColumn fx:id="courtBookingCOL" minWidth="0.0" prefWidth="81.0" text="Pista" />
                                           <TableColumn fx:id="estadoBookingCOL" prefWidth="89.0" text="Estado" />
-                                          <TableColumn fx:id="actionBookingCOL" prefWidth="89.0" text="Acción" />
+                                          <TableColumn fx:id="isPaidBookingCOL" prefWidth="83.0" text="Pagado" />
+                                          <TableColumn fx:id="pagarBookingCOL" prefWidth="78.0" text="Pagar" />
+                                          <TableColumn fx:id="actionBookingCOL" prefWidth="78.0" text="Acción" />
                                       </columns>
                                     </TableView>
                                  </children>
