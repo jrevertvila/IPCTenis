@@ -325,14 +325,14 @@ public class PistaSinConexionController implements Initializable {
                         grid.add(timeSlot.getView(), i, slotIndex);
                     } else {
                         // cree el timeSlot sense el nom de usuari
-                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista " + i));
+                        TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ "", club.getCourt("Pista " + i));
 
                         timeSlotsPista.add(timeSlot);
                         registerHandlers(timeSlot);
                         grid.add(timeSlot.getView(), i, slotIndex);
                     }
                 } else {
-                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ " - ", club.getCourt("Pista " + i));
+                    TimeSlot timeSlot = new TimeSlot(startTime, slotLength, /*"prova" +i*/ "", club.getCourt("Pista " + i));
                     timeSlotsPista.add(timeSlot);
                     registerHandlers(timeSlot);
                     grid.add(timeSlot.getView(), i, slotIndex);
