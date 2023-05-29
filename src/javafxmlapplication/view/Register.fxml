@@ -106,7 +106,7 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_image" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <Button fx:id="field_image" mnemonicParsing="false" onAction="#uploadImage" styleClass="imageButtonSelector" text="Subir una imagen" />
                </children>
             </VBox>
          </children>
