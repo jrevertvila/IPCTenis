@@ -21,25 +21,25 @@
           <RowConstraints />
         </rowConstraints>
          <children>
-            <HBox alignment="CENTER_RIGHT">
+            <HBox alignment="CENTER">
                <children>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#habilitarReserva" text="Reservar" />
+                        <Button fx:id="bookingButton" mnemonicParsing="false" onAction="#habilitarReserva" styleClass="button-booking" text="Reservar" />
                      </children>
                   </VBox>
-                  <Label text="Disponibilidad de pistas :" />
+                  <Label fx:id="disponibilidadReservaLabel" text="Disponibilidad de pistas :" />
                </children>
             </HBox>
             <DatePicker fx:id="day" GridPane.columnIndex="2" />
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="labelDia" text="Label" />
                </children>
             </HBox>
          </children>
       </GridPane>
-      <GridPane fx:id="grid" alignment="CENTER">
+      <GridPane fx:id="grid" alignment="CENTER_LEFT">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -74,11 +74,6 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                <children>
                   <Label fx:id="labelPista1" alignment="CENTER" text="Pista 1" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
-               <children>
-                  <Label fx:id="labelPista2" text="Pista 2" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
@@ -164,6 +159,11 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="13">
                <children>
                   <Label text="21:00 - 22:00" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2">
+               <children>
+                  <Label fx:id="labelPista2" text="Pista 2" />
                </children>
             </HBox>
          </children>
