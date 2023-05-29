@@ -27,18 +27,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.Duration;
 import javafxmlapplication.JavaFXMLApplication;
+import static javafxmlapplication.JavaFXMLApplication.current_user;
+import javafxmlapplication.Utils;
 import model.Booking;
 import model.Club;
 import model.ClubDAOException;
@@ -86,6 +90,28 @@ public class ProfileUXController implements Initializable {
     private TableColumn<Booking, String> isPaidBookingCOL;
     @FXML
     private TableColumn<Booking, String> pagarBookingCOL;
+    @FXML
+    private TextField nameField;
+    @FXML
+    private TextField surnameField;
+    @FXML
+    private TextField phoneField;
+    @FXML
+    private TextField creditCardField;
+    @FXML
+    private Button applyChangesButton;
+    @FXML
+    private Label nameError;
+    @FXML
+    private Label surnameError;
+    @FXML
+    private Label phoneError;
+    @FXML
+    private Label creditCardError;
+    @FXML
+    private TextField csvField;
+    @FXML
+    private Label csvError;
     
     public ProfileUXController() {
         
@@ -95,6 +121,9 @@ public class ProfileUXController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+            
+      
+        
         
 //        reservasPendientesLabel.textProperty().bind(pendientesP);
 //        reservasTotalesLabel.textProperty().bind(totalesP);
@@ -107,6 +136,13 @@ public class ProfileUXController implements Initializable {
             List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
             System.out.println("RESERVAS TOTALESSSSSSSSSSS: " + userBookings.size());
             misReservas = FXCollections.observableArrayList(club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
+             nameField.setText(current_user.getName());
+             surnameField.setText(current_user.getSurname());
+             phoneField.setText(current_user.getTelephone());
+             creditCardField.setText(current_user.getCreditCard());
+             csvField.setText(current_user.getSvc() + "");
+             
+             
 
             dateBookingCOL.setCellValueFactory((booking) -> {
                 return new SimpleStringProperty(booking.getValue().getBookingDate().toString());
@@ -246,6 +282,9 @@ public class ProfileUXController implements Initializable {
             reservasPendientesLabel.setText(reservasPendientes+"");
 //            pendientesP.setValue(reservasPendientes + "");
             System.out.println("USER BOOKINGS: " + club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
+            
+            
+             
 
         } catch (ClubDAOException ex) {
             Logger.getLogger(ProfileUXController.class.getName()).log(Level.SEVERE, null, ex);
@@ -303,4 +342,75 @@ public class ProfileUXController implements Initializable {
         stage.showAndWait();
     }
 
+    @FXML
+    private void applyChanges(MouseEvent event) {
+        boolean error = false;
+        boolean name_error = false;
+        boolean surname_error = false;
+        boolean phone_error = false;
+        boolean creditCard_error= false;
+        boolean csv_error = false;
+        
+        if(!Utils.isOnlyLetters(nameField.getText())){
+           error = true;
+           nameError.setText("Introduce unicamente letras"); 
+           nameField.getStyleClass().add("inputStyledError");
+           name_error = true;
+        }
+         if(!Utils.isOnlyLetters(surnameField.getText())){
+            error = true;
+            surname_error = true;
+           surnameError.setText("Introduce unicamente letras");
+           surnameField.getStyleClass().add("inputStyledError");
+        }
+          if(!Utils.isPhoneNumber(phoneField.getText())){
+            error = true;
+            phone_error = true;
+           phoneError.setText("Introduce únicamente 9 números");
+           phoneField.getStyleClass().add("inputStyledError");
+        }
+        if(!Utils.isCreditCard(creditCardField.getText())){
+            error = true;
+            creditCard_error = true;
+           creditCardError.setText("Introduce únicamente numeros");
+           creditCardField.getStyleClass().add("inputStyledError");
+           }
+           
+           if(!Utils.isCSV(csvField.getText())){
+            error = true;
+            csv_error = true;
+           csvError.setText("Introduce únicamente numeros");
+           csvField.getStyleClass().add("inputStyledError");
+        }
+           
+        if (!error) {
+            current_user.setName(nameField.getText());
+            current_user.setSurname(surnameField.getText());
+            current_user.setTelephone(phoneField.getText());
+            current_user.setCreditCard(creditCardField.getText());
+            current_user.setSvc(Integer.parseInt(csvField.getText()));
+        }    
+        if (!name_error) {
+                nameField.getStyleClass().remove("inputStyledError");
+                nameError.setText("");
+        }
+        if (!surname_error) {
+                surnameField.getStyleClass().remove("inputStyledError");
+                surnameError.setText("");
+        }
+        if (!phone_error) {
+                phoneField.getStyleClass().remove("inputStyledError");
+                phoneError.setText("");
+        } 
+        if (!creditCard_error) {
+                 creditCardField.getStyleClass().remove("inputStyledError");
+                 creditCardError.setText("");
+        }
+        if(!csv_error) {
+            csvField.getStyleClass().remove("inputStyledError");
+            csvError.setText("");
+        }
+                   
+    }
+    
 }

@@ -18,6 +18,7 @@ public class Utils {
     private static final Pattern SOLO_NUMEROS_PATTERN = Pattern.compile("\\d+$");
     private static final Pattern DIECISEIS_NUMEROS_PATTERN = Pattern.compile("^\\d{16}$"); 
     private static final Pattern SOLO_CONTRASEÑA_SEGURA = Pattern.compile("^(?=.*\\d)(?=.*[A-Z])\\S{5,10}$");
+    private static final Pattern SOLO_TRES_NUMEROS = Pattern.compile("^\\d{3}$");
  
     public static boolean isPhoneNumber(String phone) {
          return NUEVE_NUMEROS_PATTERN.matcher(phone).matches();
@@ -39,6 +40,9 @@ public class Utils {
         return SOLO_CONTRASEÑA_SEGURA.matcher(password).matches();
     }
 
+    public static boolean isCSV(String csv) {
+        return SOLO_TRES_NUMEROS.matcher(csv).matches(); 
+    }
         
    
     
