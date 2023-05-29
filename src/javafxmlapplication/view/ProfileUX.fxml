@@ -152,16 +152,26 @@
                                           <Label fx:id="surnameError" prefHeight="20.0" prefWidth="549.0" textFill="RED" />
                                        </children>
                                     </VBox>
-                                    <VBox fillWidth="false" prefHeight="80.0" prefWidth="538.0">
-                                       <children>
-                                          <Label text="Número de teléfono" />
-                                          <TextField fx:id="phoneField" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
-                                          <Label fx:id="phoneError" prefHeight="20.0" prefWidth="540.0" textFill="RED" />
-                                       </children>
+                                    <HBox>
                                        <VBox.margin>
                                           <Insets />
                                        </VBox.margin>
-                                    </VBox>
+                                       <children>
+                                          <VBox fillWidth="false" prefHeight="80.0" prefWidth="538.0">
+                                             <children>
+                                                <Label text="Número de teléfono" />
+                                                <TextField fx:id="phoneField" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
+                                                <Label fx:id="phoneError" prefHeight="20.0" prefWidth="540.0" textFill="RED" />
+                                             </children>
+                                          </VBox>
+                                          <VBox fillWidth="false" prefHeight="67.0" prefWidth="627.0">
+                                             <children>
+                                                <Label text="Foto de Perfil" />
+                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </HBox>
                                     <HBox alignment="CENTER" prefHeight="80.0" prefWidth="538.0">
                                        <VBox.margin>
                                           <Insets />

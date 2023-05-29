@@ -178,3 +178,22 @@ Label {
     -fx-border-radius: 50px;
     -fx-font-family:"Caros Soft Bold";  
 }
+
+
+.buttonStyle {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-family:"Caros Soft Bold";
+    -fx-font-size: 14px;
+    -fx-background-radius: 200px;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 200px;
+    -fx-cursor: hand; 
+}
+/*.buttonStyle:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0) !important;
+}*/
+
+.buttonStyle:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}
