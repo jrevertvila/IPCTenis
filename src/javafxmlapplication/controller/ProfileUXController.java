@@ -34,6 +34,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -112,6 +113,8 @@ public class ProfileUXController implements Initializable {
     private TextField csvField;
     @FXML
     private Label csvError;
+    @FXML
+    private ImageView imageView;
     
     public ProfileUXController() {
         
@@ -121,7 +124,7 @@ public class ProfileUXController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-            
+         
       
         
         
@@ -142,6 +145,10 @@ public class ProfileUXController implements Initializable {
              creditCardField.setText(current_user.getCreditCard());
              csvField.setText(current_user.getSvc() + "");
              
+            nameLabel.setText(current_user.getName() + " " + current_user.getSurname());  
+            userField.setText(current_user.getNickName());
+            passwordField.setText(current_user.getPassword());
+            imageView.setImage(current_user.getImage());
              
 
             dateBookingCOL.setCellValueFactory((booking) -> {

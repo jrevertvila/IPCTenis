@@ -25,12 +25,12 @@
          <children>
             <VBox alignment="CENTER" prefWidth="264.0" spacing="20.0" styleClass="boxShadow">
                <children>
-                  <ImageView fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageView" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../icons/202-2024580_png-file-profile-icon-vector-png.png" />
                      </image>
                   </ImageView>
-                  <Text fx:id="nameLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameLabelProfile" text="Joel Revert" />
+                  <Text fx:id="nameLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameLabelProfile" />
                   <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="39.0" prefWidth="183.0" styleClass="buttonLeftSideProfile" text="Cambiar Contraseña">
                      <font>
                         <Font size="13.0" />
@@ -128,7 +128,7 @@
                                           <TableColumn fx:id="estadoBookingCOL" prefWidth="89.0" text="Estado" />
                                           <TableColumn fx:id="isPaidBookingCOL" prefWidth="83.0" text="Pagado" />
                                           <TableColumn fx:id="pagarBookingCOL" prefWidth="78.0" text="Pagar" />
-                                          <TableColumn fx:id="actionBookingCOL" prefWidth="78.0" text="Acción" />
+                                          <TableColumn fx:id="actionBookingCOL" prefWidth="83.0" text="Acción" />
                                       </columns>
                                     </TableView>
                                  </children>
