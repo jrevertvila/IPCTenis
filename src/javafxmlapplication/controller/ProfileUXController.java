@@ -126,6 +126,10 @@ public class ProfileUXController implements Initializable {
     private Button imagenButton;
     public final FileChooser fileChooser = new FileChooser();
     private File imgFile;
+    @FXML
+    private Label imgLabel;
+    @FXML
+    private Button deshacerButton;
     
     public ProfileUXController() {
         
@@ -452,21 +456,43 @@ public class ProfileUXController implements Initializable {
 
     @FXML
     private void uploadButton(ActionEvent event) {
-        imgFile = fileChooser.showOpenDialog((Stage)((Node) event.getSource()).getScene().getWindow());
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-        if (imgFile != null) {
-//            openFile(file);
-            System.out.println(imgFile);
+//        imgFile = fileChooser.showOpenDialog((Stage)((Node) event.getSource()).getScene().getWindow());
+//        fileChooser.getExtensionFilters().addAll(
+//                new FileChooser.ExtensionFilter("All Images", "*.*"),
+//                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+//                new FileChooser.ExtensionFilter("PNG", "*.png")
+//            );
+//        if (imgFile != null) {
+////            openFile(file);
+//            System.out.println(imgFile);
+//        }
+        File local = Utils.uploadImage(event);
+        
+        if (local != null) {
+            
+            imgFile = local;
+            imgLabel.setText(imgFile.getName());
+            applyChangesButton.setDisable(false);
         }
     }
 
     @FXML
     private void onModified(KeyEvent event) {
         applyChangesButton.setDisable(false);
+        deshacerButton.setDisable(false);
+
+    }
+
+    private void deshacerMethod(ActionEvent event) {
+        nameField.setText(current_user.getName());
+        surnameField.setText(current_user.getSurname());
+        phoneField.setText(current_user.getTelephone());
+        creditCardField.setText(current_user.getCreditCard());
+        csvField.setText(current_user.getSvc() + "");
+    }
+
+    @FXML
+    private void deshacerMethod(MouseEvent event) {
     }
     
 }

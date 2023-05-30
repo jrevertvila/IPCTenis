@@ -167,7 +167,7 @@
                                                 <HBox alignment="CENTER">
                                                    <children>
                                                       <Button fx:id="imagenButton" mnemonicParsing="false" onAction="#uploadButton" prefHeight="16.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
-                                                      <Label text="  No se ha subido ninguna foto" />
+                                                      <Label fx:id="imgLabel" text="  No se ha subido ninguna foto" />
                                                    </children>
                                                 </HBox>
                                              </children>
@@ -195,8 +195,13 @@
                                           </VBox>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="538.0">
+                                    <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="538.0" spacing="15.0">
                                        <children>
+                                          <Button fx:id="deshacerButton" disable="true" mnemonicParsing="false" onMousePressed="#deshacerMethod" prefHeight="39.0" prefWidth="176.0" styleClass="logoutBtn" text="Deshacer cambios">
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Button>
                                           <Button fx:id="applyChangesButton" disable="true" mnemonicParsing="false" onMousePressed="#applyChanges" prefHeight="39.0" prefWidth="176.0" styleClass="buttonLeftSideProfile" text="Aplicar Cambios">
                                              <font>
                                                 <Font size="13.0" />
