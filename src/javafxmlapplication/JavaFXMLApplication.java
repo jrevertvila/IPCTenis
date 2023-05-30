@@ -68,7 +68,8 @@ public class JavaFXMLApplication extends Application {
         // 3- asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage
         //     - se muestra el stage de manera no modal mediante el metodo show()
-        scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
+        Font.loadFont(JavaFXMLApplication.class.getResource("../fonts/CarosSoft/CarosSoftBold.ttf").toExternalForm(), 12);
+//        scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
         stage.setScene(scene);
 //        stage.setMaximized(true);
         stage.setTitle("GreenBall");
