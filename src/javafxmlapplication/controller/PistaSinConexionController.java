@@ -73,7 +73,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
 import javafxmlapplication.JavaFXMLApplication;
-
+import javafxmlapplication.controller.InicioUXController;
 /**
  * FXML Controller class
  *
@@ -179,6 +179,8 @@ public class PistaSinConexionController implements Initializable {
 
         
         if (JavaFXMLApplication.current_user == null){bookingButton.setStyle("-fx-opacity: 0;");}
+        
+        
     }
 
     private void test(ActionEvent event) {
@@ -192,7 +194,7 @@ public class PistaSinConexionController implements Initializable {
 
     private void setTimeSlotsGrid(LocalDate date) {
         //actualizamos la seleccion
-        
+        disponibilidadReservaLabel.setStyle("disponibilidad-Reserva-Label");
         timeSlotSelected.setValue(null);
 
         //--------------------------------------------        
@@ -424,7 +426,9 @@ public class PistaSinConexionController implements Initializable {
     @FXML
     private void habilitarReserva(ActionEvent event) {
         reservaHablilitada = true;
-        disponibilidadReservaLabel.setText("Reservant pistes per al:");
+        disponibilidadReservaLabel.setText("Reservant pistes per al: ");
+        //InicioUXController.pageTitle.setText("Reservant pistes");
+        
         
        // System.out.println(reservaHablilitada);
         //registerHandlers(timeSlot);
@@ -452,9 +456,15 @@ public class PistaSinConexionController implements Initializable {
             label.setMaxWidth(Double.MAX_VALUE);
             label.setMaxHeight(Double.MAX_VALUE);
             label.setAlignment(Pos.CENTER);
- 
-            label.getStyleClass().add("label-timeslot");
-
+            if(JavaFXMLApplication.current_user != null){
+                if(JavaFXMLApplication.current_user.getNickName().equals(contenido)){
+                  label.getStyleClass().add("label-timeslot-user");  
+                }else{
+                label.getStyleClass().add("label-timeslot"); 
+                }
+            }else{
+                label.getStyleClass().add("label-timeslot");
+            }
             view.getChildren().setAll(label);
             
         }

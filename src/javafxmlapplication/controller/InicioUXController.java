@@ -62,7 +62,7 @@ public class InicioUXController implements Initializable {
     @FXML
     private Circle topBar_userImg_container;
     @FXML
-    private Text pageTitle;
+    public static Text pageTitle;
     @FXML
     private Button loginTopBarButton;
 
