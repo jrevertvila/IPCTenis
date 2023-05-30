@@ -18,10 +18,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
+import javafxmlapplication.Utils;
 import javafxmlapplication.view.LoginRegisterController;
 import model.Club;
 import model.ClubDAOException;
@@ -54,6 +57,8 @@ public class RegisterController implements Initializable {
     private Button field_image;
     public final FileChooser fileChooser = new FileChooser();
     private File imgFile;
+    @FXML
+    private Text imageNameLabel;
 
     /**
      * Initializes the controller class.
@@ -154,17 +159,10 @@ public class RegisterController implements Initializable {
 
     @FXML
     private void uploadImage(ActionEvent event) {
-        imgFile = fileChooser.showOpenDialog((Stage)((Node) event.getSource()).getScene().getWindow());
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-            );
-        if (imgFile != null) {
-//            openFile(file);
-            System.out.println(imgFile);
-        }
-
+        imgFile = Utils.uploadImage(event);
+        if (imgFile != null) imageNameLabel.setText(imgFile.getName());
     }
+    
+    
 
 }
