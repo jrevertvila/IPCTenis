@@ -120,3 +120,80 @@ Label {
     -fx-border-color: #e33434 !important;
     -fx-border-width: 2 !important;
 }
+
+.tab-pane .fieldStyle {
+    -fx-pref-height: 40px;
+    -fx-background-radius: 100px;
+    -fx-border-radius: 100px;
+    -fx-font-family:"Caros Soft Bold";   
+}
+
+.tab-pane .tab
+{
+    -fx-background-color: white;
+}
+
+/*.tab-pane .tab:selected
+{
+    -fx-background-color: #07d3b0;*/
+/*}*/
+
+.tab-pane .tab-header-area .tab-header-background {
+    -fx-opacity: 0;
+}
+
+.tab-pane .tab-header-area {
+    -fx-border-width: 0 0 0 0;
+    -fx-border-color: grey;
+}
+
+.tab-pane .tab:selected {
+-fx-border-width: 0 0 1.5 0;
+-fx-border-color: #07d3b0;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: white;    
+    -fx-size: 30;
+    -fx-border-color: -fx-box-border;
+    -fx-border-width: 0 1 2 0;
+    -fx-border-insets: 0;
+    -fx-font-family:"Caros Soft Bold"; 
+    
+}
+.table-row-cell:selected {
+    -fx-background-color: #07d3b0;
+  
+}
+
+.table-row-cell {
+    -fx-font-family:"Caros Soft Bold";
+    -fx-background-color: white;
+    
+}
+
+.table-row-cell .button {
+    -fx-pref-height: 20px;
+    -fx-background-radius: 50px;
+    -fx-border-radius: 50px;
+    -fx-font-family:"Caros Soft Bold";  
+}
+
+
+.buttonStyle {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font-family:"Caros Soft Bold";
+    -fx-font-size: 14px;
+    -fx-background-radius: 200px;
+    -fx-border-color: lightgray;
+    -fx-border-radius: 200px;
+    -fx-cursor: hand; 
+}
+/*.buttonStyle:pressed {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0) !important;
+}*/
+
+.buttonStyle:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 2, 0, 0, 0);
+}

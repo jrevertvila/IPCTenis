@@ -56,7 +56,17 @@ public class LoginRegisterController implements Initializable {
         }
     }
     
-    private void loadFXML_LR(URL url, String frameName) {
+//    public static void setLoginPage() {
+////        String view = (String) ((Node)e.getSource()).getUserData();
+//        loadFXML_LR(getClass().getResource("Login.fxml"),"Login.fxml");
+////        Object o = e.getSource();
+////        Button b = (Button) o;
+//        iniSesionBtnNav.getStyleClass().add("activeLR");
+//        registerBtnNav.getStyleClass().remove("activeLR");
+//            
+//    }
+    
+    public void loadFXML_LR(URL url, String frameName) {
         try {
             Node frame = JavaFXMLApplication.getFrame(frameName);
             if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());

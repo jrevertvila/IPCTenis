@@ -4,6 +4,7 @@
  */
 package javafxmlapplication.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,13 +12,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
+import javafxmlapplication.Utils;
 import javafxmlapplication.view.LoginRegisterController;
 import model.Club;
 import model.ClubDAOException;
@@ -47,7 +54,11 @@ public class RegisterController implements Initializable {
     @FXML
     private TextField field_tarjeta;
     @FXML
-    private TextField field_image;
+    private Button field_image;
+    public final FileChooser fileChooser = new FileChooser();
+    private File imgFile;
+    @FXML
+    private Text imageNameLabel;
 
     /**
      * Initializes the controller class.
@@ -55,7 +66,7 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+    }
 
     @FXML
     private void registerUser(ActionEvent event) throws ClubDAOException, IOException {
@@ -66,51 +77,55 @@ public class RegisterController implements Initializable {
         String passwd = field_password.getText();
         String repeat_passwd = field_repeat_password.getText();
         String tarjeta = field_tarjeta.getText();
-        String img = field_image.getText();
+//        String img = field_image.getText();
+//        imgFile.getAbsolutePath();
         boolean error = false;
         String textError = "";
-        
-        if (nombre.isBlank()){
+
+        if (nombre.isBlank()) {
             error = true;
             textError = "El nombre no puede estar vacío";
             //Border input with Red color
         }
-        if (apellidos.isBlank()){
+        if (apellidos.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        if (tlf.isBlank()){
+        if (tlf.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        if (nickname.isBlank()){
+        if (nickname.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        if (passwd.isBlank()){
+        if (passwd.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        if (repeat_passwd.isBlank()){
+        if (repeat_passwd.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        if (tarjeta.isBlank()){
+        if (tarjeta.isBlank()) {
             error = true;
             textError = "";
             //Border input with Red color
         }
-        
+
         if (!error) {
             Club club = Club.getInstance();
-            Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd, tarjeta, 0,
-            null);
             
+            Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd, tarjeta, 0,
+                imgFile == null ? 
+                        new Image(getClass().getResource("../../icons/default-profile.png")+"", 40, 40, false, false) 
+                        : new Image(imgFile.getAbsolutePath()) 
+            );
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
             Parent root = loader.load();
 
@@ -123,7 +138,15 @@ public class RegisterController implements Initializable {
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.showAndWait();
             
-            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
+//            LoginRegisterController.loadFXML_LR(getClass().getResource("../view/Login.fxml"),"../view/Login.fxml");
+//            LoginRegisterController.iniSesionBtnNav.getStyleClass().add("activeLR");
+//            LoginRegisterController.registerBtnNav.getStyleClass().remove("activeLR");
+//            Node frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+//            
+//            mainWrapper.getChildren().clear();
+//            mainWrapper.getChildren().add(frame);
+
+//            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
 //            String[] framesList = ["",""];
 //            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","Login.fxml","Register.fxml"});
 //            Parent root2 = loader2.load();
@@ -131,7 +154,15 @@ public class RegisterController implements Initializable {
 
 //            LoginRegisterController.registerBtnNav.fire();            
         }
-        
+
+    }
+
+    @FXML
+    private void uploadImage(ActionEvent event) {
+        imgFile = Utils.uploadImage(event);
+        if (imgFile != null) imageNameLabel.setText(imgFile.getName());
     }
     
+    
+
 }

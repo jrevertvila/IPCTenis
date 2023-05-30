@@ -5,7 +5,10 @@
  */
 package javafxmlapplication;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -68,7 +71,13 @@ public class JavaFXMLApplication extends Application {
         // 3- asiganación de la escena al Stage que recibe el metodo 
         //     - configuracion del stage
         //     - se muestra el stage de manera no modal mediante el metodo show()
-        scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
+        Font.loadFont(JavaFXMLApplication.class.getResource(URLDecoder.decode("../fonts/CarosSoft/CarosSoftBold.ttf", StandardCharsets.UTF_8.name())).toExternalForm(), 12);
+        
+//        String rutaDecodificada = URLDecoder.decode("../fonts/CarosSoft/CarosSoftBold.ttf", StandardCharsets.UTF_8.name());
+//        File archivoFuente = new File(rutaDecodificada);
+//        Font.loadFont(archivoFuente.toURI().toURL().toExternalForm(), 12);
+        
+//        scene.getStylesheets().add(getClass().getResource("../style/fontstyle.css").toExternalForm());
         stage.setScene(scene);
 //        stage.setMaximized(true);
         stage.setTitle("GreenBall");

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="563.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.RegisterController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="584.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.RegisterController">
    <children>
       <GridPane alignment="CENTER" hgap="15.0" prefHeight="362.0" prefWidth="563.0" styleClass="gridRegister" vgap="15.0">
          <columnConstraints>
@@ -106,7 +106,16 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_image" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <HBox alignment="CENTER_LEFT" maxWidth="277.0">
+                     <children>
+                        <Button fx:id="field_image" minWidth="110.0" mnemonicParsing="false" onAction="#uploadImage" styleClass="imageButtonSelector" text="Subir una imagen">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Text fx:id="imageNameLabel" strokeType="OUTSIDE" strokeWidth="0.0" text="Ninguna Imagen Seleccionada" wrappingWidth="160.693359375" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </children>

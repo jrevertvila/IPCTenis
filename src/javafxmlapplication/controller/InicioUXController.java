@@ -80,15 +80,8 @@ public class InicioUXController implements Initializable {
 //        }
         
         if (JavaFXMLApplication.current_user != null) {
-            System.out.println("entraaaasdsadsada");
-            ImagePattern pattern = new ImagePattern(
-                new Image(getClass().getResource("../../icons/this-person-does-not-exist.jpeg")+"", 40, 40, false, false) // Resizing
-            );
-            System.out.println("Pattern: " + pattern);
+            ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
             topBar_userImg_container.setFill(pattern);
-//            topBar_userImg_container.setFill(Color.RED);
-            
-            
         }
 
         
