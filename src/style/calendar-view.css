@@ -13,6 +13,12 @@ and open the template in the editor.
     
 }*/
 
+.pane{
+    
+    -fx-opacity: 1;
+    -fx-background-color: red;
+}
+
 .acept-alert-button{
     
   -fx-background-color: white;
@@ -35,18 +41,23 @@ cancel-alert-button{
 }
 
 
-.disponibilidadReservaLabel{
+.disponibilidad-Reserva-Label{
     
-    -fx-font-color: green;
+    -fx-text-fill:green;
 }
 .label-timeslot{
    -fx-translate-y: 10px; 
    -fx-translate-x: 50px;
-   /*-fx-background-color: #07d3b0;*/
+    -fx-text-fill:red;   /*-fx-background-color: #07d3b0;*/
     
     
 }
-
+.label-timeslot-user{
+    
+    -fx-translate-y: 10px; 
+   -fx-translate-x: 50px;
+    -fx-text-fill:blue;
+}
 .labelDia{
     
     -fx-background-color: #07d3b0;
@@ -60,22 +71,35 @@ cancel-alert-button{
     -fx-border-radius: 16px;
     -fx-background-radius: 19px;
     -fx-cursor: hand;
+     -fx-text-fill:white;
+    
     
 }
 
 .button-booking:hover{
     
     -fx-background-color: #d4fff6;
+     -fx-text-fill:black;
 }
-.button-booking:active{
+/*button-booking:active{
     -fx-background-color: #d4fff6;
     
+}*/
+/*.button-booking:pressed{
+    
+     
+     -fx-background-color: red;
+    
+}*/
+.button-booking-active{
+    
+     -fx-border-color: #62b8f5; 
+     -fx-background-color: #62b8f5 !important;
 }
-.button-booking:pressed{
+
+.button-booking-active:hover{
     
-     -fx-effect: dropshadow(three-pass-box, rgba(7, 211, 176,0.4), 2, 0, 0, 0);
-     -fx-background-color: #d4fff6;
-    
+    -fx-background-color: #9ed2f7 !important;
 }
 
 

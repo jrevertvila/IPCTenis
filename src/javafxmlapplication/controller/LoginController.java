@@ -33,6 +33,8 @@ import tray.notification.TrayNotification;
 import javafx.scene.control.Control;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import org.controlsfx.control.NotificationPane;
 
 /**
@@ -63,13 +65,15 @@ public class LoginController implements Initializable {
 
     @FXML
     private void loginUser(ActionEvent event) throws IOException, ClubDAOException {
-        
-        //Reset
+       submitForm();
+    }
+
+    private void submitForm() throws IOException, ClubDAOException {
+         //Reset
         login_nickname.getStyleClass().remove("inputStyledError");
         errorNicknameLabel.setText("");
         login_passwd.getStyleClass().remove("inputStyledError");
         errorPasswdLabel.setText("");
-        
         
         String nickname = login_nickname.getText();
         String passwd = login_passwd.getText();
@@ -96,37 +100,8 @@ public class LoginController implements Initializable {
             }
 
             System.out.println(club.existsLogin(nickname));
-//            ToastController.showToast(ToastController.TOAST_ERROR, loginBtn, "ERROR EN INICIO DE SESION");
 
-//              CustomToastController
-
-               // Create a WebView
-//WebView webView = new WebView();
-//
-//// Wrap it inside a NotificationPane
-//NotificationPane notificationPane = new NotificationPane(webView);
-//
-//// and put the NotificationPane inside a Tab
-//Tab tab1 = new Tab("Tab 1");
-//tab1.setContent(notificationPane);
-//
-//// and the Tab inside a TabPane. We just have one tab here, but of course 
-//// you can have more!
-//TabPane tabPane = new TabPane();
-//tabPane.getTabs().addAll(tab1);
-//
-//
-//notificationPane.setText("Do you want to save your password?");
-//notificationPane.getActions().add(new AbstractAction("Save Password") {
-//    public void execute(ActionEvent ae) {
-//        // do save...
-//
-//        // then hide...
-//        notificationPane.hide();
-//    }
-//}
-
-
+            
             if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
                 TrayNotification notif = new TrayNotification();
                 notif.setAnimationType(AnimationType.POPUP);
@@ -147,26 +122,13 @@ public class LoginController implements Initializable {
                 notif.setNotificationType(NotificationType.ERROR);
                 notif.showAndDismiss(Duration.millis(3000));
             }
-
-//            if (isLogged()) {
-//                System.out.println("ENTRA EN IS LOGGEDD");
-////                FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/Dashboard.fxml"));
-////                Parent root2 = loader2.load();
-////                javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-//            }
-//            ((Button)event.getSource()).getScene().getWindow().hide();
-            /*FXMLLoader loader= new FXMLLoader(getClass().getResource("../view/Register.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            RegisterController controladorRegistro = loader.getController();
-            stage.setScene(scene);
-            stage.setTitle("Demo vista de lista de personas");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();*/
-            //if (user)
-            //System.out.println(user);
+        }
+    }
+    
+    @FXML
+    private void handleEnterKey(KeyEvent event) throws IOException, ClubDAOException {
+        if (event.getCode().equals(KeyCode.ENTER)) {
+            submitForm();
         }
     }
 }
