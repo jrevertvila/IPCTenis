@@ -267,3 +267,12 @@
     -fx-cursor: hand;
     
 }
+
+.uploadFileButton {
+    -fx-text-fill: black;
+    -fx-font-family: "Caros Soft Bold";
+    -fx-border-color: lightgray;
+    -fx-background-radius: 300px;
+    -fx-border-radius: 300px;
+    
+}

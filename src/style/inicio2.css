@@ -138,13 +138,3 @@
     -fx-background-color: rgba(240, 119, 6, 0.1);
 
 }
-
-.loginBtnStyled {
-    -fx-text-fill: white;
-    -fx-font-family: "Caros Soft Bold";
-    
-    -fx-background-color: #f07706; /*#c5a768*/
-    -fx-background-radius: 500px;
-    /*-fx-min-heigth: 30px;*/
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.8), 3, 0, 0, 0);
-}
