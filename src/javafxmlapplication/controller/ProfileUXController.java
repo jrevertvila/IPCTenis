@@ -36,8 +36,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
@@ -117,7 +121,7 @@ public class ProfileUXController implements Initializable {
     @FXML
     private Label csvError;
     @FXML
-    private ImageView imageView;
+    private Circle imageView;
     @FXML
     private Button imagenButton;
     public final FileChooser fileChooser = new FileChooser();
@@ -155,9 +159,11 @@ public class ProfileUXController implements Initializable {
             nameLabel.setText(current_user.getName() + " " + current_user.getSurname());  
             userField.setText(current_user.getNickName());
             passwordField.setText(current_user.getPassword());
-            imageView.setImage(current_user.getImage());
-             
-
+            ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
+            imageView.setFill(pattern);              
+            
+            //boton desactivado si no hay ningun campo modificado
+            
             dateBookingCOL.setCellValueFactory((booking) -> {
                 return new SimpleStringProperty(booking.getValue().getBookingDate().toString());
             });
@@ -403,6 +409,16 @@ public class ProfileUXController implements Initializable {
             current_user.setTelephone(phoneField.getText());
             current_user.setCreditCard(creditCardField.getText());
             current_user.setSvc(Integer.parseInt(csvField.getText()));
+            if (imgFile != null) {
+                current_user.setImage(new Image(imgFile.getAbsolutePath()));
+                        
+            }          
+            
+            TrayNotification notif = new TrayNotification();
+            notif.setAnimationType(AnimationType.POPUP);
+            notif.setTitle("CAMBIO DE DATOS CORRECTO");
+            notif.setNotificationType(NotificationType.SUCCESS);
+            notif.showAndDismiss(Duration.millis(2000));
         }    
         if (!name_error) {
                 nameField.getStyleClass().remove("inputStyledError");
@@ -424,7 +440,14 @@ public class ProfileUXController implements Initializable {
             csvField.getStyleClass().remove("inputStyledError");
             csvError.setText("");
         }
-                   
+           
+        nameLabel.setText(current_user.getName() + " " + current_user.getSurname());  
+        ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
+        imageView.setFill(pattern); 
+        applyChangesButton.setDisable(false);
+
+        
+                  
     }
 
     @FXML
@@ -439,6 +462,11 @@ public class ProfileUXController implements Initializable {
 //            openFile(file);
             System.out.println(imgFile);
         }
+    }
+
+    @FXML
+    private void onModified(KeyEvent event) {
+        applyChangesButton.setDisable(false);
     }
     
 }

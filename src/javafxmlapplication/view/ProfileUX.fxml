@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -25,11 +26,7 @@
          <children>
             <VBox alignment="CENTER" prefWidth="264.0" spacing="20.0" styleClass="boxShadow">
                <children>
-                  <ImageView fx:id="imageView" fitHeight="125.0" fitWidth="125.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../icons/202-2024580_png-file-profile-icon-vector-png.png" />
-                     </image>
-                  </ImageView>
+                  <Circle fx:id="imageView" fill="#1f93ff00" radius="77.0" stroke="BLACK" strokeType="INSIDE" />
                   <Text fx:id="nameLabel" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="nameLabelProfile" />
                   <Button fx:id="changePasswordButton" mnemonicParsing="false" onAction="#changePassword" prefHeight="39.0" prefWidth="183.0" styleClass="buttonLeftSideProfile" text="Cambiar Contraseña">
                      <font>
@@ -141,14 +138,14 @@
                                     <VBox fillWidth="false" prefHeight="85.0" prefWidth="538.0">
                                        <children>
                                           <Label text="Nombre" />
-                                          <TextField fx:id="nameField" prefHeight="25.0" prefWidth="338.0" styleClass="fieldStyle" />
+                                          <TextField fx:id="nameField" onKeyTyped="#onModified" prefHeight="25.0" prefWidth="338.0" styleClass="fieldStyle" />
                                           <Label fx:id="nameError" prefHeight="20.0" prefWidth="543.0" textFill="RED" />
                                        </children>
                                     </VBox>
                                     <VBox fillWidth="false" prefHeight="85.0" prefWidth="538.0">
                                        <children>
                                           <Label text="Apellidos" />
-                                          <TextField fx:id="surnameField" prefHeight="32.0" prefWidth="334.0" styleClass="fieldStyle" />
+                                          <TextField fx:id="surnameField" onKeyTyped="#onModified" prefHeight="32.0" prefWidth="334.0" styleClass="fieldStyle" />
                                           <Label fx:id="surnameError" prefHeight="20.0" prefWidth="549.0" textFill="RED" />
                                        </children>
                                     </VBox>
@@ -160,14 +157,19 @@
                                           <VBox fillWidth="false" prefHeight="80.0" prefWidth="538.0">
                                              <children>
                                                 <Label text="Número de teléfono" />
-                                                <TextField fx:id="phoneField" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
+                                                <TextField fx:id="phoneField" onKeyTyped="#onModified" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
                                                 <Label fx:id="phoneError" prefHeight="20.0" prefWidth="540.0" textFill="RED" />
                                              </children>
                                           </VBox>
-                                          <VBox fillWidth="false" prefHeight="67.0" prefWidth="627.0">
+                                          <VBox fillWidth="false" prefHeight="67.0" prefWidth="627.0" HBox.hgrow="ALWAYS">
                                              <children>
                                                 <Label text="Foto de Perfil" />
-                                                <Button fx:id="imagenButton" mnemonicParsing="false" onAction="#uploadButton" prefHeight="25.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                                      <Button fx:id="imagenButton" mnemonicParsing="false" onAction="#uploadButton" prefHeight="16.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
+                                                      <Label text="  No se ha subido ninguna foto" />
+                                                   </children>
+                                                </HBox>
                                              </children>
                                           </VBox>
                                        </children>
@@ -180,14 +182,14 @@
                                           <VBox fillWidth="false" prefHeight="67.0" prefWidth="226.0">
                                              <children>
                                                 <Label text="Tarjeta de crédito" />
-                                                <TextField fx:id="creditCardField" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
+                                                <TextField fx:id="creditCardField" onKeyTyped="#onModified" prefHeight="25.0" prefWidth="205.0" styleClass="fieldStyle" />
                                                 <Label fx:id="creditCardError" prefHeight="20.0" prefWidth="539.0" textFill="RED" />
                                              </children>
                                           </VBox>
                                           <VBox fillWidth="false" prefHeight="67.0" prefWidth="319.0" HBox.hgrow="NEVER">
                                              <children>
                                                 <Label text="SVC" />
-                                                <TextField fx:id="csvField" prefHeight="27.0" prefWidth="117.0" styleClass="fieldStyle" VBox.vgrow="NEVER" />
+                                                <TextField fx:id="csvField" onKeyTyped="#onModified" prefHeight="27.0" prefWidth="117.0" styleClass="fieldStyle" VBox.vgrow="NEVER" />
                                                 <Label fx:id="csvError" prefHeight="20.0" prefWidth="317.0" textFill="RED" />
                                              </children>
                                           </VBox>
@@ -195,7 +197,7 @@
                                     </HBox>
                                     <HBox alignment="CENTER_RIGHT" prefHeight="39.0" prefWidth="538.0">
                                        <children>
-                                          <Button fx:id="applyChangesButton" mnemonicParsing="false" onMousePressed="#applyChanges" prefHeight="39.0" prefWidth="176.0" styleClass="buttonLeftSideProfile" text="Aplicar Cambios">
+                                          <Button fx:id="applyChangesButton" disable="true" mnemonicParsing="false" onMousePressed="#applyChanges" prefHeight="39.0" prefWidth="176.0" styleClass="buttonLeftSideProfile" text="Aplicar Cambios">
                                              <font>
                                                 <Font size="13.0" />
                                              </font>
