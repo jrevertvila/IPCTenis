@@ -167,7 +167,7 @@
                                           <VBox fillWidth="false" prefHeight="67.0" prefWidth="627.0">
                                              <children>
                                                 <Label text="Foto de Perfil" />
-                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
+                                                <Button fx:id="imagenButton" mnemonicParsing="false" onAction="#uploadButton" prefHeight="25.0" prefWidth="112.0" styleClass="buttonStyle" text="Imagen" />
                                              </children>
                                           </VBox>
                                        </children>
