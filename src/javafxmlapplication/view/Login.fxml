@@ -49,14 +49,6 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox alignment="CENTER" prefWidth="432.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
-               <children>
-                  <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" minHeight="32.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="45.0" prefWidth="200.0" styleClass="loginBtnStyled" text="Iniciar Sesión" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="14.0" />
-                     </font></Button>
-               </children>
-            </VBox>
             <VBox alignment="CENTER" GridPane.rowIndex="1">
                <children>
                   <HBox maxWidth="350.0">
@@ -71,7 +63,7 @@
                         <Insets bottom="3.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField fx:id="login_passwd" maxWidth="350.0" promptText="Contraseña" styleClass="inputStyled" text="admin">
+                  <TextField fx:id="login_passwd" maxWidth="350.0" onKeyPressed="#handleEnterKey" promptText="Contraseña" styleClass="inputStyled" text="admin">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
@@ -85,6 +77,14 @@
                         </Text>
                      </children>
                   </HBox>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefWidth="432.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2">
+               <children>
+                  <Button fx:id="loginBtn" alignment="CENTER" contentDisplay="CENTER" minHeight="32.0" mnemonicParsing="false" onAction="#loginUser" prefHeight="45.0" prefWidth="200.0" styleClass="loginBtnStyled" text="Iniciar Sesión" textAlignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font></Button>
                </children>
             </VBox>
          </children>
