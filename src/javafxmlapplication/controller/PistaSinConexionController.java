@@ -129,7 +129,7 @@ public class PistaSinConexionController implements Initializable {
     @FXML
     private Label labelDia;
     @FXML
-    private ToggleButton bookingButton;
+    public ToggleButton bookingButton;
     @FXML
     private Label disponibilidadReservaLabel;
 
@@ -448,11 +448,15 @@ public class PistaSinConexionController implements Initializable {
         
         if(reservaHablilitada == true){
             reservaHablilitada = false;
+            bookingButton.getStyleClass().remove("button-booking-active");
             disponibilidadReservaLabel.setText("Disponibilidad de pistas para el dia : ");
+            bookingButton.setText("Reservar");
         } else {
             
             reservaHablilitada = true;
+            if(!bookingButton.getStyleClass().contains("button-booking-active")) bookingButton.getStyleClass().add("button-booking-active");
             disponibilidadReservaLabel.setText("Reservando pistas para el dia : ");
+            bookingButton.setText("Dejar de reservar");
         }
         
         //InicioUXController.pageTitle.setText("Reservant pistes");

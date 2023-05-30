@@ -69,24 +69,37 @@ cancel-alert-button{
     -fx-border-color: #07d3b0; 
     -fx-border-width: 1;
     -fx-border-radius: 16px;
-    /*-fx-background-radius: 19px;*/
+    -fx-background-radius: 19px;
     -fx-cursor: hand;
+     -fx-text-fill:white;
+    
     
 }
 
-button-booking:hover{
+.button-booking:hover{
     
     -fx-background-color: #d4fff6;
+     -fx-text-fill:black;
 }
-button-booking:active{
+/*button-booking:active{
     -fx-background-color: #d4fff6;
     
-}
-.button-booking:pressed{
+}*/
+/*.button-booking:pressed{
     
      
      -fx-background-color: red;
     
+}*/
+.button-booking-active{
+    
+     -fx-border-color: #62b8f5; 
+     -fx-background-color: #62b8f5 !important;
+}
+
+.button-booking-active:hover{
+    
+    -fx-background-color: #9ed2f7 !important;
 }
 
 
