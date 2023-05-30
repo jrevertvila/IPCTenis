@@ -13,6 +13,12 @@ and open the template in the editor.
     
 }*/
 
+.pane{
+    
+    -fx-opacity: 1;
+    -fx-background-color: red;
+}
+
 .acept-alert-button{
     
   -fx-background-color: white;
@@ -63,23 +69,23 @@ cancel-alert-button{
     -fx-border-color: #07d3b0; 
     -fx-border-width: 1;
     -fx-border-radius: 16px;
-    -fx-background-radius: 19px;
+    /*-fx-background-radius: 19px;*/
     -fx-cursor: hand;
     
 }
 
-.button-booking:hover{
+button-booking:hover{
     
     -fx-background-color: #d4fff6;
 }
-.button-booking:active{
+button-booking:active{
     -fx-background-color: #d4fff6;
     
 }
 .button-booking:pressed{
     
-     -fx-effect: dropshadow(three-pass-box, rgba(7, 211, 176,0.4), 2, 0, 0, 0);
-     -fx-background-color: #d4fff6;
+     
+     -fx-background-color: red;
     
 }
 
