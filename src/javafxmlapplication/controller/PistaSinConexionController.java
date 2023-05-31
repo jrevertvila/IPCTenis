@@ -142,6 +142,7 @@ public class PistaSinConexionController implements Initializable {
 
         //---------------------------------------------------------------------
         // Instanciació de la base de dades 
+        InicioUXController.pageTitleProperty.set("Disponibilidad de pistas");
         try {
             // TODO
             club = Club.getInstance();
@@ -444,9 +445,10 @@ public class PistaSinConexionController implements Initializable {
             bookingButton.getStyleClass().remove("button-booking-active");
             disponibilidadReservaLabel.setText("Disponibilidad de pistas para el : ");
             bookingButton.setText("Reservar");
+            InicioUXController.pageTitleProperty.set("Disponibilidad de pistas");
 
         } else {
-
+            InicioUXController.pageTitleProperty.set("Reservando pistas");
             reservaHablilitada = true;
             if (!bookingButton.getStyleClass().contains("button-booking-active")) {
                 bookingButton.getStyleClass().add("button-booking-active");

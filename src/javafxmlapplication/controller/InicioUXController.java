@@ -144,7 +144,7 @@ public class InicioUXController implements Initializable {
                 
                 break;
             case "loginTopBarButton":
-                pageTitleProperty.set("Formulario de autentiación");
+                pageTitleProperty.set("Formulario de autenticación");
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
