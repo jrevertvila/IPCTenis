@@ -23,12 +23,15 @@ import tray.notification.TrayNotification;
 
 
 public class Utils {
-    private static final Pattern SOLO_LETRAS_PATTERN = Pattern.compile("^[a-zA-Z]+$");
+    private static final Pattern SOLO_LETRAS_PATTERN = Pattern.compile("^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\\s]+$");
+    private static final Pattern CUALQUIER_CARACTER = Pattern.compile("^\\S+$");
     private static final Pattern NUEVE_NUMEROS_PATTERN = Pattern.compile("^\\d{9}$");
     private static final Pattern SOLO_NUMEROS_PATTERN = Pattern.compile("\\d+$");
     private static final Pattern DIECISEIS_NUMEROS_PATTERN = Pattern.compile("^\\d{16}$"); 
-    private static final Pattern SOLO_CONTRASEÑA_SEGURA = Pattern.compile("^(?=.*\\d)(?=.*[A-Z])\\S{5,10}$");
+    private static final Pattern SOLO_CONTRASEÑA_SEGURA = Pattern.compile("^[^\\s]{5,10}$");
     private static final Pattern SOLO_TRES_NUMEROS = Pattern.compile("^\\d{3}$");
+    private static final Pattern LETRAS_Y_ESPACIOS = Pattern.compile("^[A-Za-z ]+$");
+
  
     public static boolean isPhoneNumber(String phone) {
          return NUEVE_NUMEROS_PATTERN.matcher(phone).matches();
@@ -52,6 +55,14 @@ public class Utils {
 
     public static boolean isCSV(String csv) {
         return SOLO_TRES_NUMEROS.matcher(csv).matches(); 
+    }
+    
+    public static boolean isLettersAndSpaces(String surname) {
+        return LETRAS_Y_ESPACIOS.matcher(surname).matches(); 
+    }
+    
+    public static boolean isCualquiera(String user) {
+        return CUALQUIER_CARACTER.matcher(user).matches(); 
     }
         
    

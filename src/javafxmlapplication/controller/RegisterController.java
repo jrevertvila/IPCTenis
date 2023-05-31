@@ -79,6 +79,8 @@ public class RegisterController implements Initializable {
     private TextField field_phone;
     @FXML
     private TextField field_svc;
+    @FXML
+    private Button uploadFileButton;
 
     /**
      * Initializes the controller class.
@@ -98,50 +100,74 @@ public class RegisterController implements Initializable {
         boolean csv_error = false;
         boolean nickname_error = false;
         boolean password_error = false;
+
         
-        if(!Utils.isOnlyLetters(field_name.getText())){
+        if(!Utils.isOnlyLetters(field_name.getText()) || field_name.getText().isBlank()){
            error = true;
-           nameLabel.setText("Introduce unicamente letras"); 
+           nameLabel.setText("No puede contener números"); 
            field_name.getStyleClass().add("inputStyledError");
            name_error = true;
         }
-         if(!Utils.isOnlyLetters(field_surname.getText())){
+         if(!Utils.isOnlyLetters(field_surname.getText()) || field_surname.getText().isBlank()){
             error = true;
             surname_error = true;
-           surnameLabel.setText("Introduce unicamente letras");
+           surnameLabel.setText("No puede contener números");
            field_surname.getStyleClass().add("inputStyledError");
         }
-          if(!Utils.isPhoneNumber(field_phone.getText())){
+          if(!Utils.isPhoneNumber(field_phone.getText()) || field_phone.getText().isBlank()){
             error = true;
             phone_error = true;
-           phoneLabel.setText("Introduce únicamente 9 números");
+           phoneLabel.setText("No puede contener valores no numéricos");
            field_phone.getStyleClass().add("inputStyledError");
         }
-        if(!Utils.isCreditCard(field_tarjeta.getText())){
+        if(!Utils.isCreditCard(field_tarjeta.getText()) || field_tarjeta.getText().isBlank()){
             error = true;
             creditCard_error = true;
-           creditCardLabel.setText("Introduce únicamente numeros");
+           creditCardLabel.setText("Introduxca una tarjeta válida");
            field_tarjeta.getStyleClass().add("inputStyledError");
            }
            
-           if(!Utils.isCSV(field_svc.getText())){
+           if(!Utils.isCSV(field_svc.getText()) || field_svc.getText().isBlank()){
             error = true;
             csv_error = true;
-           svcLabel.setText("Introduce únicamente numeros");
+           svcLabel.setText("solo 3");
            field_svc.getStyleClass().add("inputStyledError");
         }
-           if(!Utils.isOnlyLetters(field_nickname.getText())) {
+           if(!Utils.isCualquiera(field_nickname.getText()) || field_nickname.getText().isBlank()) {
            error = true;
            nickname_error = true;
-           nicknameLabel.setText("Introduce únicamente numeros");
+           nicknameLabel.setText("No puede contener espacios");
            field_nickname.getStyleClass().add("inputStyledError"); 
            }
-           if(!Utils.isSecurePassword(field_password.getText())) {
+           if(!Utils.isSecurePassword(field_password.getText()) || field_password.getText().isBlank()) {
            error = true;
            password_error = true;
-           passwordLabel.setText("Introduce únicamente numeros");
+           passwordLabel.setText("Debe contener entre 5 y 10 caracteres");
            field_password.getStyleClass().add("inputStyledError"); 
            }
+            if (!name_error) {
+                field_name.getStyleClass().remove("inputStyledError");
+                nameLabel.setText("");
+        }
+        if (!surname_error) {
+                field_surname.getStyleClass().remove("inputStyledError");
+                surnameLabel.setText("");
+        }
+        if (!phone_error) {
+                field_phone.getStyleClass().remove("inputStyledError");
+                phoneLabel.setText("");
+        } 
+        if (!creditCard_error) {
+                 field_tarjeta.getStyleClass().remove("inputStyledError");
+                 creditCardLabel.setText("");
+        }
+        if(!csv_error) {
+            field_svc.getStyleClass().remove("inputStyledError");
+            svcLabel.setText("");
+        }
+        
+       
+           
            
         String nombre = field_name.getText(); 
         String apellidos = field_surname.getText(); 
@@ -158,6 +184,7 @@ public class RegisterController implements Initializable {
                         new Image(getClass().getResource("../../icons/default-profile.png")+"") 
                         : new Image(imgFile.getAbsolutePath()) 
             );
+            
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
             Parent root = loader.load();
 
@@ -188,10 +215,12 @@ public class RegisterController implements Initializable {
         }
 
     }
-
+    
+    @FXML
     private void uploadImage(ActionEvent event) {
         imgFile = Utils.uploadImage(event);
-        if (imgFile != null) imageNameLabel.setText(imgFile.getName());
+        Image image = new Image(imgFile.toURI().toString());
+        imagenProfile.setImage(image);
     }
     
     
