@@ -409,7 +409,8 @@ public class PistaSinConexionController implements Initializable {
             
             
 if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValue().contenido.equals("") && timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == 1) {
-            
+          
+  
             List<Booking> selectedBookings = club.getCourtBookings(pistaSelected.getName(), startTimeSelected);
             int contAnt = 0;
             int contDesp = 0;
@@ -531,6 +532,8 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             bookingButton.getStyleClass().remove("button-booking-active");
             disponibilidadReservaLabel.setText("Disponibilidad de pistas para el : ");
             bookingButton.setText("Reservar");
+            
+           
         } else {
 
             reservaHablilitada = true;
@@ -540,6 +543,16 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             disponibilidadReservaLabel.setText("Reservando pistas para el : ");
             bookingButton.setText("Dejar de reservar");
         }
+        LocalDate fechaActual = day.getValue();
+
+        // Demane disculpes públiques per fer-ho de esta manera, pero no se m'ha ocorregut altra forma
+        
+        LocalDate fechaManana = fechaActual.plusDays(1);
+        LocalDate fechaAyer = fechaManana.minusDays(1);
+
+        day.setValue(fechaManana);
+         day.setValue(fechaAyer);
+
 
         //InicioUXController.pageTitle.setText("Reservant pistes");
         // System.out.println(reservaHablilitada);
@@ -597,12 +610,9 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             label.setMaxHeight(Double.MAX_VALUE);
             label.setAlignment(Pos.CENTER);
             
-            HBox hbox = new HBox(label);
-           // hbox.getChildren().add(label);
             
-             hbox.setAlignment(Pos.CENTER);
             if (this.start.compareTo(LocalDateTime.now()) == -1) {
-                hbox.getStyleClass().add("hbox");
+               
                 label.getStyleClass().add("label-timeslot-blur");
                   // label.setDisable(true);
                  
@@ -631,28 +641,20 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             selectedProperty().set(selected);
         }
 
-//        public TimeSlot(LocalDateTime start, Duration duration, String cont) {
-//            this.start = start;
-//            this.duration = duration;
-//            view = new Pane();
-//            view.getStyleClass().add("time-slot");
-//           // view.getStyleClass().add("time-slot-reserva");
-//            
-//            this.contenido = cont;
-//            this.setContenido(contenido);
-//            //this.court = pista;
-//
-//            // ---------------------------------------------------------------
-//            // de esta manera cambiamos la apariencia del TimeSlot cuando los seleccionamos
-//            selectedProperty().addListener((obs, wasSelected, isSelected)
-//                    -> view.pseudoClassStateChanged(SELECTED_PSEUDO_CLASS, isSelected));
-//
-//        }
+//       
         public TimeSlot(LocalDateTime start, Duration duration, String cont, Court pista) {
             this.start = start;
             this.duration = duration;
             view = new Pane();
-            view.getStyleClass().add("time-slot");
+            if(reservaHablilitada == true ) {
+               
+                view.getStyleClass().add("time-slot-reserva");
+                
+            }else{
+                view.getStyleClass().add("time-slot");
+             
+            }
+           
 
             //view.getStyleClass().add("time-slot-reserva");
             this.contenido = cont;
@@ -693,6 +695,10 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
 
         public Node getView() {
             return view;
+        }
+        
+        public void setStyle(){
+        
         }
 
     }

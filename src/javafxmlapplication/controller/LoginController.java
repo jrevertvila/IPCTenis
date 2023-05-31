@@ -54,6 +54,8 @@ public class LoginController implements Initializable {
     private Text errorNicknameLabel;
     @FXML
     private Text errorPasswdLabel;
+    @FXML
+    private Text text_controler_stage;
 
     /**
      * Initializes the controller class.
@@ -61,6 +63,7 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        InicioUXController.pageTitleProperty.set("Formulario de autenticación");
     }
 
     @FXML
