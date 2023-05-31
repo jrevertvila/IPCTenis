@@ -425,7 +425,7 @@ public class ProfileUXController implements Initializable {
            phoneError.setText("Introduce únicamente 9 números");
            phoneField.getStyleClass().add("inputStyledError");
         }
-          if (creditCardField.getText().isBlank()) {
+          if (!csvField.getText().equals("0") && creditCardField.getText().isBlank()) {
             if (!csvField.getText().isBlank()) {
                 error = true;
                 csv_error = true;
@@ -435,7 +435,7 @@ public class ProfileUXController implements Initializable {
             }
 
         } else {
-            if (!Utils.isCSV(csvField.getText())) {
+            if (!csvField.getText().equals("0") && !Utils.isCSV(csvField.getText())) {
                 error = true;
                 csv_error = true;
                 csvError.setText("solo 3");
@@ -453,7 +453,7 @@ public class ProfileUXController implements Initializable {
         }
     
            
-        if(!Utils.isCSV(csvField.getText())){
+        if(!csvField.getText().equals("0") && !Utils.isCSV(csvField.getText())){
             error = true;
             csv_error = true;
            csvError.setText("Introduce SCV válido");
@@ -478,7 +478,7 @@ public class ProfileUXController implements Initializable {
                 svc = Integer.parseInt(csvField.getText());
         } catch (NumberFormatException e) {
         }
-            current_user.setSvc(svc);
+            if(!csvField.getText().equals("0")) current_user.setSvc(svc);
                    
             if (imgFile != null) {
                 current_user.setImage(new Image(imgFile.getAbsolutePath()));
