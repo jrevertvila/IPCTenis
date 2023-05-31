@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -63,11 +64,7 @@
                         <Insets bottom="3.0" />
                      </VBox.margin>
                   </HBox>
-                  <TextField fx:id="login_passwd" maxWidth="350.0" onKeyPressed="#handleEnterKey" promptText="Contraseña" styleClass="inputStyled" text="admin">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </TextField>
+                  <PasswordField fx:id="login_passwd" maxWidth="350.0" onKeyPressed="#handleEnterKey" prefWidth="300.0" styleClass="inputStyled" text="admin" />
                   <HBox maxWidth="350.0">
                      <children>
                         <Text fx:id="errorPasswdLabel" fill="#e33434" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel">
