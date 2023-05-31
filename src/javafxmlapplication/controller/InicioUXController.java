@@ -9,6 +9,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -79,6 +80,8 @@ public class InicioUXController implements Initializable {
 //            loginBtnNav.setUserData("Profile.fxml");
 //        }
         
+//        pageTitle.textProperty().bind(Bindings.);
+
         if (JavaFXMLApplication.current_user != null) {
             ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
             topBar_userImg_container.setFill(pattern);
@@ -217,7 +220,7 @@ public class InicioUXController implements Initializable {
         
         JavaFXMLApplication.current_user = null;
         FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioUX.fxml"));
-        JavaFXMLApplication.removeFrames(new String[]{"Profile.fxml", "InicioUX_Logged.fxml"});
+        JavaFXMLApplication.removeFrames(new String[]{"Profile.fxml", "InicioUX_Logged.fxml", "PistaSinConexion.fxml"});
         Parent root2 = loader2.load();
         javafxmlapplication.JavaFXMLApplication.setRoot(root2);
     }

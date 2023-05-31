@@ -132,6 +132,10 @@ public class PistaSinConexionController implements Initializable {
     public ToggleButton bookingButton;
     @FXML
     private Label disponibilidadReservaLabel;
+    @FXML
+    private Button diaAnterior;
+    @FXML
+    private Button diaSiguiente;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -377,13 +381,41 @@ public class PistaSinConexionController implements Initializable {
             //----------------------------------------------------------------
             //actualizamos el label Dia-Hora, esto es ad hoc,  para mi diseño
             timeSlotSelected.setValue(timeSlot);
-            //----------------------------------------------------------------
-            // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
-            if (event.getClickCount() == 1) {
+            
+            // vaiga a fer que no pugues reservar mes de dos hores seguides 
+            Court pistaSelected = timeSlotSelected.get().getCourt();
+            LocalDate startTimeSelected = timeSlotSelected.get().getDate();
+            
+            
+            List <Booking> selectedBookings = club.getCourtBookings(pistaSelected.getName(),startTimeSelected);
+           int contAnt = 0;
+           int contDesp = 0;
+           int horaAbans = 0;
+           int horaDesp = 0;
+           
+            for(Booking booking:selectedBookings){
+                if(booking.getMember().getNickName() == actualUser.getNickName()){
+                    if(timeSlotSelected.get().getTime().getHour()==( booking.getFromTime().getHour() -2 )||timeSlotSelected.get().getTime().getHour()== (booking.getFromTime().getHour() -1)){
+                        contAnt ++;
+                        
+                    }
+                        if (timeSlotSelected.get().getTime().getHour()== (booking.getFromTime().getHour() -1)){
+                            horaAbans = (booking.getFromTime().getHour() -1);
+                        }
+                    if(timeSlotSelected.get().getTime().getHour()==( booking.getFromTime().getHour() +2 )||timeSlotSelected.get().getTime().getHour()== (booking.getFromTime().getHour() +1)){
+                        contDesp ++;
+                    }
+                        if (timeSlotSelected.get().getTime().getHour()== (booking.getFromTime().getHour() +1)){
+                            horaDesp = (booking.getFromTime().getHour() +1);
+                        }
+            }
+            }
+                    if (!((contAnt > 2 || contDesp >2 ) || (contAnt == 1 && contDesp == 1 && (horaDesp - horaAbans == 2)))) {
+                           
+                  if (event.getClickCount() == 1) {
 
                 if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValue().contenido.equals("" ) && timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == 1) {
                    
-
                     Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                     alerta.setTitle("Confirmació de la reserva");
                     alerta.setHeaderText("Revisa els datos de la reserva ");
@@ -433,6 +465,20 @@ public class PistaSinConexionController implements Initializable {
                 }
 
             }
+                    } else{
+                    
+                 Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+                    alerta.setTitle("No se puede reservar");
+                    alerta.setHeaderText("No se pueden reservar mas de dos horas seguidas");
+                    alerta.setContentText("Has seleccionat: "
+                            + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
+                            + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
+                    }
+            
+            //----------------------------------------------------------------
+            // si es un doubleClik  vamos a mostrar una alerta y cambiar el estilo de la celda
+            
+          
         });
 //     }else{}
     }
@@ -464,6 +510,28 @@ public class PistaSinConexionController implements Initializable {
         
        // System.out.println(reservaHablilitada);
         //registerHandlers(timeSlot);
+    }
+
+    @FXML
+    private void diaAnterior(ActionEvent event) {
+         
+         LocalDate fechaActual = day.getValue();
+
+        // Restar un día a la fecha actual
+        LocalDate fechaAyer = fechaActual.minusDays(1);
+        
+        day.setValue(fechaAyer);
+    }
+
+    @FXML
+    private void diaSiguiente(ActionEvent event) {
+         
+         LocalDate fechaActual = day.getValue();
+
+        // Restar un día a la fecha actual
+        LocalDate fechaManana = fechaActual.plusDays(1);
+        
+        day.setValue(fechaManana);
     }
 
     public class TimeSlot {
