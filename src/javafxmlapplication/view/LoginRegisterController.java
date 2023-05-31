@@ -6,7 +6,10 @@ package javafxmlapplication.view;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,11 +18,13 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafxmlapplication.JavaFXMLApplication;
+import javafxmlapplication.controller.InicioUXController;
 
 /**
  * FXML Controller class
- *  
+ *
  * @author joeli
  */
 public class LoginRegisterController implements Initializable {
@@ -31,7 +36,13 @@ public class LoginRegisterController implements Initializable {
     @FXML
     public Button registerBtnNav;
     @FXML
-    private VBox PaneContent;
+    public VBox PaneContent;
+
+    public String controlar_stage;
+    @FXML
+    private Text text_controler_stage;
+
+    public static StringProperty controlStageProperty = new SimpleStringProperty(LocalDateTime.now().toString());
 
     /**
      * Initializes the controller class.
@@ -39,23 +50,37 @@ public class LoginRegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+//        InicioUXController.pageTitleProperty.
+//        controlar_stage.va
+        text_controler_stage.textProperty().bind(controlStageProperty);
+        text_controler_stage.textProperty().addListener((e) -> {
+
+            loadFXML_LR(getClass().getResource("Login.fxml"), "Login.fxml");
+            registerBtnNav.getStyleClass().remove("activeLR");
+            iniSesionBtnNav.getStyleClass().add("activeLR");
+
+        });
+    }
+
     @FXML
     public void handleShowView(ActionEvent e) {
-        String view = (String) ((Node)e.getSource()).getUserData();
-        loadFXML_LR(getClass().getResource(view),view);
+        String view = (String) ((Node) e.getSource()).getUserData();
+        loadFXML_LR(getClass().getResource(view), view);
         Object o = e.getSource();
         Button b = (Button) o;
-        if (b.getId().equals("iniSesionBtnNav")){
-            if (!iniSesionBtnNav.getStyleClass().contains("activeLR")) iniSesionBtnNav.getStyleClass().add("activeLR");
+        if (b.getId().equals("iniSesionBtnNav")) {
+            if (!iniSesionBtnNav.getStyleClass().contains("activeLR")) {
+                iniSesionBtnNav.getStyleClass().add("activeLR");
+            }
             registerBtnNav.getStyleClass().remove("activeLR");
         } else {
-            if (!registerBtnNav.getStyleClass().contains("activeLR")) registerBtnNav.getStyleClass().add("activeLR");
+            if (!registerBtnNav.getStyleClass().contains("activeLR")) {
+                registerBtnNav.getStyleClass().add("activeLR");
+            }
             iniSesionBtnNav.getStyleClass().remove("activeLR");
         }
     }
-    
+
 //    public static void setLoginPage() {
 ////        String view = (String) ((Node)e.getSource()).getUserData();
 //        loadFXML_LR(getClass().getResource("Login.fxml"),"Login.fxml");
@@ -65,24 +90,24 @@ public class LoginRegisterController implements Initializable {
 //        registerBtnNav.getStyleClass().remove("activeLR");
 //            
 //    }
-    
+    public static void isRegistered() {
+        System.out.println("javafxmlapplication.view.LoginRegisterController.isRegistered()");
+
+    }
+
     public void loadFXML_LR(URL url, String frameName) {
         try {
-            Node frame = JavaFXMLApplication.getFrame(frameName);
-            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
-            System.out.println(frame);
+//            Node frame = JavaFXMLApplication.getFrame(frameName);
+//            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            Node frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
             PaneContent.getChildren().clear();
             PaneContent.getChildren().add(frame);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
 //    public static void handleLoginBtnClick() {
 //        registerBtnNav.fire();
 //    }
-    
 }
-
-
