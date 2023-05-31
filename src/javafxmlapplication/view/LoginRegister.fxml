@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:id="loginRegisterPane" maxHeight="4.3432423432432435E17" maxWidth="2.34242343243244E14" prefHeight="531.0" prefWidth="665.0" styleClass="loginWrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.view.LoginRegisterController">
+<VBox fx:id="loginRegisterPane" maxHeight="4.3432423432432435E17" maxWidth="2.34242343243244E14" prefHeight="531.0" prefWidth="665.0" styleClass="loginWrapper" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxmlapplication.controller.LoginRegisterController">
    <children>
       <FlowPane alignment="TOP_CENTER" hgap="25.0" styleClass="navLoginRegister" VBox.vgrow="NEVER">
          <children>
@@ -23,7 +23,7 @@
             <fx:include source="Login.fxml" VBox.vgrow="ALWAYS" />
          </children>
       </VBox>
-      <Text fx:id="text_controler_stage" strokeType="OUTSIDE" strokeWidth="0.0">
+      <Text fx:id="text_controler_stage" strokeType="OUTSIDE" strokeWidth="0.0" visible="false">
          <font>
             <Font size="2.0" />
          </font>

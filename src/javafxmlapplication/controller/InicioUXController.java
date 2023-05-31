@@ -76,53 +76,24 @@ public class InicioUXController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-//        System.out.println("Initialize currentUser: "+JavaFXMLApplication.current_user);
-//        loginBtnNav.setText(JavaFXMLApplication.current_user == null ? "Iniciar Sesion" : "Mi Perfil");
-//        if (JavaFXMLApplication.current_user != null) {
-//            loadFXML_NAV(getClass().getResource("PistaSinConexion.fxml"),"PistaSinConexion.fxml");
-//            loginBtnNav.setUserData("Profile.fxml");
-//        }
-        
-        
-
-
-//        pageTitleProperty.getValue().addListener((e) -> {
-//            
-//        });
-
         pageTitle.textProperty().bind(pageTitleProperty);
-        
-//        pageTitle.textProperty().bind(Bindings.);
-
         if (JavaFXMLApplication.current_user != null) {
             ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
             topBar_userImg_container.setFill(pattern);
         }
-
-        
-//        topBar_userImg_container.setEffect(new DropShadow(20, Color.BLACK));  // Shadow
     }
 
     
     private void loadFXML_NAV(URL url, String frameName) throws ClubDAOException {
         try {
-            
-//            Node frame = JavaFXMLApplication.getFrame(frameName);
-//            System.out.println("url: "+url);
-//            System.out.println("frameName: "+frameName);
-//            System.out.println("frame: "+frame);
-//            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
-            
+
             Node frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
             
             if (frameName.equals("ProfileUX.fxml")) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
             frame.setVisible(true);
-//            frame.
             mainWrapper.getChildren().clear();
             mainWrapper.getChildren().add(frame);
             
-//            if (frameName.equals("ProfileUX.fxml")) ProfileUXController.refresh();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -133,8 +104,6 @@ public class InicioUXController implements Initializable {
     private void handleNavBtn(ActionEvent event) throws ClubDAOException {
         
         String view = (String) ((Node)event.getSource()).getUserData();
-//        System.out.println("view: " + view);
-//        System.out.println("URL: " + getClass().getResource("../view/"+view));
         if (view.equals("ProfileUX.fxml")) {
             mainWrapper.getStyleClass().clear();
         } else {
@@ -154,8 +123,6 @@ public class InicioUXController implements Initializable {
         }
         switch (b.getId()) {
             case "pistasButton":
-//                loginTopBarButton.setVisible(false);
-//                pageTitleProperty.set("Disponibilidad de pistas");
                 pageTitleProperty.set("Disponibilidad de pistas");
                 if (!pistasButton.getStyleClass().contains("buttonSidebarActive")) pistasButton.getStyleClass().add("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
@@ -163,23 +130,14 @@ public class InicioUXController implements Initializable {
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 break;
             case "aboutButton":
-//                loginTopBarButton.setVisible(false);
                 pageTitleProperty.set("Sobre Nosotros");
 
-//                pageTitle.setText("Sobre Nosotros");
                 if (!aboutButton.getStyleClass().contains("buttonSidebarActive")) aboutButton.getStyleClass().add("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 break;
-//            case "contactUsBtn":
-//                contactUsBtn.getStyleClass().add("buttonSidebarActive");
-//                pistasBtn.getStyleClass().remove("buttonSidebarActive");
-//                aboutUsBtn.getStyleClass().remove("buttonSidebarActive");
-//                break;
             case "perfilButton":
                 pageTitleProperty.set("Mi Perfil");
-//                pageTitle.setText("Mi Perfil");
-//                contactUsBtn.getStyleClass().add("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null && !perfilButton.getStyleClass().contains("buttonSidebarActive")) perfilButton.getStyleClass().add("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
@@ -187,12 +145,9 @@ public class InicioUXController implements Initializable {
                 break;
             case "loginTopBarButton":
                 pageTitleProperty.set("Formulario de autentiación");
-//                pageTitle.setText("Formulario de autentiación");
-//                contactUsBtn.getStyleClass().add("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
-//                loginTopBarButton.setVisible(false);
                 break;
             default:
                 break;
@@ -210,19 +165,14 @@ public class InicioUXController implements Initializable {
         
         for (int i = 0; i < userBookings.size(); i++) {
             Booking booking = userBookings.get(i);
-//            System.out.println("GetBookingDate: " + booking.getBookingDate());
-//            System.out.println("CurrentDate.now: " + LocalDateTime.now());
-//            System.out.println("IS AFTER: " + booking.getBookingDate().isAfter(LocalDateTime.now()));
             
             if (booking.getBookingDate().compareTo(LocalDateTime.now()) > 0 && booking.getBookingDate().compareTo(LocalDateTime.now().plusDays(1)) < 0) {
                 notifCont++;
                 res += "Partido " + (booking.getBookingDate().getDayOfYear() == LocalDateTime.now().getDayOfYear()? "hoy " : "mañana ") + 
                         "a las " + booking.getBookingDate().getHour() + ":" + booking.getBookingDate().getMinute() + "" + (booking.getBookingDate().getMinute() < 10 ? "0" : "") + "\n";
             }
-//            System.out.println("Booking " + i + ": " + booking.getBookingDate());
 
         }
-//        System.out.println("User bookings: "+club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Tus notificaciones");
         alert.setHeaderText("Tienes "+ notifCont +" notificaciones:");

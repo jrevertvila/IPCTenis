@@ -30,7 +30,6 @@ import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
 import static javafxmlapplication.JavaFXMLApplication.current_user;
 import javafxmlapplication.Utils;
-import javafxmlapplication.view.LoginRegisterController;
 import model.Club;
 import model.ClubDAOException;
 import model.Member;
@@ -220,9 +219,6 @@ public class RegisterController implements Initializable {
                 alert.setContentText("Te has registrado correctamente. Inicia sesión por favor");
                 alert.showAndWait();
                 LoginRegisterController.controlStageProperty.set(LocalDateTime.now().toString());
-//                LoginRegisterController.isRegistered();
-//                LoginRegisterController.PaneContent.getChildren().clear();
-//            PaneContent.getChildren().add(frame);
             } catch (ClubDAOException e) {
                 error = true;
                 nickname_error = true;
