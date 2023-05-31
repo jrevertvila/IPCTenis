@@ -104,20 +104,20 @@ public class RegisterController implements Initializable {
         
         if(!Utils.isOnlyLetters(field_name.getText()) || field_name.getText().isBlank()){
            error = true;
-           nameLabel.setText("Este campo no puede contener números"); 
+           nameLabel.setText("No puede contener números"); 
            field_name.getStyleClass().add("inputStyledError");
            name_error = true;
         }
          if(!Utils.isOnlyLetters(field_surname.getText()) || field_surname.getText().isBlank()){
             error = true;
             surname_error = true;
-           surnameLabel.setText("Este campo no puede contener números");
+           surnameLabel.setText("No puede contener números");
            field_surname.getStyleClass().add("inputStyledError");
         }
           if(!Utils.isPhoneNumber(field_phone.getText()) || field_phone.getText().isBlank()){
             error = true;
             phone_error = true;
-           phoneLabel.setText("Este campo no puede contener valores no numéricos");
+           phoneLabel.setText("No puede contener valores no numéricos");
            field_phone.getStyleClass().add("inputStyledError");
         }
         if(!Utils.isCreditCard(field_tarjeta.getText()) || field_tarjeta.getText().isBlank()){
@@ -136,13 +136,13 @@ public class RegisterController implements Initializable {
            if(!Utils.isCualquiera(field_nickname.getText()) || field_nickname.getText().isBlank()) {
            error = true;
            nickname_error = true;
-           nicknameLabel.setText("Este campo no puede contener espacios");
+           nicknameLabel.setText("No puede contener espacios");
            field_nickname.getStyleClass().add("inputStyledError"); 
            }
            if(!Utils.isSecurePassword(field_password.getText()) || field_password.getText().isBlank()) {
            error = true;
            password_error = true;
-           passwordLabel.setText("Este campo debe contener entre 5 y 10 caracteres");
+           passwordLabel.setText("Debe contener entre 5 y 10 caracteres");
            field_password.getStyleClass().add("inputStyledError"); 
            }
             if (!name_error) {
