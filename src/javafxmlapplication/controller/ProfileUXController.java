@@ -156,7 +156,10 @@ public class ProfileUXController implements Initializable {
              surnameField.setText(current_user.getSurname());
              phoneField.setText(current_user.getTelephone());
              creditCardField.setText(current_user.getCreditCard());
+             if (creditCardField.getText() == null ) creditCardField.clear();
+//             creditCardField.getText() == null ?
              csvField.setText(current_user.getSvc() + "");
+             if (csvField.getText().equals("0")) csvField.clear();
              
             nameLabel.setText(current_user.getName() + " " + current_user.getSurname());  
             userField.setText(current_user.getNickName());
