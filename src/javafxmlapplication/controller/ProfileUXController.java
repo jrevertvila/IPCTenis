@@ -6,9 +6,11 @@ package javafxmlapplication.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import java.util.List;
 import java.util.Optional;
@@ -90,6 +92,8 @@ public class ProfileUXController implements Initializable {
     private TableColumn<Booking, String> actionBookingCOL;
     @FXML
     private TableColumn<Booking, String> dateBookingCOL;
+    @FXML
+    private TableColumn<Booking, String> horaIniFinCOL;
 
     private static ObservableList<Booking> misReservas;
     private static SimpleStringProperty pendientesP = new SimpleStringProperty("0");
@@ -131,28 +135,18 @@ public class ProfileUXController implements Initializable {
     @FXML
     private Button deshacerButton;
     
+    
     public ProfileUXController() {
         
     }
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          
-      
-        
-        
-//        reservasPendientesLabel.textProperty().bind(pendientesP);
-//        reservasTotalesLabel.textProperty().bind(totalesP);
-//        numBookingCOL.setCellValueFactory(new PropertyValueFactory<Booking, String>("nombre"));
-//        private ObservableList<Persona> misPersonas;
-//        personaTableV.setItems(misPersonas);
         Club club;
         try {
             club = Club.getInstance();
             List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
-            System.out.println("RESERVAS TOTALESSSSSSSSSSS: " + userBookings.size());
             if (userBookings.size() > 0) {
                 misReservas = FXCollections.observableArrayList(userBookings.subList(0, userBookings.size() < 10 ? userBookings.size() : 10));
             } else {
@@ -173,33 +167,73 @@ public class ProfileUXController implements Initializable {
             //boton desactivado si no hay ningun campo modificado
             
             dateBookingCOL.setCellValueFactory((booking) -> {
-                return new SimpleStringProperty(booking.getValue().getBookingDate().toString());
+                return new SimpleStringProperty(DateTimeFormatter.ofPattern("dd/MM/yyyy").format(booking.getValue().getBookingDate()));
+//                return new SimpleStringProperty(booking.getValue().getBookingDate().toString());
             });
 
             courtBookingCOL.setCellValueFactory((booking) -> {
-                return new SimpleStringProperty(booking.getValue().getCourt().getName());
+                return new SimpleStringProperty(booking.getValue().getCourt().getName().split(" ")[1]+"");
             });
 
             estadoBookingCOL.setCellValueFactory((booking) -> {
                 return new SimpleStringProperty(booking.getValue().getBookingDate().isAfter(LocalDateTime.now()) ? "PENDIENTE" : "COMPLETADA");
             });
             
-            isPaidBookingCOL.setCellValueFactory((booking) -> {
-                return new SimpleStringProperty(booking.getValue().getPaid() ? "SI" : "NO");
+            horaIniFinCOL.setCellValueFactory((booking) -> {
+                return new SimpleStringProperty(booking.getValue().getBookingDate().getHour()+" - "+(booking.getValue().getBookingDate().getHour()+1));
             });
 
             actionBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
+            
             pagarBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
             
+//            isPaidBookingCOL.setCellValueFactory((booking) -> {
+//                return new SimpleStringProperty(booking.getValue().getPaid() ? "SI" : "NO");
+//            });
+            
+            //CELLFACTORY PARA ISPAID_COL, MOSTRAR UNA IMAGEN "TICK"
+            
+            //CELLFACTORY PARA ACTION_COL, ES DECIR, COLUMNA DE ANULAR RESERVA
+            Callback<TableColumn<Booking, String>, TableCell<Booking, String>> cellFactory3
+                    = 
+                    (final TableColumn<Booking, String> param) -> {
+                        final TableCell<Booking, String> cell = new TableCell<Booking, String>() {
+
+                            
+                            ImageView image = new ImageView();  
+
+                            @Override
+                            public void updateItem(String item, boolean empty) {
+                                super.updateItem(item, empty);
+                                
+                                if (empty) {
+                                    setGraphic(null);
+                                    setText(null);
+                                } else {
+                                    String path = getTableView().getItems().get(getIndex()).getPaid() == true ? "../../icons/si.png" : "../../icons/no.png";
+                                    System.out.println("========PAGADO: " + path);
+                                    image.setImage(new Image(getClass().getResource(path)+"") );
+                                    setGraphic(image);
+                                    image.setFitHeight(25);
+                                    image.setFitWidth(25);
+                                    setText(null);
+                                    setWidth(25);
+                                    setHeight(25);
+                                }
+                            }
+                        };
+                        return cell;
+                    };
+
+            isPaidBookingCOL.setCellFactory(cellFactory3);
             
             //CELLFACTORY PARA ACTION_COL, ES DECIR, COLUMNA DE ANULAR RESERVA
             Callback<TableColumn<Booking, String>, TableCell<Booking, String>> cellFactory
-                    = //
+                    = 
                     (final TableColumn<Booking, String> param) -> {
                         final TableCell<Booking, String> cell = new TableCell<Booking, String>() {
 
                     final Button btn = new Button("Anular");
-//                    getTableView().getItems().get(getIndex())
                     
                     @Override
                     public void updateItem(String item, boolean empty) {
@@ -208,8 +242,16 @@ public class ProfileUXController implements Initializable {
                             setGraphic(null);
                             setText(null);
                         } else {
-                            btn.setDisable(getTableView().getItems().get(getIndex()).getBookingDate().isAfter(LocalDateTime.now()) ? false : true);
-                            btn.setDisable(getTableView().getItems().get(getIndex()).getBookingDate().plusDays(-1).isAfter(LocalDateTime.now()) ? true : false );
+                            
+                            btn.setDisable(
+                                    getTableView().getItems().get(getIndex()).getBookingDate().isAfter(LocalDateTime.now()) ? false : true
+                            );
+
+                            LocalDateTime date = getTableView().getItems().get(getIndex()).getBookingDate();
+                            btn.setDisable(
+                                LocalDateTime.now().isAfter(date.minusDays(1))
+                            );
+                            
                             btn.setOnAction(event -> {
                                 try {
                                     club.removeBooking(getTableView().getItems().get(getIndex()));
@@ -228,7 +270,6 @@ public class ProfileUXController implements Initializable {
                                 }
                             });
                             setGraphic(btn);
-
                             setText(null);
                         }
                     }
@@ -245,7 +286,6 @@ public class ProfileUXController implements Initializable {
                         final TableCell<Booking, String> cell = new TableCell<Booking, String>() {
 
                     final Button btn = new Button("Pagar");
-//                    getTableView().getItems().get(getIndex())
                     
                     @Override
                     public void updateItem(String item, boolean empty) {
@@ -286,34 +326,17 @@ public class ProfileUXController implements Initializable {
                     };
 
             pagarBookingCOL.setCellFactory(cellFactory2);
-
-//            actionBookingCOL.setCellValueFactory((booking) -> {
-//                Button b = new Button("button");
-//                return b;
-//            });
             tableViewReservas.setItems(misReservas);
-
             reservasTotales = userBookings.size();
-//            totalesP.setValue(reservasTotales + "");
             reservasTotalesLabel.setText(reservasTotales+"");
             reservasPendientes = 0;
             for (int i = 0; i < userBookings.size(); i++) {
                 Booking booking = userBookings.get(i);
-                System.out.println("GetBookingDate: " + booking.getBookingDate());
-                System.out.println("CurrentDate.now: " + LocalDateTime.now());
-                System.out.println("IS AFTER: " + booking.getBookingDate().isAfter(LocalDateTime.now()));
                 if (booking.getBookingDate().compareTo(LocalDateTime.now()) > 0) {
                     reservasPendientes++;
                 }
-                System.out.println("Booking " + i + ": " + booking.getBookingDate());
-
             }
             reservasPendientesLabel.setText(reservasPendientes+"");
-//            pendientesP.setValue(reservasPendientes + "");
-            System.out.println("USER BOOKINGS: " + club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
-            
-            
-             
 
         } catch (ClubDAOException ex) {
             Logger.getLogger(ProfileUXController.class.getName()).log(Level.SEVERE, null, ex);
@@ -340,19 +363,12 @@ public class ProfileUXController implements Initializable {
             
             for (int i = 0; i < userBookings.size(); i++) {
                 Booking booking = userBookings.get(i);
-                System.out.println("GetBookingDate: " + booking.getBookingDate());
-                System.out.println("CurrentDate.now: " + LocalDateTime.now());
-                System.out.println("IS AFTER: " + booking.getBookingDate().isAfter(LocalDateTime.now()));
                 if (booking.getBookingDate().compareTo(LocalDateTime.now()) > 0) {
                     reservasPendientes++;
                 }
-                System.out.println("Booking " + i + ": " + booking.getBookingDate());
-
             }
             pendientesP.setValue(reservasPendientes + "");
             totalesP.setValue(reservasTotales + "");
-//            reservasTotalesLabel.setText(reservasTotales + "");
-//            reservasPendientesLabel.setText(reservasPendientes + "");
         }
     }
 
@@ -461,20 +477,8 @@ public class ProfileUXController implements Initializable {
 
     @FXML
     private void uploadButton(ActionEvent event) {
-//        imgFile = fileChooser.showOpenDialog((Stage)((Node) event.getSource()).getScene().getWindow());
-//        fileChooser.getExtensionFilters().addAll(
-//                new FileChooser.ExtensionFilter("All Images", "*.*"),
-//                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-//                new FileChooser.ExtensionFilter("PNG", "*.png")
-//            );
-//        if (imgFile != null) {
-////            openFile(file);
-//            System.out.println(imgFile);
-//        }
         File local = Utils.uploadImage(event);
-        
         if (local != null) {
-            
             imgFile = local;
             imgLabel.setText(imgFile.getName());
             applyChangesButton.setDisable(false);
@@ -486,7 +490,6 @@ public class ProfileUXController implements Initializable {
     private void onModified(KeyEvent event) {
         applyChangesButton.setDisable(false);
         deshacerButton.setDisable(false);
-
     }
 
     @FXML
@@ -500,7 +503,6 @@ public class ProfileUXController implements Initializable {
         imgLabel.setText("No se ha subido ninguna foto"); 
         applyChangesButton.setDisable(true);
         deshacerButton.setDisable(true);
-    
     }
     
 }
