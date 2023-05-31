@@ -48,10 +48,10 @@ public class LoginRegisterController implements Initializable {
         Object o = e.getSource();
         Button b = (Button) o;
         if (b.getId().equals("iniSesionBtnNav")){
-            if (!iniSesionBtnNav.getStyleClass().contains("buttonSidebarActive")) iniSesionBtnNav.getStyleClass().add("activeLR");
+            if (!iniSesionBtnNav.getStyleClass().contains("activeLR")) iniSesionBtnNav.getStyleClass().add("activeLR");
             registerBtnNav.getStyleClass().remove("activeLR");
         } else {
-            if (!registerBtnNav.getStyleClass().contains("buttonSidebarActive")) registerBtnNav.getStyleClass().add("activeLR");
+            if (!registerBtnNav.getStyleClass().contains("activeLR")) registerBtnNav.getStyleClass().add("activeLR");
             iniSesionBtnNav.getStyleClass().remove("activeLR");
         }
     }

@@ -153,7 +153,11 @@ public class ProfileUXController implements Initializable {
             club = Club.getInstance();
             List<Booking> userBookings = club.getUserBookings(JavaFXMLApplication.current_user.getNickName());
             System.out.println("RESERVAS TOTALESSSSSSSSSSS: " + userBookings.size());
-            misReservas = FXCollections.observableArrayList(club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
+            if (userBookings.size() > 0) {
+                misReservas = FXCollections.observableArrayList(userBookings.subList(0, userBookings.size() < 10 ? userBookings.size() : 10));
+            } else {
+                misReservas = FXCollections.observableArrayList(userBookings);
+            }
              nameField.setText(current_user.getName());
              surnameField.setText(current_user.getSurname());
              phoneField.setText(current_user.getTelephone());
@@ -205,6 +209,7 @@ public class ProfileUXController implements Initializable {
                             setText(null);
                         } else {
                             btn.setDisable(getTableView().getItems().get(getIndex()).getBookingDate().isAfter(LocalDateTime.now()) ? false : true);
+                            btn.setDisable(getTableView().getItems().get(getIndex()).getBookingDate().plusDays(-1).isAfter(LocalDateTime.now()) ? true : false );
                             btn.setOnAction(event -> {
                                 try {
                                     club.removeBooking(getTableView().getItems().get(getIndex()));

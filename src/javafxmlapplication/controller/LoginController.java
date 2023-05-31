@@ -125,7 +125,6 @@ public class LoginController implements Initializable {
         }
     }
     
-    @FXML
     private void handleEnterKey(KeyEvent event) throws IOException, ClubDAOException {
         if (event.getCode().equals(KeyCode.ENTER)) {
             submitForm();
