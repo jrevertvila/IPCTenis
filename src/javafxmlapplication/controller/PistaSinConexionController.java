@@ -332,13 +332,12 @@ public class PistaSinConexionController implements Initializable {
             // vaiga a fer que no pugues reservar mes de dos hores seguides 
             Court pistaSelected = timeSlotSelected.get().getCourt();
 
-            System.out.print(pistaSelected.getName());
 
             LocalDate startTimeSelected = timeSlotSelected.get().getDate();
 
-            if (timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == -1 && actualUser != null) {
+            if (timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == -1 && actualUser != null && reservaHablilitada == true) {
                 if (event.getClickCount() == 1) {
-                    System.out.println("estic dins del if petit");
+                    
                     Alert alertaInfor = new Alert(Alert.AlertType.ERROR);
                     alertaInfor.setTitle("No se puede reservar");
                     alertaInfor.setHeaderText("No se pueden reservar pistas pasadas");
@@ -359,12 +358,10 @@ public class PistaSinConexionController implements Initializable {
                 int horaDesp = 0;
 
                 for (Booking booking : selectedBookings) {
-                    System.out.println("estic en el for evaluador papi ");
                     if (booking.getMember().getNickName() == actualUser.getNickName()) {
 
                         if (timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() - 2) || timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() - 1)) {
                             contAnt++;
-                            System.out.println("cont ant ++");
 
                         }
                         if (timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() - 1)) {
@@ -372,17 +369,13 @@ public class PistaSinConexionController implements Initializable {
                         }
                         if (timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() + 2) || timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() + 1)) {
                             contDesp++;
-                            System.out.println("cont desp ++");
                         }
                         if (timeSlotSelected.get().getTime().getHour() == (booking.getFromTime().getHour() + 1)) {
                             horaDesp = (booking.getFromTime().getHour() + 1);
                         }
                     }
                 }
-                System.out.println("contDesp = " + contDesp);
-                System.out.println("contAnt = " + contAnt);
-                System.out.println("horaDesp = " + horaDesp);
-                System.out.println("horaAbans = " + horaAbans);
+              
                 if (!(contAnt >= 2 || contDesp >= 2 || (contAnt == 1 && contDesp == 1 && (horaDesp - horaAbans <= 2)))) {
                    
 
@@ -390,7 +383,7 @@ public class PistaSinConexionController implements Initializable {
 
                         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
                         alerta.setTitle("Confirmación de la reserva");
-                        alerta.setHeaderText("Revisa els datos de la reserva ");
+                        alerta.setHeaderText("Revisa los datos de la reserva ");
                         alerta.setContentText("Has seleccionado: "
                                 + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                 + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
@@ -408,7 +401,6 @@ public class PistaSinConexionController implements Initializable {
                                 }
 
                                 try {
-                                    System.out.println("just abanse de ficar la resercva");
                                     club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), pagado, timeSlot.getCourt(), actualUser);
                                 } catch (ClubDAOException ex) {
                                     Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
