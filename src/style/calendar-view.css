@@ -3,15 +3,7 @@ To change this license header, choose License Headers in Project Properties.
 To change this template file, choose Tools | Templates
 and open the template in the editor.
 */
-/* 
-    Created on : 27-mar-2020, 16:33:06
-    Author     : DSIC_jsoler
-*/
 
-/*.time-slot:hover{
-    -fx-background-color: yellow;
-    
-}*/
 .negreta{
     
     -fx-font-weigth:bold;
@@ -28,19 +20,15 @@ and open the template in the editor.
 .label-timeslot-blur{
     -fx-opacity: 0.2;
     -fx-cursor: default !important;
-    /*-fx-background-color: red;*/
+   
     
 }
-/*.pane{
-    
-    -fx-opacity: 1;
-    -fx-background-color: red;
-}*/
+
 
 .acept-alert-button{
     
   -fx-background-color: white;
-    -fx-border-color: #e3e5ea; /*#c5a768*/
+    -fx-border-color: #e3e5ea; 
     -fx-border-width: 1;
     -fx-border-radius: 16px;
     -fx-background-radius: 19px;
@@ -51,7 +39,7 @@ and open the template in the editor.
 cancel-alert-button{
     
     -fx-background-color: white;
-    -fx-border-color: #e3e5ea; /*#c5a768*/
+    -fx-border-color: #e3e5ea; 
     -fx-border-width: 1;
     -fx-border-radius: 16px;
     -fx-background-radius: 19px;
@@ -66,7 +54,7 @@ cancel-alert-button{
 .label-timeslot{
    -fx-translate-y: 10px; 
    -fx-translate-x: 50px;
-    -fx-text-fill:black;   /*-fx-background-color: #07d3b0;*/
+    -fx-text-fill:black;   
     
     
 }
@@ -119,16 +107,7 @@ cancel-alert-button{
     -fx-background-color: #d4fff6;
      -fx-text-fill:black;
 }
-/*button-booking:active{
-    -fx-background-color: #d4fff6;
-    
-}*/
-/*.button-booking:pressed{
-    
-     
-     -fx-background-color: red;
-    
-}*/
+
 .button-booking-active{
     
      -fx-border-color: #62b8f5; 
@@ -145,11 +124,7 @@ cancel-alert-button{
     -fx-background-color: #d4fff6 !important;
     
 }
-/*.time-slot:hover{
-    -fx-background-color: yellow
-        
-    
-}*/
+
 .time-slot-reserva{
     -fx-background-color:  #07d3b0,white;
     -fx-background-insets: 0, 0.5 0.5 0.5 0.5;
@@ -162,19 +137,7 @@ cancel-alert-button{
     -fx-cursor: hand;
 }
 
-/*.time-slot-libre{
-    -fx-background-color: red, #ccccff;
-    -fx-background-insets: 0, 1 1 0 0;
-    -fx-cursor: hand;
 
-}*/
-
-  
-    
-
-/*.time-slot:selected {
-    -fx-background-color: green;
-}*/
 
 .date-picker > .text-field {
     -fx-text-fill: black;
