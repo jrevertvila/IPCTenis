@@ -7,6 +7,7 @@ package javafxmlapplication.controller;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -88,6 +90,7 @@ public class RegisterController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imagenProfile.setImage(new Image(getClass().getResource("../../icons/default-profile.png") + ""));
+        InicioUXController.pageTitleProperty.set("Formulario de registro");
     }
 
     @FXML
@@ -165,10 +168,10 @@ public class RegisterController implements Initializable {
                 field_svc.getStyleClass().add("inputStyledError");
             }
         }
-        
-        if(!field_tarjeta.getText().isBlank()) {
-            if(field_svc.getText().isBlank()) {
-                error  =true;
+
+        if (!field_tarjeta.getText().isBlank()) {
+            if (field_svc.getText().isBlank()) {
+                error = true;
                 csv_error = true;
                 creditCardLabel.setText("Debe introducirse el SVC");
                 field_svc.getStyleClass().add("inputStyledError");
@@ -203,61 +206,32 @@ public class RegisterController implements Initializable {
 
         if (!error) {
             Club club = Club.getInstance();
+            try {
+                Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd,
+                        tarjeta.isBlank() ? "" : tarjeta,
+                        svc == 0 ? 0 : svc,
+                        imgFile == null
+                                ? new Image(getClass().getResource("../../icons/default-profile.png") + "")
+                                : new Image(imgFile.getAbsolutePath())
+                );
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Registro Completado");
+                alert.setHeaderText("Registro Completado");
+                alert.setContentText("Te has registrado correctamente. Inicia sesión por favor");
+                alert.showAndWait();
+                LoginRegisterController.controlStageProperty.set(LocalDateTime.now().toString());
+//                LoginRegisterController.isRegistered();
+//                LoginRegisterController.PaneContent.getChildren().clear();
+//            PaneContent.getChildren().add(frame);
+            } catch (ClubDAOException e) {
+                error = true;
+                nickname_error = true;
+                nicknameLabel.setText("Este nombre de usuario ya está en uso");
+                field_nickname.getStyleClass().add("inputStyledError");
+            }
 
-            Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd,
-                    tarjeta.isBlank() ? "" : tarjeta,
-                    svc == 0 ? 0 : svc,
-                    imgFile == null
-                            ? new Image(getClass().getResource("../../icons/default-profile.png") + "")
-                            : new Image(imgFile.getAbsolutePath())
-            );
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            MessageModalController controladorMessageModal = loader.getController();
-            controladorMessageModal.setTextMessage("Se ha registrado correctamente. \n Inicie sesión por favor.");
-            stage.setScene(scene);
-            stage.setTitle("Registro correcto");
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.showAndWait();
-
-//            LoginRegisterController.loadFXML_LR(getClass().getResource("../view/Login.fxml"),"../view/Login.fxml");
-//            LoginRegisterController.iniSesionBtnNav.getStyleClass().add("activeLR");
-//            LoginRegisterController.registerBtnNav.getStyleClass().remove("activeLR");
-//            Node frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
-//            
-//            mainWrapper.getChildren().clear();
-//            mainWrapper.getChildren().add(frame);
-//            FXMLLoader loader2 = new FXMLLoader(getClass().getResource("../view/InicioRefactor.fxml"));
-//            String[] framesList = ["",""];
-//            JavaFXMLApplication.removeFrames(new String[]{"LoginRegister.fxml","Login.fxml","Register.fxml"});
-//            Parent root2 = loader2.load();
-//            javafxmlapplication.JavaFXMLApplication.setRoot(root2);
-//            LoginRegisterController.registerBtnNav.fire();            
         }
-//        if (!name_error) {
-//            field_name.getStyleClass().remove("inputStyledError");
-//            nameLabel.setText("");
-//        }
-//        if (!surname_error) {
-//            field_surname.getStyleClass().remove("inputStyledError");
-//            surnameLabel.setText("");
-//        }
-//        if (!phone_error) {
-//            field_phone.getStyleClass().remove("inputStyledError");
-//            phoneLabel.setText("");
-//        }
-//        if (!creditCard_error) {
-//            field_tarjeta.getStyleClass().remove("inputStyledError");
-//            creditCardLabel.setText("");
-//        }
-//        if (!csv_error) {
-//            field_svc.getStyleClass().remove("inputStyledError");
-//            svcLabel.setText("");
-//        }
+
     }
 
     @FXML

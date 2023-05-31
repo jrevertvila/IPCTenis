@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -66,6 +68,8 @@ public class InicioUXController implements Initializable {
     public Text pageTitle;
     @FXML
     private Button loginTopBarButton;
+    
+    public static StringProperty pageTitleProperty = new SimpleStringProperty("Disponibilidad de pistas");
 
     /**
      * Initializes the controller class.
@@ -79,6 +83,15 @@ public class InicioUXController implements Initializable {
 //            loadFXML_NAV(getClass().getResource("PistaSinConexion.fxml"),"PistaSinConexion.fxml");
 //            loginBtnNav.setUserData("Profile.fxml");
 //        }
+        
+        
+
+
+//        pageTitleProperty.getValue().addListener((e) -> {
+//            
+//        });
+
+        pageTitle.textProperty().bind(pageTitleProperty);
         
 //        pageTitle.textProperty().bind(Bindings.);
 
@@ -95,11 +108,14 @@ public class InicioUXController implements Initializable {
     private void loadFXML_NAV(URL url, String frameName) throws ClubDAOException {
         try {
             
-            Node frame = JavaFXMLApplication.getFrame(frameName);
+//            Node frame = JavaFXMLApplication.getFrame(frameName);
 //            System.out.println("url: "+url);
 //            System.out.println("frameName: "+frameName);
 //            System.out.println("frame: "+frame);
-            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+//            if (frame == null) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            
+            Node frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
+            
             if (frameName.equals("ProfileUX.fxml")) frame = JavaFXMLApplication.setFrame(frameName, new FXMLLoader(url).load());
             frame.setVisible(true);
 //            frame.
@@ -139,7 +155,8 @@ public class InicioUXController implements Initializable {
         switch (b.getId()) {
             case "pistasButton":
 //                loginTopBarButton.setVisible(false);
-                pageTitle.setText("Disponibilidad de pistas");
+//                pageTitleProperty.set("Disponibilidad de pistas");
+                pageTitleProperty.set("Disponibilidad de pistas");
                 if (!pistasButton.getStyleClass().contains("buttonSidebarActive")) pistasButton.getStyleClass().add("buttonSidebarActive");
                 aboutButton.getStyleClass().remove("buttonSidebarActive");
                 
@@ -147,7 +164,9 @@ public class InicioUXController implements Initializable {
                 break;
             case "aboutButton":
 //                loginTopBarButton.setVisible(false);
-                pageTitle.setText("Sobre Nosotros");
+                pageTitleProperty.set("Sobre Nosotros");
+
+//                pageTitle.setText("Sobre Nosotros");
                 if (!aboutButton.getStyleClass().contains("buttonSidebarActive")) aboutButton.getStyleClass().add("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
@@ -158,7 +177,8 @@ public class InicioUXController implements Initializable {
 //                aboutUsBtn.getStyleClass().remove("buttonSidebarActive");
 //                break;
             case "perfilButton":
-                pageTitle.setText("Mi Perfil");
+                pageTitleProperty.set("Mi Perfil");
+//                pageTitle.setText("Mi Perfil");
 //                contactUsBtn.getStyleClass().add("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null && !perfilButton.getStyleClass().contains("buttonSidebarActive")) perfilButton.getStyleClass().add("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
@@ -166,7 +186,8 @@ public class InicioUXController implements Initializable {
                 
                 break;
             case "loginTopBarButton":
-                pageTitle.setText("Formulario de autentiación");
+                pageTitleProperty.set("Formulario de autentiación");
+//                pageTitle.setText("Formulario de autentiación");
 //                contactUsBtn.getStyleClass().add("buttonSidebarActive");
                 if (JavaFXMLApplication.current_user != null) perfilButton.getStyleClass().remove("buttonSidebarActive");
                 pistasButton.getStyleClass().remove("buttonSidebarActive");
