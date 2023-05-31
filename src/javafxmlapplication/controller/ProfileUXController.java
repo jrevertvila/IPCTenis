@@ -187,9 +187,9 @@ public class ProfileUXController implements Initializable {
             
             pagarBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
             
-            isPaidBookingCOL.setCellValueFactory((booking) -> {
-                return new SimpleStringProperty(booking.getValue().getPaid() ? "SI" : "NO");
-            });
+//            isPaidBookingCOL.setCellValueFactory((booking) -> {
+//                return new SimpleStringProperty(booking.getValue().getPaid() ? "SI" : "NO");
+//            });
             
             //CELLFACTORY PARA ISPAID_COL, MOSTRAR UNA IMAGEN "TICK"
             
@@ -210,7 +210,7 @@ public class ProfileUXController implements Initializable {
                                     setGraphic(null);
                                     setText(null);
                                 } else {
-                                    String path = getTableView().getItems().get(getIndex()).getPaid() == true ? "../../icons/checkSi.png" : "../../icons/checkNo.png";
+                                    String path = getTableView().getItems().get(getIndex()).getPaid() == true ? "../../icons/si.png" : "../../icons/no.png";
                                     System.out.println("========PAGADO: " + path);
                                     image.setImage(new Image(getClass().getResource(path)+"") );
                                     setGraphic(image);
