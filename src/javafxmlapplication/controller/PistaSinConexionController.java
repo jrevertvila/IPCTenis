@@ -338,7 +338,7 @@ public class PistaSinConexionController implements Initializable {
             if (timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == -1 && actualUser != null) {
                 if (event.getClickCount() == 1) {
                     System.out.println("estic dins del if petit");
-                    Alert alertaInfor = new Alert(Alert.AlertType.INFORMATION);
+                    Alert alertaInfor = new Alert(Alert.AlertType.ERROR);
                     alertaInfor.setTitle("No se puede reservar");
                     alertaInfor.setHeaderText("No se pueden reservar pistas pasadas");
                     alertaInfor.setContentText("Has seleccionat: "
@@ -383,21 +383,21 @@ public class PistaSinConexionController implements Initializable {
                 System.out.println("horaDesp = " + horaDesp);
                 System.out.println("horaAbans = " + horaAbans);
                 if (!(contAnt >= 2 || contDesp >= 2 || (contAnt == 1 && contDesp == 1 && (horaDesp - horaAbans <= 2)))) {
-                    System.out.println("estic dins del if gran");
+                   
 
                     if (event.getClickCount() == 1) {
 
                         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-                        alerta.setTitle("Confirmació de la reserva");
+                        alerta.setTitle("Confirmación de la reserva");
                         alerta.setHeaderText("Revisa els datos de la reserva ");
-                        alerta.setContentText("Has seleccionat: "
+                        alerta.setContentText("Has seleccionado: "
                                 + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                 + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
 
                         Optional<ButtonType> result = alerta.showAndWait();
                         if (result.isPresent() && result.get() == ButtonType.OK) {
                             if (actualUser != null && reservaHablilitada == true) {
-                                System.out.println("ultiim if evaluador");
+                                
                                 ObservableList<String> styles = timeSlot.getView().getStyleClass();
 
                                 timeSlot.setContenido(actualUser.getNickName());
@@ -420,11 +420,11 @@ public class PistaSinConexionController implements Initializable {
                     }
                 } else {
                     if (event.getClickCount() == 1) {
-                        System.out.println("estic dins del else gran");
-                        Alert alertaInfor = new Alert(Alert.AlertType.INFORMATION);
+                        
+                        Alert alertaInfor = new Alert(Alert.AlertType.ERROR);
                         alertaInfor.setTitle("No se puede reservar");
-                        alertaInfor.setHeaderText("No se pueden reservar mas de dos horas seguidas");
-                        alertaInfor.setContentText("Has seleccionat: "
+                        alertaInfor.setHeaderText("No se pueden reservar más de dos horas seguidas");
+                        alertaInfor.setContentText("Has seleccionado: "
                                 + timeSlot.getDate().format(DateTimeFormatter.ofLocalizedDate(FormatStyle.SHORT)) + ", "
                                 + timeSlot.getTime().format(DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT)));
                         Optional<ButtonType> result = alertaInfor.showAndWait();
