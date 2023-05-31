@@ -154,6 +154,7 @@
 .inputStyled:focused {
     -fx-background-color: #d4fff6; /*rgba(240, 119, 6, 0.1)*/
     -fx-border-color: #07d3b0 !important;
+
 }
 
 .inputStyledError {

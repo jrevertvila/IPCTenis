@@ -27,9 +27,9 @@ public class Utils {
     private static final Pattern CUALQUIER_CARACTER = Pattern.compile("^\\S+$");
     private static final Pattern NUEVE_NUMEROS_PATTERN = Pattern.compile("^\\d{9}$");
     private static final Pattern SOLO_NUMEROS_PATTERN = Pattern.compile("\\d+$");
-    private static final Pattern DIECISEIS_NUMEROS_PATTERN = Pattern.compile("^\\d{16}$"); 
+    private static final Pattern DIECISEIS_NUMEROS_PATTERN = Pattern.compile("^(?:\\d{16}|)$"); 
     private static final Pattern SOLO_CONTRASEÑA_SEGURA = Pattern.compile("^[^\\s]{5,10}$");
-    private static final Pattern SOLO_TRES_NUMEROS = Pattern.compile("^\\d{3}$");
+    private static final Pattern SOLO_TRES_NUMEROS = Pattern.compile("^(?:\\d{3}|)$");
     private static final Pattern LETRAS_Y_ESPACIOS = Pattern.compile("^[A-Za-z ]+$");
 
  
