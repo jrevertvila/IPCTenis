@@ -473,6 +473,7 @@ public class ProfileUXController implements Initializable {
             imgFile = local;
             imgLabel.setText(imgFile.getName());
             applyChangesButton.setDisable(false);
+            deshacerButton.setDisable(false); 
         }
     }
 
@@ -483,16 +484,18 @@ public class ProfileUXController implements Initializable {
 
     }
 
-    private void deshacerMethod(ActionEvent event) {
+    @FXML
+    private void deshacerMethod(MouseEvent event) {
         nameField.setText(current_user.getName());
         surnameField.setText(current_user.getSurname());
         phoneField.setText(current_user.getTelephone());
         creditCardField.setText(current_user.getCreditCard());
         csvField.setText(current_user.getSvc() + "");
-    }
-
-    @FXML
-    private void deshacerMethod(MouseEvent event) {
+        imgFile = null;
+        imgLabel.setText("No se ha subido ninguna foto"); 
+        applyChangesButton.setDisable(true);
+        deshacerButton.setDisable(true);
+    
     }
     
 }

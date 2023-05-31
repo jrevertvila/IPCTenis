@@ -16,14 +16,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafxmlapplication.JavaFXMLApplication;
+import static javafxmlapplication.JavaFXMLApplication.current_user;
 import javafxmlapplication.Utils;
 import javafxmlapplication.view.LoginRegisterController;
 import model.Club;
@@ -39,91 +42,120 @@ public class RegisterController implements Initializable {
 
     @FXML
     private Button registerBtn;
-    @FXML
     private TextField field_nombre;
-    @FXML
     private TextField field_apellidos;
-    @FXML
     private TextField field_tlf;
     @FXML
     private TextField field_nickname;
     @FXML
     private TextField field_password;
-    @FXML
     private TextField field_repeat_password;
     @FXML
     private TextField field_tarjeta;
-    @FXML
-    private Button field_image;
     public final FileChooser fileChooser = new FileChooser();
     private File imgFile;
-    @FXML
     private Text imageNameLabel;
+    @FXML
+    private Label nameLabel;
+    @FXML
+    private Label surnameLabel;
+    @FXML
+    private Label phoneLabel;
+    @FXML
+    private Label nicknameLabel;
+    @FXML
+    private Label passwordLabel;
+    @FXML
+    private Label creditCardLabel;
+    @FXML
+    private ImageView imagenProfile;
+    @FXML
+    private Label svcLabel;
+    @FXML
+    private TextField field_name;
+    @FXML
+    private TextField field_surname;
+    @FXML
+    private TextField field_phone;
+    @FXML
+    private TextField field_svc;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        imagenProfile.setImage(new Image(getClass().getResource("../../icons/default-profile.png")+"") );
     }
 
     @FXML
     private void registerUser(ActionEvent event) throws ClubDAOException, IOException {
-        String nombre = field_nombre.getText();
-        String apellidos = field_apellidos.getText();
-        String tlf = field_tlf.getText();
-        String nickname = field_nickname.getText();
-        String passwd = field_password.getText();
-        String repeat_passwd = field_repeat_password.getText();
-        String tarjeta = field_tarjeta.getText();
-//        String img = field_image.getText();
-//        imgFile.getAbsolutePath();
         boolean error = false;
-        String textError = "";
-
-        if (nombre.isBlank()) {
-            error = true;
-            textError = "El nombre no puede estar vacío";
-            //Border input with Red color
+        boolean name_error = false;
+        boolean surname_error = false;
+        boolean phone_error = false;
+        boolean creditCard_error= false;
+        boolean csv_error = false;
+        boolean nickname_error = false;
+        boolean password_error = false;
+        
+        if(!Utils.isOnlyLetters(field_name.getText())){
+           error = true;
+           nameLabel.setText("Introduce unicamente letras"); 
+           field_name.getStyleClass().add("inputStyledError");
+           name_error = true;
         }
-        if (apellidos.isBlank()) {
+         if(!Utils.isOnlyLetters(field_surname.getText())){
             error = true;
-            textError = "";
-            //Border input with Red color
+            surname_error = true;
+           surnameLabel.setText("Introduce unicamente letras");
+           field_surname.getStyleClass().add("inputStyledError");
         }
-        if (tlf.isBlank()) {
+          if(!Utils.isPhoneNumber(field_phone.getText())){
             error = true;
-            textError = "";
-            //Border input with Red color
+            phone_error = true;
+           phoneLabel.setText("Introduce únicamente 9 números");
+           field_phone.getStyleClass().add("inputStyledError");
         }
-        if (nickname.isBlank()) {
+        if(!Utils.isCreditCard(field_tarjeta.getText())){
             error = true;
-            textError = "";
-            //Border input with Red color
-        }
-        if (passwd.isBlank()) {
+            creditCard_error = true;
+           creditCardLabel.setText("Introduce únicamente numeros");
+           field_tarjeta.getStyleClass().add("inputStyledError");
+           }
+           
+           if(!Utils.isCSV(field_svc.getText())){
             error = true;
-            textError = "";
-            //Border input with Red color
+            csv_error = true;
+           svcLabel.setText("Introduce únicamente numeros");
+           field_svc.getStyleClass().add("inputStyledError");
         }
-        if (repeat_passwd.isBlank()) {
-            error = true;
-            textError = "";
-            //Border input with Red color
-        }
-        if (tarjeta.isBlank()) {
-            error = true;
-            textError = "";
-            //Border input with Red color
-        }
-
+           if(!Utils.isOnlyLetters(field_nickname.getText())) {
+           error = true;
+           nickname_error = true;
+           nicknameLabel.setText("Introduce únicamente numeros");
+           field_nickname.getStyleClass().add("inputStyledError"); 
+           }
+           if(!Utils.isSecurePassword(field_password.getText())) {
+           error = true;
+           password_error = true;
+           passwordLabel.setText("Introduce únicamente numeros");
+           field_password.getStyleClass().add("inputStyledError"); 
+           }
+           
+        String nombre = field_name.getText(); 
+        String apellidos = field_surname.getText(); 
+        String tlf = field_phone.getText(); 
+        String nickname = field_nickname.getText();
+        String passwd = field_password.getText(); 
+        String tarjeta = field_tarjeta.getText(); 
+        int svc = Integer.parseInt(field_svc.getText());       
         if (!error) {
             Club club = Club.getInstance();
             
-            Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd, tarjeta, 0,
+            Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd, tarjeta, svc ,
                 imgFile == null ? 
-                        new Image(getClass().getResource("../../icons/default-profile.png")+"", 40, 40, false, false) 
+                        new Image(getClass().getResource("../../icons/default-profile.png")+"") 
                         : new Image(imgFile.getAbsolutePath()) 
             );
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../view/MessageModal.fxml"));
@@ -157,7 +189,6 @@ public class RegisterController implements Initializable {
 
     }
 
-    @FXML
     private void uploadImage(ActionEvent event) {
         imgFile = Utils.uploadImage(event);
         if (imgFile != null) imageNameLabel.setText(imgFile.getName());
