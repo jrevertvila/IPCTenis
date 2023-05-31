@@ -466,12 +466,12 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
                         Optional<ButtonType> result = alerta.showAndWait();
                         if (result.isPresent() && result.get() == ButtonType.OK) {
                             if (actualUser != null && reservaHablilitada == true) {
-
+                                        System.out.println("ultiim if evaluador");
                                 ObservableList<String> styles = timeSlot.getView().getStyleClass();
                                 // si no està marcada 
-                                if (styles.contains("time-slot")) {
-                                    styles.remove("time-slot");
-                                    styles.add("time-slot-reserva");
+                                //if (styles.contains("time-slot")) {
+//                                    styles.remove("time-slot");
+                                   // styles.add("time-slot-reserva");
                                     timeSlot.setContenido(actualUser.getNickName());
                                     boolean pagado = true;
                                     if (actualUser.getCreditCard() == null) {
@@ -479,18 +479,19 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
                                     }
 
                                     try {
+                                        System.out.println("just abanse de ficar la resercva");
                                         club.registerBooking(timeSlot.getStart(), timeSlot.getDate(), timeSlot.getTime(), pagado, timeSlot.getCourt(), actualUser);
                                     } catch (ClubDAOException ex) {
                                         Logger.getLogger(PistaSinConexionController.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                     // styles.remove("time-slot");
                                     // styles.add("time-slot-libre");
-                                } else {
-                                            styles.add("time-slot-reserva");
+                               // } else {
+                                          
 //                            timeSlot.setContenido(actualUser.getNickName());
                                     //styles.remove("time-slot-libre");
                                     // styles.add("time-slot");
-                                }
+                                //}
 
                             }
 
@@ -610,13 +611,10 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             label.setMaxHeight(Double.MAX_VALUE);
             label.setAlignment(Pos.CENTER);
             
-            
             if (this.start.compareTo(LocalDateTime.now()) == -1) {
                
                 label.getStyleClass().add("label-timeslot-blur");
                   // label.setDisable(true);
-                 
-                 
 
             }
             // coloreja diferent les reserves del propi usuari
@@ -697,9 +695,7 @@ if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValu
             return view;
         }
         
-        public void setStyle(){
         
-        }
 
     }
 
