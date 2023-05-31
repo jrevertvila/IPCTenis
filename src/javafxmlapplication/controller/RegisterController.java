@@ -207,7 +207,7 @@ public class RegisterController implements Initializable {
             Club club = Club.getInstance();
             try {
                 Member result = club.registerMember(nombre, apellidos, tlf, nickname, passwd,
-                        tarjeta.isBlank() ? "" : tarjeta,
+                        tarjeta.isBlank() ? null : tarjeta,
                         svc == 0 ? 0 : svc,
                         imgFile == null
                                 ? new Image(getClass().getResource("../../icons/default-profile.png") + "")
