@@ -396,6 +396,17 @@ public class ProfileUXController implements Initializable {
         boolean creditCard_error= false;
         boolean csv_error = false;
         
+        nameField.getStyleClass().remove("inputStyledError");
+        nameError.setText("");
+        surnameField.getStyleClass().remove("inputStyledError");
+        surnameError.setText("");
+        phoneField.getStyleClass().remove("inputStyledError");
+        phoneError.setText("");
+        creditCardField.getStyleClass().remove("inputStyledError");
+        creditCardError.setText("");
+        csvField.getStyleClass().remove("inputStyledError");
+        csvError.setText("");
+        
         if(!Utils.isOnlyLetters(nameField.getText())){
            error = true;
            nameError.setText("Introduce unicamente letras"); 
@@ -414,18 +425,46 @@ public class ProfileUXController implements Initializable {
            phoneError.setText("Introduce únicamente 9 números");
            phoneField.getStyleClass().add("inputStyledError");
         }
-        if(!Utils.isCreditCard(creditCardField.getText())){
-            error = true;
-            creditCard_error = true;
-           creditCardError.setText("Introduce únicamente numeros");
-           creditCardField.getStyleClass().add("inputStyledError");
-           }
+          if (!csvField.getText().equals("0") && creditCardField.getText().isBlank()) {
+            if (!csvField.getText().isBlank()) {
+                error = true;
+                csv_error = true;
+                creditCardError.setText("No puedes introducir svc sin tarjeta");
+//                csvField.getStyleClass().add("inputStyledError");
+                creditCardField.getStyleClass().add("inputStyledError");
+            }
+
+        } else {
+            if (!csvField.getText().equals("0") && !Utils.isCSV(csvField.getText())) {
+                error = true;
+                csv_error = true;
+                csvError.setText("solo 3");
+                csvField.getStyleClass().add("inputStyledError");
+            }
+        }
+
+        if (!creditCardField.getText().isBlank()) {
+            if (csvField.getText().isBlank()) {
+                error = true;
+                csv_error = true;
+                csvError.setText("Debe introducir el SCV");
+                csvField.getStyleClass().add("inputStyledError");
+            }
+        }
+    
            
-           if(!Utils.isCSV(csvField.getText())){
+        if(!csvField.getText().equals("0") && !Utils.isCSV(csvField.getText())){
             error = true;
             csv_error = true;
-           csvError.setText("Introduce únicamente numeros");
+           csvError.setText("Introduce SCV válido");
            csvField.getStyleClass().add("inputStyledError");
+        }
+        
+        if(!Utils.isCreditCard(creditCardField.getText())) {
+            error = true;
+            creditCard_error = true;
+            creditCardError.setText("Introduzca una tarjeta válida");
+            creditCardField.getStyleClass().add("inputStyledError");
         }
            
         if (!error) {
@@ -433,7 +472,14 @@ public class ProfileUXController implements Initializable {
             current_user.setSurname(surnameField.getText());
             current_user.setTelephone(phoneField.getText());
             current_user.setCreditCard(creditCardField.getText());
-            current_user.setSvc(Integer.parseInt(csvField.getText()));
+            int svc = 0;
+                    
+            try {
+                svc = Integer.parseInt(csvField.getText());
+        } catch (NumberFormatException e) {
+        }
+            if(!csvField.getText().equals("0")) current_user.setSvc(svc);
+                   
             if (imgFile != null) {
                 current_user.setImage(new Image(imgFile.getAbsolutePath()));
                         
@@ -445,26 +491,7 @@ public class ProfileUXController implements Initializable {
             notif.setNotificationType(NotificationType.SUCCESS);
             notif.showAndDismiss(Duration.millis(2000));
         }    
-        if (!name_error) {
-                nameField.getStyleClass().remove("inputStyledError");
-                nameError.setText("");
-        }
-        if (!surname_error) {
-                surnameField.getStyleClass().remove("inputStyledError");
-                surnameError.setText("");
-        }
-        if (!phone_error) {
-                phoneField.getStyleClass().remove("inputStyledError");
-                phoneError.setText("");
-        } 
-        if (!creditCard_error) {
-                 creditCardField.getStyleClass().remove("inputStyledError");
-                 creditCardError.setText("");
-        }
-        if(!csv_error) {
-            csvField.getStyleClass().remove("inputStyledError");
-            csvError.setText("");
-        }
+      
            
         nameLabel.setText(current_user.getName() + " " + current_user.getSurname());  
         ImagePattern pattern = new ImagePattern( JavaFXMLApplication.current_user.getImage() );
