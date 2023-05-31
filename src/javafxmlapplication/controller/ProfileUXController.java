@@ -100,8 +100,7 @@ public class ProfileUXController implements Initializable {
     private static SimpleStringProperty totalesP = new SimpleStringProperty("0");
     @FXML
     private TableColumn<Booking, String> isPaidBookingCOL;
-    @FXML
-    private TableColumn<Booking, String> pagarBookingCOL;
+//    private TableColumn<Booking, String> pagarBookingCOL;
     @FXML
     private TextField nameField;
     @FXML
@@ -188,7 +187,7 @@ public class ProfileUXController implements Initializable {
 
             actionBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
             
-            pagarBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
+//            pagarBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
             
 //            isPaidBookingCOL.setCellValueFactory((booking) -> {
 //                return new SimpleStringProperty(booking.getValue().getPaid() ? "SI" : "NO");
@@ -282,53 +281,53 @@ public class ProfileUXController implements Initializable {
 
             actionBookingCOL.setCellFactory(cellFactory);
             
-            //CELLFACTORY PARA COLUMNA PAGAR
-            Callback<TableColumn<Booking, String>, TableCell<Booking, String>> cellFactory2
-                    = //
-                    (final TableColumn<Booking, String> param) -> {
-                        final TableCell<Booking, String> cell = new TableCell<Booking, String>() {
-
-                    final Button btn = new Button("Pagar");
-                    
-                    @Override
-                    public void updateItem(String item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty) {
-                            setGraphic(null);
-                            setText(null);
-                        } else {
-                            btn.setDisable(getTableView().getItems().get(getIndex()).getPaid() ? true : false);
-                            btn.setOnAction(event -> {
-                            Alert alert = new Alert(AlertType.CONFIRMATION);
-                            alert.setTitle("Confimarción pago reserva:");
-                            alert.setHeaderText("La reserva para el dia " + getTableView().getItems().get(getIndex()).getBookingDate() + " se pagará con la tarjeta de credito proporcionada");
-                            alert.setContentText("¿Seguro que quieres continuar?");
-                            Optional<ButtonType> result = alert.showAndWait();
-                            if (result.isPresent() && result.get() == ButtonType.OK){
-                                
-                                getTableView().getItems().get(getIndex()).setPaid(true);
-                                misReservas = FXCollections.observableArrayList(club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
-                                tableViewReservas.setItems(misReservas);
-                                btn.setDisable(true);
-                                
-                                TrayNotification notif = new TrayNotification();
-                                notif.setAnimationType(AnimationType.POPUP);
-                                notif.setTitle("RESERVA PAGADA");
-                                notif.setMessage("Reserva para el dia " + getTableView().getItems().get(getIndex()).getBookingDate() + " pagada correctamente");
-                                notif.setNotificationType(NotificationType.SUCCESS);
-                                notif.showAndDismiss(Duration.millis(3000));
-                            }
-                            });
-                            setGraphic(btn);
-
-                            setText(null);
-                        }
-                    }
-                };
-                        return cell;
-                    };
-
-            pagarBookingCOL.setCellFactory(cellFactory2);
+//            //CELLFACTORY PARA COLUMNA PAGAR
+//            Callback<TableColumn<Booking, String>, TableCell<Booking, String>> cellFactory2
+//                    = //
+//                    (final TableColumn<Booking, String> param) -> {
+//                        final TableCell<Booking, String> cell = new TableCell<Booking, String>() {
+//
+//                    final Button btn = new Button("Pagar");
+//                    
+//                    @Override
+//                    public void updateItem(String item, boolean empty) {
+//                        super.updateItem(item, empty);
+//                        if (empty) {
+//                            setGraphic(null);
+//                            setText(null);
+//                        } else {
+//                            btn.setDisable(getTableView().getItems().get(getIndex()).getPaid() ? true : false);
+//                            btn.setOnAction(event -> {
+//                            Alert alert = new Alert(AlertType.CONFIRMATION);
+//                            alert.setTitle("Confimarción pago reserva:");
+//                            alert.setHeaderText("La reserva para el dia " + getTableView().getItems().get(getIndex()).getBookingDate() + " se pagará con la tarjeta de credito proporcionada");
+//                            alert.setContentText("¿Seguro que quieres continuar?");
+//                            Optional<ButtonType> result = alert.showAndWait();
+//                            if (result.isPresent() && result.get() == ButtonType.OK){
+//                                
+//                                getTableView().getItems().get(getIndex()).setPaid(true);
+//                                misReservas = FXCollections.observableArrayList(club.getUserBookings(JavaFXMLApplication.current_user.getNickName()));
+//                                tableViewReservas.setItems(misReservas);
+//                                btn.setDisable(true);
+//                                
+//                                TrayNotification notif = new TrayNotification();
+//                                notif.setAnimationType(AnimationType.POPUP);
+//                                notif.setTitle("RESERVA PAGADA");
+//                                notif.setMessage("Reserva para el dia " + getTableView().getItems().get(getIndex()).getBookingDate() + " pagada correctamente");
+//                                notif.setNotificationType(NotificationType.SUCCESS);
+//                                notif.showAndDismiss(Duration.millis(3000));
+//                            }
+//                            });
+//                            setGraphic(btn);
+//
+//                            setText(null);
+//                        }
+//                    }
+//                };
+//                        return cell;
+//                    };
+//
+//            pagarBookingCOL.setCellFactory(cellFactory2);
             tableViewReservas.setItems(misReservas);
             reservasTotales = userBookings.size();
             reservasTotalesLabel.setText(reservasTotales+"");

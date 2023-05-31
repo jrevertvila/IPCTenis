@@ -120,13 +120,12 @@
                                  <children>
                                     <TableView fx:id="tableViewReservas" prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                                       <columns>
-                                        <TableColumn fx:id="dateBookingCOL" prefWidth="101.0" text="Fecha" />
-                                          <TableColumn fx:id="courtBookingCOL" minWidth="0.0" prefWidth="51.0" text="Pista" />
-                                          <TableColumn fx:id="horaIniFinCOL" minWidth="0.0" prefWidth="84.0" text="Hora" />
-                                          <TableColumn fx:id="estadoBookingCOL" prefWidth="106.0" text="Estado" />
-                                          <TableColumn fx:id="isPaidBookingCOL" prefWidth="75.0" text="Pagado" />
-                                          <TableColumn fx:id="pagarBookingCOL" prefWidth="62.0" text="Pagar" />
-                                          <TableColumn fx:id="actionBookingCOL" prefWidth="78.0" text="Acción" />
+                                        <TableColumn fx:id="dateBookingCOL" prefWidth="106.0" text="Fecha" />
+                                          <TableColumn fx:id="courtBookingCOL" minWidth="0.0" prefWidth="59.0" text="Pista" />
+                                          <TableColumn fx:id="horaIniFinCOL" minWidth="0.0" prefWidth="105.0" text="Hora" />
+                                          <TableColumn fx:id="estadoBookingCOL" prefWidth="102.0" text="Estado" />
+                                          <TableColumn fx:id="isPaidBookingCOL" prefWidth="70.0" text="Pagado" />
+                                          <TableColumn fx:id="actionBookingCOL" prefWidth="115.0" text="Acción" />
                                       </columns>
                                     </TableView>
                                  </children>
