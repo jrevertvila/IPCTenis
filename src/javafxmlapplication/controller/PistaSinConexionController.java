@@ -410,6 +410,7 @@ public class PistaSinConexionController implements Initializable {
             
 if (actualUser != null && reservaHablilitada == true && timeSlotSelected.getValue().contenido.equals("") && timeSlotSelected.getValue().start.compareTo(LocalDateTime.now()) == 1) {
             
+  
             List<Booking> selectedBookings = club.getCourtBookings(pistaSelected.getName(), startTimeSelected);
             int contAnt = 0;
             int contDesp = 0;
