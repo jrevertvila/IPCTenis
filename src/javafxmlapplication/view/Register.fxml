@@ -17,8 +17,8 @@
    <children>
       <GridPane alignment="CENTER" hgap="15.0" prefHeight="362.0" prefWidth="563.0" styleClass="gridRegister" vgap="15.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="462.39996337890625" minWidth="10.0" prefWidth="297.6" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="288.80004882812494" minWidth="10.0" prefWidth="271.2" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="80.79999389648438" vgrow="SOMETIMES" />
@@ -38,7 +38,7 @@
                         </Text>
                      </children>
                   </HBox>
-                  <TextField fx:id="field_nickname" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <TextField fx:id="field_nickname" prefWidth="274.0" promptText="martamp_25" />
                   <Label fx:id="nicknameLabel" prefHeight="18.0" prefWidth="283.0" textFill="RED">
                      <VBox.margin>
                         <Insets left="15.0" />
@@ -53,7 +53,7 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_password" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <TextField fx:id="field_password" prefWidth="274.0" promptText="contraseña" />
                   <Label fx:id="passwordLabel" prefHeight="18.0" prefWidth="325.0" textFill="RED">
                      <VBox.margin>
                         <Insets left="15.0" />
@@ -68,7 +68,7 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_name" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <TextField fx:id="field_name" prefWidth="274.0" promptText="Marta" />
                   <Label fx:id="nameLabel" prefHeight="18.0" prefWidth="294.0" textFill="RED">
                      <VBox.margin>
                         <Insets left="15.0" />
@@ -83,7 +83,7 @@
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_surname" prefWidth="274.0" promptText="Nombre de usuario" />
+                  <TextField fx:id="field_surname" prefWidth="274.0" promptText="Martínez Pérez" />
                   <Label fx:id="surnameLabel" prefHeight="18.0" prefWidth="308.0" textFill="RED">
                      <VBox.margin>
                         <Insets left="15.0" />
@@ -91,22 +91,22 @@
                   </Label>
                </children>
             </VBox>
-            <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="200.0" prefWidth="100.0" spacing="5.0" GridPane.rowIndex="2">
+            <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="69.0" prefWidth="302.0" spacing="5.0" GridPane.rowIndex="2">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Telefono: *">
                      <VBox.margin>
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField fx:id="field_phone" prefHeight="26.0" prefWidth="132.0" promptText="Nombre de usuario" />
-                  <Label fx:id="phoneLabel" prefHeight="18.0" prefWidth="286.0" textFill="RED">
+                  <TextField fx:id="field_phone" prefHeight="26.0" prefWidth="132.0" promptText="658743598" />
+                  <Label fx:id="phoneLabel" prefHeight="18.0" prefWidth="292.0" textFill="RED">
                      <VBox.margin>
                         <Insets left="15.0" />
                      </VBox.margin>
                   </Label>
                </children>
             </VBox>
-            <HBox GridPane.rowIndex="3">
+            <HBox prefHeight="70.0" prefWidth="317.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3">
                <children>
                   <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="142.0" prefWidth="291.0" spacing="5.0">
                      <children>
@@ -115,7 +115,7 @@
                               <Insets left="15.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="field_tarjeta" prefHeight="26.0" prefWidth="205.0" promptText="Nombre de usuario" VBox.vgrow="ALWAYS" />
+                        <TextField fx:id="field_tarjeta" prefHeight="26.0" prefWidth="205.0" promptText="5482568912024145" VBox.vgrow="ALWAYS" />
                         <Label fx:id="creditCardLabel" prefHeight="18.0" prefWidth="298.0" textFill="RED">
                            <VBox.margin>
                               <Insets left="15.0" />
@@ -125,13 +125,13 @@
                   </VBox>
                   <VBox fillWidth="false" prefHeight="70.0" prefWidth="94.0" spacing="5.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SVC: *" wrappingWidth="40.95037770271301">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SVC: " wrappingWidth="40.95037770271301">
                            <VBox.margin>
                               <Insets left="15.0" />
                            </VBox.margin>
                         </Text>
-                        <TextField fx:id="field_svc" prefWidth="274.0" promptText="Nombre de usuario" />
-                        <Label fx:id="svcLabel" prefHeight="18.0" prefWidth="175.0" textFill="RED">
+                        <TextField fx:id="field_svc" prefHeight="26.0" prefWidth="70.0" promptText="598" />
+                        <Label fx:id="svcLabel" prefHeight="18.0" prefWidth="103.0" textFill="RED">
                            <VBox.margin>
                               <Insets left="15.0" />
                            </VBox.margin>
@@ -142,10 +142,10 @@
             </HBox>
             <ImageView fx:id="imagenProfile" fitHeight="104.0" fitWidth="118.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="85.0" />
+                  <Insets left="85.0" top="15.0" />
                </GridPane.margin>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="162.0" styleClass="uploadFileButton" text="Sube una foto de perfil" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="uploadFileButton" mnemonicParsing="false" onAction="#uploadImage" prefHeight="26.0" prefWidth="162.0" styleClass="uploadFileButton" text="Sube una foto de perfil" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="60.0" />
                </GridPane.margin>
