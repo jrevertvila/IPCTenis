@@ -64,7 +64,7 @@
                         <Insets bottom="3.0" />
                      </VBox.margin>
                   </HBox>
-                  <PasswordField fx:id="login_passwd" maxWidth="350.0" prefWidth="300.0" styleClass="inputStyled" text="admin" />
+                  <PasswordField fx:id="login_passwd" maxWidth="350.0" onKeyPressed="#handleEnterKey" prefWidth="300.0" styleClass="inputStyled" text="admin" />
                   <HBox maxWidth="350.0">
                      <children>
                         <Text fx:id="errorPasswdLabel" fill="#e33434" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="formLabel">

@@ -77,7 +77,6 @@ public class LoginController implements Initializable {
         
         String nickname = login_nickname.getText();
         String passwd = login_passwd.getText();
-        System.out.println("hola");
         if (nickname.isBlank() || passwd.isBlank()) {
             if (nickname.isBlank()) {
                 login_nickname.getStyleClass().add("inputStyledError");
@@ -99,9 +98,6 @@ public class LoginController implements Initializable {
                 System.out.println(ex);
             }
 
-            System.out.println(club.existsLogin(nickname));
-
-            
             if (club.existsLogin(nickname) && JavaFXMLApplication.current_user != null) {
                 TrayNotification notif = new TrayNotification();
                 notif.setAnimationType(AnimationType.POPUP);
@@ -125,9 +121,8 @@ public class LoginController implements Initializable {
         }
     }
     
+    @FXML
     private void handleEnterKey(KeyEvent event) throws IOException, ClubDAOException {
-        if (event.getCode().equals(KeyCode.ENTER)) {
-            submitForm();
-        }
+        if (event.getCode().equals(KeyCode.ENTER)) submitForm();
     }
 }
