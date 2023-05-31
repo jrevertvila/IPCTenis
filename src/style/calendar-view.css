@@ -106,8 +106,8 @@ cancel-alert-button{
     -fx-background-color: #07d3b0;
     -fx-border-color: #07d3b0; 
     -fx-border-width: 1;
-    -fx-border-radius: 16px;
-    -fx-background-radius: 19px;
+    -fx-border-radius: 30px;
+    -fx-background-radius: 30px;
     -fx-cursor: hand;
      -fx-text-fill:white;
     
@@ -142,7 +142,7 @@ cancel-alert-button{
 
 
 .time-slot-reserva:hover{
-    -fx-background-color: yellow !important;
+    -fx-background-color: #d4fff6 !important;
     
 }
 /*.time-slot:hover{
