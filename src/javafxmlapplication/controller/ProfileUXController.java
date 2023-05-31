@@ -180,7 +180,7 @@ public class ProfileUXController implements Initializable {
             });
             
             horaIniFinCOL.setCellValueFactory((booking) -> {
-                return new SimpleStringProperty(booking.getValue().getBookingDate().getHour()+" - "+(booking.getValue().getBookingDate().getHour()+1));
+                return new SimpleStringProperty(booking.getValue().getBookingDate().getHour()+":00 - "+(booking.getValue().getBookingDate().getHour()+1)+":00");
             });
 
             actionBookingCOL.setCellValueFactory(new PropertyValueFactory<>(""));
