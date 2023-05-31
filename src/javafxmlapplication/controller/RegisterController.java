@@ -139,7 +139,7 @@ public class RegisterController implements Initializable {
         if (!Utils.isPhoneNumber(field_phone.getText()) || field_phone.getText().isBlank()) {
             error = true;
             phone_error = true;
-            phoneLabel.setText("No puede contener valores no numéricos");
+            phoneLabel.setText("Debe contener 9 números");
             field_phone.getStyleClass().add("inputStyledError");
         }
         if (!Utils.isCreditCard(field_tarjeta.getText())) {
